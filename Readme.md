@@ -2,4 +2,6 @@ RPPHS is a top down shooter inspired by Geometry wars. The goal of the game is s
 
 Controls: Movement = left stick. Shooting = right stick. Bombs = Left or Right trigger. 
 
+Press Right Trigger from the main menu to view credits. 
+
 Have fun. 

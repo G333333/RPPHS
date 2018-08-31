@@ -101,7 +101,7 @@ void Menu::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, v
     }
     vita2d_pgf_draw_text(pgf, menuRect.x + 10, menuRect.y + 50, RGBA8(255,255,255,fade), 1.5f, "Play");
     vita2d_pgf_draw_text(pgf, menuRect.x + 10, menuRect.y + 100, RGBA8(255,255,255,fade), 1.5f, "Options");
-    vita2d_pgf_draw_text(pgf, menuRect.x + 10, menuRect.y + 150, RGBA8(255,255,255,fade), 1.5f, "quit");
+    vita2d_pgf_draw_text(pgf, menuRect.x + 10, menuRect.y + 150, RGBA8(255,255,255,fade), 1.5f, "Quit");
 
     vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
     vita2d_pgf_draw_text(pgf, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 1.0f, "Select");
@@ -221,7 +221,7 @@ void Menu::menuPartial(vita2d_texture *crossImage, vita2d_pgf *pgf)
   }
   vita2d_pgf_draw_text(pgf, menuRect.x + 10, menuRect.y + 50, RGBA8(255,255,255,fade), 1.5f, "Play");
   vita2d_pgf_draw_text(pgf, menuRect.x + 10, menuRect.y + 100, RGBA8(255,255,255,fade), 1.5f, "Options");
-  vita2d_pgf_draw_text(pgf, menuRect.x + 10, menuRect.y + 150, RGBA8(255,255,255,fade), 1.5f, "quit");
+  vita2d_pgf_draw_text(pgf, menuRect.x + 10, menuRect.y + 150, RGBA8(255,255,255,fade), 1.5f, "Quit");
 
   vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
   vita2d_pgf_draw_text(pgf, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 1.0f, "Select");

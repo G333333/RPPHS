@@ -244,13 +244,13 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
   }
 
   vita2d_pgf_draw_textf(pgf, menuRect.x + 10, menuRect.y + 250, RGBA8(255,255,255,fade), 1.0f, "Deadzone: %d", deadZone);
-  vita2d_draw_rectangle(menuRect.x + 150, menuRect.y + 235, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 235, 50, 20, RGBA8(255, 255, 255, 255));
   int r = 0;
   int g = 255;
   int b = 0;
   for(int i = 0; i < deadZone; i++)
   {
-    vita2d_draw_line(menuRect.x + 151 + i, menuRect.y + 236, menuRect.x + 151 + i, menuRect.y + 254, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 236, menuRect.x + menuRect.w - 59 + i, menuRect.y + 254, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)
@@ -272,13 +272,13 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
   }
 
   vita2d_pgf_draw_textf(pgf, menuRect.x + 10, menuRect.y + 300, RGBA8(255,255,255,fade), 1.0f, "Music: %.0lf", musicLevel);
-  vita2d_draw_rectangle(menuRect.x + 150, menuRect.y + 280, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 280, 50, 20, RGBA8(255, 255, 255, 255));
   r = 0;
   g = 255;
   b = 0;
   for(double i = 0; i < musicLevel * 5.0; i += 1.0)
   {
-    vita2d_draw_line(menuRect.x + 151 + i, menuRect.y + 281, menuRect.x + 151 + i, menuRect.y + 299, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 281, menuRect.x + menuRect.w - 59 + i, menuRect.y + 299, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)
@@ -300,13 +300,13 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
   }
 
   vita2d_pgf_draw_textf(pgf, menuRect.x + 10, menuRect.y + 350, RGBA8(255,255,255,fade), 1.0f, "Sounds: %.0lf", soundsLevel);
-  vita2d_draw_rectangle(menuRect.x + 150, menuRect.y + 330, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 330, 50, 20, RGBA8(255, 255, 255, 255));
   r = 0;
   g = 255;
   b = 0;
   for(double i = 0; i < soundsLevel * 5.0; i += 1.0)
   {
-    vita2d_draw_line(menuRect.x + 151 + i, menuRect.y + 331, menuRect.x + 151 + i, menuRect.y + 349, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 331, menuRect.x + menuRect.w - 59 + i, menuRect.y + 349, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)
@@ -637,13 +637,13 @@ void Options::menuPartial(vita2d_texture *circleImage, vita2d_pgf *pgf)
   }
 
   vita2d_pgf_draw_textf(pgf, menuRect.x + 10, menuRect.y + 250, RGBA8(255,255,255,fade), 1.0f, "Deadzone: %d", deadZone);
-  vita2d_draw_rectangle(menuRect.x + 150, menuRect.y + 235, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 235, 50, 20, RGBA8(255, 255, 255, 255));
   int r = 0;
   int g = 255;
   int b = 0;
   for(int i = 0; i < deadZone; i++)
   {
-    vita2d_draw_line(menuRect.x + 151 + i, menuRect.y + 236, menuRect.x + 151 + i, menuRect.y + 254, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 236, menuRect.x + menuRect.w - 59 + i, menuRect.y + 254, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)
@@ -665,13 +665,13 @@ void Options::menuPartial(vita2d_texture *circleImage, vita2d_pgf *pgf)
   }
 
   vita2d_pgf_draw_textf(pgf, menuRect.x + 10, menuRect.y + 300, RGBA8(255,255,255,fade), 1.0f, "Music: %.0lf", musicLevel);
-  vita2d_draw_rectangle(menuRect.x + 150, menuRect.y + 280, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 280, 50, 20, RGBA8(255, 255, 255, 255));
   r = 0;
   g = 255;
   b = 0;
   for(double i = 0; i < musicLevel * 5.0; i += 1.0)
   {
-    vita2d_draw_line(menuRect.x + 151 + i, menuRect.y + 281, menuRect.x + 151 + i, menuRect.y + 299, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 281, menuRect.x + menuRect.w - 59 + i, menuRect.y + 299, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)
@@ -693,13 +693,13 @@ void Options::menuPartial(vita2d_texture *circleImage, vita2d_pgf *pgf)
   }
 
   vita2d_pgf_draw_textf(pgf, menuRect.x + 10, menuRect.y + 350, RGBA8(255,255,255,fade), 1.0f, "Sounds: %.0lf", soundsLevel);
-  vita2d_draw_rectangle(menuRect.x + 150, menuRect.y + 330, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 330, 50, 20, RGBA8(255, 255, 255, 255));
   r = 0;
   g = 255;
   b = 0;
   for(double i = 0; i < soundsLevel * 5.0; i += 1.0)
   {
-    vita2d_draw_line(menuRect.x + 151 + i, menuRect.y + 331, menuRect.x + 151 + i, menuRect.y + 349, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 331, menuRect.x + menuRect.w - 59 + i, menuRect.y + 349, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)

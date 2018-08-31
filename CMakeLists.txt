@@ -36,7 +36,25 @@ include_directories(
 )
 
 add_executable(${SHORT_NAME}.elf
-main.cpp intro.cpp game.cpp functions.cpp menu.cpp options.cpp classic.cpp player.cpp bullet.cpp gary.cpp karen.cpp particle.cpp fpsCounter.cpp jeff.cpp miniJeff.cpp snakeGuy.cpp saveScreen.cpp saveIcon.cpp highScores.cpp
+src/main.cpp
+src/intro.cpp
+src/game.cpp
+src/functions.cpp
+src/menu.cpp
+src/options.cpp
+src/classic.cpp
+src/player.cpp
+src/bullet.cpp
+src/gary.cpp
+src/karen.cpp
+src/particle.cpp
+src/fpsCounter.cpp
+src/jeff.cpp
+src/miniJeff.cpp
+src/snakeGuy.cpp
+src/saveScreen.cpp
+src/saveIcon.cpp
+src/highScores.cpp
 )
 
 target_link_libraries(${SHORT_NAME}.elf

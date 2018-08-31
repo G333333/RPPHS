@@ -37,6 +37,8 @@ classic.h
 /home/rob/Projects/RPPHS/src/classic.h
 stdio.h
 -
+sstream
+-
 string.h
 -
 stdlib.h

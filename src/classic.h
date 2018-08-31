@@ -2,6 +2,7 @@
 #define _Classic_Class
 
 #include <stdio.h>
+#include <sstream>
 #include <string.h>
 #include <stdlib.h>
 

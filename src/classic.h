@@ -34,8 +34,9 @@ private:
   Player player;
   int extraLives;
   Bullet bullets[100];
-  Gary garys[20]; //104 total enemies seems to be the limit. garys + karens + jeffs + miniJeffs
+  Gary garys[40]; //104 total enemies seems to be the limit. garys + karens + jeffs + miniJeffs
   int garyTotal;
+  int garysAlive;
   Karen karens[10];
   int karenTotal;
   Jeff jeffs[10];
@@ -48,11 +49,15 @@ private:
   int bulletTimer;
   bool playGunSound, playExp;
   int safeTime, spawnTime;
-  Particle bombParticles[100];
+  Particle bombParticles[10];
   int particleCount;
   bool bombReset;
   int bombCount;
   int bombUpgrade;
+
+  //spawn events
+  int eventTimer;
+  bool garyEvent;
 public:
   void init(double levelWidth, double levelHeight);
   void doStuff(vita2d_texture *gameBackground,
@@ -86,7 +91,7 @@ public:
   void setStatus(int status);
   bool getQuit();
   void checkGarys();
-  void spawnGary(int index);
+  void spawnGary(int index, int x = 0, int y = 0);
   void checkKarens();
   void spawnKaren(int index);
   void checkJeffs();

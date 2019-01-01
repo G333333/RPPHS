@@ -22,20 +22,29 @@ void Gary::init()
   }
 }
 
-void Gary::spawn(vitaRect levelRect)
+void Gary::spawn(vitaRect levelRect, int x, int y)
 {
   spawning = true;
 
   int tempx, tempy;
-  int x = levelRect.x;
-  int y = levelRect.y;
-  int w = levelRect.w;
-  int h = levelRect.h;
-  tempx = rand() % w + x;
-  tempy = rand() % h + y;
+  int lx = levelRect.x;
+  int ly = levelRect.y;
+  int lw = levelRect.w;
+  int lh = levelRect.h;
+  tempx = rand() % lw + lx;
+  tempy = rand() % lh + ly;
 
-  rect.x = tempx;
-  rect.y = tempy;
+  if(x == 0 && y == 0)
+  {
+    rect.x = tempx;
+    rect.y = tempy;
+  }
+  else
+  {
+    rect.x = x; 
+    rect.y = y;
+  }
+
 
   xVel = yVel = 0;
 }

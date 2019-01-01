@@ -36,7 +36,8 @@ void Classic::init(double levelWidth, double levelHeight)
   safeTime = 0;
   spawnTime = 0;
 
-  garyTotal = 20;
+  garyTotal = 40;
+  garysAlive = 0;
   for(int i = 0; i < garyTotal; i++)
   {
     garys[i].init();
@@ -66,7 +67,7 @@ void Classic::init(double levelWidth, double levelHeight)
     snakeGuys[i].init();
   }
 
-  particleCount = 100;
+  particleCount = 10;
   bombReset = false;
   bombCount = 3;
   bombUpgrade = 80000;
@@ -74,6 +75,10 @@ void Classic::init(double levelWidth, double levelHeight)
   {
     bombParticles[i].init();
   }
+
+  //spawn events 
+  eventTimer = false;
+  garyEvent = false;
 }
 
 void Classic::doStuff(vita2d_texture *gameBackground,
@@ -284,6 +289,14 @@ void Classic::doStuff(vita2d_texture *gameBackground,
   if(!pause)
   {
     spawnStuff();
+    if(points > 10000)
+    {
+      eventTimer++;
+      if(eventTimer > 1800)
+      {
+        garyEvent = true;
+      }
+    }
   }
 
   if(checkPlayer())
@@ -382,6 +395,7 @@ void Classic::checkGarys()
       {
         bullets[x].die();
         garys[i].die();
+        garysAlive -= 1;
         points += 14 * multiplyer;
         killCount++;
         playExp = true;
@@ -402,15 +416,15 @@ void Classic::checkGarys()
   }
 }
 
-void Classic::spawnGary(int index)
+void Classic::spawnGary(int index, int x, int y)
 {
-  garys[index].spawn(levelRect);
+  garys[index].spawn(levelRect, x, y);
   for(int i = 0; i < garyTotal; i++)
   {
     if((checkCollision(garys[i].getRect(), garys[index].getRect()) && garys[i].getActive() && i != index) ||
         (checkCollision(garys[i].getRect(), garys[index].getRect()) && garys[i].getSpawning() && i != index)) //cant spawn on an active gary. they will get stuck
     {
-      spawnGary(index);
+      spawnGary(index, x, y);
     }
   }
 }
@@ -1029,6 +1043,7 @@ void Classic::killPlayer()
 
   for(int i = 0; i < garyTotal; i++)
   {
+    garysAlive = 0;
     if(garys[i].getActive() || garys[i].getSpawning())
     {
       garys[i].die();
@@ -1161,7 +1176,7 @@ void Classic::spawnStuff()
       if(points >= 50000)
       {
         karenCounter = rand() % 11;
-        garyCounter = rand() % 21;
+        garyCounter = rand() % 31;
         jeffCounter = rand() % 11;
         snakeCounter = rand() % 11;
       }
@@ -1176,12 +1191,47 @@ void Classic::spawnStuff()
         }
       }
 
-      for(int i = 0; i < garyTotal; i++)
+      if(!garyEvent)
       {
-        if(!garys[i].getActive() && garyCounter > 0)
+        for(int i = 0; i < garyTotal; i++)
         {
-          spawnGary(i);
-          garyCounter--;
+          if(!garys[i].getActive() && garyCounter > 0)
+          {
+            spawnGary(i);
+            garysAlive += 1;
+            garyCounter--;
+          }
+        }
+      }
+      if(garyEvent && garysAlive == 0 && player.getRect().x > levelRect.x + 180 && player.getRect().x < levelRect.x + levelRect.w - 180 && player.getRect().y > levelRect.y + 180 && player.getRect().y < levelRect.y + levelRect.h - 180)
+      {
+        eventTimer = 0;
+        garyEvent = false;
+        int spawnX = player.getRect().x - 175;
+        int spawnY = player.getRect().y - 175;
+        for(int i = 0; i < 10; i++)
+        {
+          spawnGary(i, spawnX, spawnY);
+          garysAlive += 1;
+          spawnX += 35;
+        }
+        for(int i = 10; i < 20; i++)
+        {
+          spawnGary(i, spawnX, spawnY);
+          garysAlive += 1;
+          spawnY += 35;
+        }
+        for(int i = 20; i < 30; i++)
+        {
+          spawnGary(i, spawnX, spawnY);
+          garysAlive += 1;
+          spawnX -= 35;
+        }
+        for(int i = 30; i < 40; i++)
+        {
+          spawnGary(i, spawnX, spawnY);
+          garysAlive += 1;
+          spawnY -= 35;
         }
       }
 
@@ -1241,6 +1291,7 @@ void Classic::checkBomb()
           if(checkCollision(garys[g].getRect(), bombParticles[i].getRect()))
           {
             garys[g].die();
+            garysAlive -= 1;
           }
         }
       }

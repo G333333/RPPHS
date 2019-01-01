@@ -26,6 +26,7 @@
 
 class Classic {
 private:
+  bool god;
   int status;
   int points, multiplyer, killCount, mpUpgrade, bulletUpgrade, bulletInterval, bulletSetting, lifeUpgrade;
   vitaRect levelRect;
@@ -41,6 +42,7 @@ private:
   int karenTotal;
   Jeff jeffs[10];
   int jeffTotal;
+  int jeffsAlive;
   MiniJeff miniJeffs[9];
   int miniJeffTotal;
   int snakeTotal;
@@ -58,6 +60,7 @@ private:
   //spawn events
   int eventTimer;
   bool garyEvent;
+  bool jeffEvent;
 public:
   void init(double levelWidth, double levelHeight);
   void doStuff(vita2d_texture *gameBackground,
@@ -95,7 +98,7 @@ public:
   void checkKarens();
   void spawnKaren(int index);
   void checkJeffs();
-  void spawnJeff(int index);
+  void spawnJeff(int index, int x = 0, int y = 0);
   void checkMiniJeffs();
   void checkSnakeGuys();
   void checkMap();

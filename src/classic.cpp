@@ -2,6 +2,8 @@
 
 void Classic::init(double levelWidth, double levelHeight)
 {
+  god = true;
+
   levelRect.x = -240;
   levelRect.y = -139;
   levelRect.w = levelWidth;
@@ -50,6 +52,7 @@ void Classic::init(double levelWidth, double levelHeight)
   }
 
   jeffTotal = 10;
+  jeffsAlive = 0;
   for(int i = 0; i < jeffTotal; i++)
   {
     jeffs[i].init();
@@ -77,8 +80,9 @@ void Classic::init(double levelWidth, double levelHeight)
   }
 
   //spawn events 
-  eventTimer = false;
+  eventTimer = 0;
   garyEvent = false;
+  jeffEvent = false;
 }
 
 void Classic::doStuff(vita2d_texture *gameBackground,
@@ -289,12 +293,20 @@ void Classic::doStuff(vita2d_texture *gameBackground,
   if(!pause)
   {
     spawnStuff();
-    if(points > 10000)
+    if(points > 0)
     {
-      eventTimer++;
-      if(eventTimer > 1800)
+      if(eventTimer <= 900)
       {
-        garyEvent = true;
+        eventTimer++;
+      }
+      if(eventTimer >= 900)
+      {
+        if(!garyEvent && !jeffEvent)
+        {
+          int event = rand() % 10;
+          if(event < 5) garyEvent = true;
+          if(event >= 5) jeffEvent = true;
+        }
       }
     }
   }
@@ -540,6 +552,7 @@ void Classic::checkJeffs()
       {
         bullets[x].die();
         jeffs[i].die();
+        jeffsAlive -= 1;
         points += 16 * multiplyer;
         killCount++;
         playExp = true;
@@ -610,15 +623,15 @@ void Classic::checkJeffs()
   }
 }
 
-void Classic::spawnJeff(int index)
+void Classic::spawnJeff(int index, int x, int y)
 {
-  jeffs[index].spawn(levelRect);
+  jeffs[index].spawn(levelRect, x, y);
   for(int i = 0; i < jeffTotal; i++)
   {
     if( (checkCollision(jeffs[i].getRect(), jeffs[index].getRect()) && jeffs[i].getActive() && i != index) ||
         (checkCollision(jeffs[i].getRect(), jeffs[index].getRect()) && jeffs[i].getSpawning() && i != index)) //cant spawn on an active gary. they will get stuck
     {//if collision upon spawn. spawn again because it will get stuck.
-      spawnJeff(index);
+      spawnJeff(index, x, y);
     }
   }
 }
@@ -983,7 +996,9 @@ int Classic::getPoints()
 }
 
 bool Classic::checkPlayer()
-{
+{ 
+  if(god) return false;
+  
   for(int i = 0; i < garyTotal; i++)
   {
     if(checkCollision(player.getRect(), garys[i].getRect()) && garys[i].getActive() && player.getActive())
@@ -1060,6 +1075,7 @@ void Classic::killPlayer()
 
   for(int i = 0; i < jeffTotal; i++)
   {
+    jeffsAlive = 0;
     if(jeffs[i].getActive() || jeffs[i].getSpawning())
     {
       jeffs[i].die();
@@ -1235,12 +1251,53 @@ void Classic::spawnStuff()
         }
       }
 
-      for(int i = 0; i < jeffTotal; i++)
+      if(!jeffEvent)
       {
-        if(!jeffs[i].getActive() && jeffCounter > 0)
+        for(int i = 0; i < jeffTotal; i++)
         {
-          spawnJeff(i);
-          jeffCounter--;
+          if(!jeffs[i].getActive() && jeffCounter > 0)
+          {
+            spawnJeff(i);
+            jeffsAlive += 1;
+            jeffCounter--;
+          }
+        }
+      }
+
+      if(jeffEvent)
+      {
+        for(int i = 0; i < jeffTotal; i++)
+        {
+          jeffs[i].die();
+          jeffsAlive -= 1;
+        }
+        eventTimer = 0; 
+        jeffEvent = 0;
+        int x = player.getRect().x - 132;
+        if(player.getRect().x > levelRect.x + levelRect.w - 234)
+          x = levelRect.x + levelRect.w - 234;
+        else if(player.getRect().x < levelRect.x + 234)
+          x = levelRect.x + 2;
+        
+        int y = player.getRect().y - 88;
+        if(player.getRect().y > levelRect.y + levelRect.h - 175)
+          y = levelRect.y + levelRect.h - 175;
+        else if(player.getRect().y < levelRect.y + 175)
+          y = levelRect.y + 2;
+        int tempy = y;
+        for(int i = 0; i < 5; i++)
+        {
+          spawnJeff(i, x, y);
+          jeffsAlive += 1;
+          y += 35;
+        }
+        y = tempy;
+        x += 200;
+        for(int i = 5; i < 10; i++)
+        {
+          spawnJeff(i, x, y);
+          jeffsAlive += 1;
+          y += 35;
         }
       }
 
@@ -1312,6 +1369,7 @@ void Classic::checkBomb()
           if(checkCollision(jeffs[j].getRect(), bombParticles[i].getRect()))
           {
             jeffs[j].die();
+            jeffsAlive -= 1;
           }
         }
       }

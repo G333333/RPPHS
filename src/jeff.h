@@ -27,7 +27,7 @@ private:
   Particle particles[15];
 public:
   void init();
-  void spawn(vitaRect levelRect);
+  void spawn(vitaRect levelRect, int x = 0, int y = 0);
   void newTarget(vitaRect levelRect);
   void preSpawn();
   bool getSpawning();

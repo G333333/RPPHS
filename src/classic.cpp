@@ -2,7 +2,7 @@
 
 void Classic::init(double levelWidth, double levelHeight)
 {
-  god = true;
+  god = false;
 
   levelRect.x = -240;
   levelRect.y = -139;
@@ -1119,7 +1119,10 @@ void Classic::spawnStuff()
   if(safeTime >= 120)
   {
     spawnTime++;
-    if(spawnTime >= 120)
+    int spawnTimeEnd;
+    if(garyEvent || jeffEvent) spawnTimeEnd = 240;
+    else spawnTimeEnd = 120;
+    if(spawnTime >= spawnTimeEnd)
     {
       int karenCounter = 0;
       int garyCounter = 0;
@@ -1195,6 +1198,14 @@ void Classic::spawnStuff()
         garyCounter = rand() % 31;
         jeffCounter = rand() % 11;
         snakeCounter = rand() % 11;
+      }
+
+      if(garyEvent || jeffEvent)
+      {
+        karenCounter = 1;
+        garyCounter = 1;
+        jeffCounter = 1;
+        snakeCounter = 1;
       }
 
 
@@ -1292,7 +1303,7 @@ void Classic::spawnStuff()
           y += 35;
         }
         y = tempy;
-        x += 200;
+        x += 232;
         for(int i = 5; i < 10; i++)
         {
           spawnJeff(i, x, y);

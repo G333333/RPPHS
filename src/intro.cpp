@@ -73,9 +73,9 @@ void Intro::doIntro(vita2d_pgf *pgf)
         vita2d_start_drawing();
     		vita2d_clear_screen();
 
-        vita2d_pgf_draw_text(pgf,343, 262, RGBA8(255,255,255,255), 1.0f, "This game saves data automagically");
-        vita2d_pgf_draw_text(pgf,343, 282, RGBA8(255,255,244,255), 1.0f, "Do not exit or power off when you see this icon");
-        saveIcon.doStuff(442, 320);
+        vita2d_pgf_draw_text(pgf,960 / 2 - vita2d_pgf_text_width(pgf, 1.0f, "This game saves data automagically") / 2, 262, RGBA8(255,255,255,255), 1.0f, "This game saves data automagically");
+        vita2d_pgf_draw_text(pgf,960 / 2 - vita2d_pgf_text_width(pgf, 1.0f, "Do not exit or power off when you see this icon") / 2, 282, RGBA8(255,255,244,255), 1.0f, "Do not exit or power off when you see this icon");
+        saveIcon.doStuff(960 / 2 - 8, 544 / 2 + 40);
 
         vita2d_end_drawing();
     		vita2d_swap_buffers();

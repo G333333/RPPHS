@@ -973,9 +973,8 @@ void Classic::pauseMenu(vita2d_pgf *pgf, vita2d_texture *circleImage, vita2d_tex
   vita2d_pgf_draw_text(pgf, 960 / 2 - vita2d_pgf_text_width(pgf, 0.9f, "PAUSED") / 2, 544 / 2, RGBA8(255,255,255,255), 0.9f, "PAUSED");
 
   vita2d_pgf_draw_text(pgf, 960 / 2 - vita2d_pgf_text_width(pgf, 0.9f, "Current Score:") / 2, 544 / 2 + 20, RGBA8(255,255,255,255), 0.9f, "Current Score:");
-  std::string tempString;
-  tempString = points;
-  vita2d_pgf_draw_textf(pgf, 960 / 2 - vita2d_pgf_text_width(pgf, 0.9f, tempString.c_str()) / 2, 544 / 2 + 40, RGBA8(255,255,255,255), 0.9f, "%d", points);
+
+  vita2d_pgf_draw_textf(pgf, 960 / 2 - vita2d_pgf_text_width(pgf, 0.9f, std::to_string(points).c_str()) / 2, 544 / 2 + 40, RGBA8(255,255,255,255), 0.9f, "%d", points);
 
   int tempWidth = vita2d_texture_get_width(circleImage); //get the width and height to draw in correct place.
   int tempHeight = vita2d_texture_get_height(circleImage); //both images are the same size. //used for text too

@@ -18,7 +18,7 @@ private:
   bool crossNeedsReset;
 public:
   Intro();
-  void doIntro(vita2d_pgf *pgf);
+  void doIntro(vita2d_font *font);
 };
 
 #endif

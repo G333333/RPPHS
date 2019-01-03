@@ -78,7 +78,7 @@ public:
               vita2d_texture *cursor2,
               vita2d_texture *circleImage,
               vita2d_texture *triangleImage,
-              vita2d_pgf *pgf,
+              vita2d_font *font,
               bool keys[15],
               double lx,
               double ly,
@@ -103,7 +103,7 @@ public:
   void checkSnakeGuys();
   void checkMap();
 
-  void drawHud(vita2d_pgf * pgf, int batteryPercent, vita2d_texture *playerImage, bool showBattery, bool showFps);
+  void drawHud(vita2d_font * font, int batteryPercent, vita2d_texture *playerImage, bool showBattery, bool showFps);
   void drawCursor(vita2d_texture *cursorCrosshair,
                   vita2d_texture *cursorDuck,
                   vita2d_texture *cursorWatcher,
@@ -113,13 +113,13 @@ public:
 
   bool playGun();
   bool getPlayExp();
-  void pauseMenu(vita2d_pgf *pgf, vita2d_texture *circleImage, vita2d_texture *triangleImage);
+  void pauseMenu(vita2d_font *font, vita2d_texture *circleImage, vita2d_texture *triangleImage);
   int getPoints();
   bool checkPlayer();
   void killPlayer();
   void spawnStuff();
 
-  void gameOver(vita2d_pgf *pgf, vita2d_texture *triangleImage);
+  void gameOver(vita2d_font *font, vita2d_texture *triangleImage);
 
   void checkBomb();
   bool bombActive();

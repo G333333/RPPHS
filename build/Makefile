@@ -111,19 +111,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named RPPHS.self
-
-# Build rule for target.
-RPPHS.self: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 RPPHS.self
-.PHONY : RPPHS.self
-
-# fast build rule for target.
-RPPHS.self/fast:
-	$(MAKE) -f CMakeFiles/RPPHS.self.dir/build.make CMakeFiles/RPPHS.self.dir/build
-.PHONY : RPPHS.self/fast
-
-#=============================================================================
 # Target rules for targets named RPPHS.elf
 
 # Build rule for target.
@@ -137,17 +124,30 @@ RPPHS.elf/fast:
 .PHONY : RPPHS.elf/fast
 
 #=============================================================================
-# Target rules for targets named RPPHS.vpk
+# Target rules for targets named RPPHS.vpk_
 
 # Build rule for target.
-RPPHS.vpk: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 RPPHS.vpk
-.PHONY : RPPHS.vpk
+RPPHS.vpk_: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 RPPHS.vpk_
+.PHONY : RPPHS.vpk_
 
 # fast build rule for target.
-RPPHS.vpk/fast:
-	$(MAKE) -f CMakeFiles/RPPHS.vpk.dir/build.make CMakeFiles/RPPHS.vpk.dir/build
-.PHONY : RPPHS.vpk/fast
+RPPHS.vpk_/fast:
+	$(MAKE) -f CMakeFiles/RPPHS.vpk_.dir/build.make CMakeFiles/RPPHS.vpk_.dir/build
+.PHONY : RPPHS.vpk_/fast
+
+#=============================================================================
+# Target rules for targets named RPPHS.self_
+
+# Build rule for target.
+RPPHS.self_: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 RPPHS.self_
+.PHONY : RPPHS.self_
+
+# fast build rule for target.
+RPPHS.self_/fast:
+	$(MAKE) -f CMakeFiles/RPPHS.self_.dir/build.make CMakeFiles/RPPHS.self_.dir/build
+.PHONY : RPPHS.self_/fast
 
 src/bullet.obj: src/bullet.cpp.obj
 
@@ -669,9 +669,9 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... RPPHS.self"
 	@echo "... RPPHS.elf"
-	@echo "... RPPHS.vpk"
+	@echo "... RPPHS.vpk_"
+	@echo "... RPPHS.self_"
 	@echo "... rebuild_cache"
 	@echo "... src/bullet.obj"
 	@echo "... src/bullet.i"

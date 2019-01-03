@@ -8,8 +8,7 @@ void Game::init()
   status = 1;
 	vita2d_set_clear_color(RGBA8(0,0,0,255));
 
-	pgf = vita2d_load_default_pgf();
-	pvf = vita2d_load_default_pvf();
+	font = vita2d_load_font_file( "app0:/font/font_main.ttf" );
 
   memset(&pad, 0, sizeof(pad));
 
@@ -258,7 +257,7 @@ void Game::saveSettings()
 
 void Game::doGame()
 {
-  intro.doIntro(pgf);
+  intro.doIntro(font);
 
   OutThere.setLooping(1);
   gSoloud.play(OutThere);
@@ -406,14 +405,14 @@ void Game::doGame()
 
     switch (status) {
       case 1:
-        menu.doStuff(gameBackground, crossImage, circleImage, pgf, keys, scePowerGetBatteryLifePercent(), showBattery);
+        menu.doStuff(gameBackground, crossImage, circleImage, font, keys, scePowerGetBatteryLifePercent(), showBattery);
         status = menu.getStatus();
         quitGame = menu.getQuit();
         classic.setStatus(status);
         options.setStatus(status);
         saveScreen.setStatus(status);
         highScores.setStatus(status);
-        options.menuPartial(circleImage, pgf);
+        options.menuPartial(circleImage, font);
         if(status == 2)
         {
           status = 5;
@@ -444,7 +443,7 @@ void Game::doGame()
         cursor2,
         circleImage,
         triangleImage,
-        pgf,
+        font,
         keys,
         pad.lx,
         pad.ly,
@@ -488,13 +487,13 @@ void Game::doGame()
         }
         break;
       case 3:
-        options.doStuff(gameBackground, circleImage, pgf, keys, scePowerGetBatteryLifePercent());
+        options.doStuff(gameBackground, circleImage, font, keys, scePowerGetBatteryLifePercent());
         status = options.getStatus();
         quitGame = options.getQuit();
         classic.setStatus(status);
         menu.setStatus(status);
         saveScreen.setStatus(status);
-        menu.menuPartial(crossImage, pgf);
+        menu.menuPartial(crossImage, font);
         showFps = options.getShowFps();
         showCursor = options.getShowCursor();
         showBattery = options.getShowBattery();
@@ -514,7 +513,7 @@ void Game::doGame()
         }
         break;
       case 4:
-        saveScreen.doStuff(gameBackground, crossImage, pgf, keys, scePowerGetBatteryLifePercent(), showBattery);
+        saveScreen.doStuff(gameBackground, crossImage, font, keys, scePowerGetBatteryLifePercent(), showBattery);
         status = saveScreen.getStatus();
         classic.setStatus(status);
         options.setStatus(status);
@@ -529,14 +528,14 @@ void Game::doGame()
         }
         break;
       case 5:
-        highScores.doStuff(gameBackground, crossImage, circleImage, pgf, keys, scePowerGetBatteryLifePercent(), showBattery, scores_int, scores_str, classic.getPoints());
+        highScores.doStuff(gameBackground, crossImage, circleImage, font, keys, scePowerGetBatteryLifePercent(), showBattery, scores_int, scores_str, classic.getPoints());
         status = highScores.getStatus();
         classic.setStatus(status);
         options.setStatus(status);
         saveScreen.setStatus(status);
         menu.setStatus(status);
-        menu.menuPartial(circleImage, pgf);
-        options.menuPartial(circleImage, pgf);
+        menu.menuPartial(circleImage, font);
+        options.menuPartial(circleImage, font);
 
 
         if(status == 1)
@@ -574,7 +573,7 @@ void Game::doGame()
     fpsCounter.update();
     if(showFps)
     {
-      vita2d_pgf_draw_textf(pgf, 856, 30, RGBA8(255,255,255,255), 0.9f, "FPS:%d", fpsCounter.getFps());
+      vita2d_font_draw_textf(font, 856, 30, RGBA8(255,255,255,255), 10.0f, "FPS:%d", fpsCounter.getFps());
     }
 		vita2d_end_drawing();
 		vita2d_swap_buffers();
@@ -602,7 +601,7 @@ void Game::quit()
   vita2d_free_texture(cursorWatcher);
   vita2d_free_texture(cursor1);
   vita2d_free_texture(cursor2);
-  vita2d_free_pgf(pgf);
+  vita2d_free_font(font);
 	vita2d_free_pvf(pvf);
 
   saveIcon.cleanUp();

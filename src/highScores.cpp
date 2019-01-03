@@ -34,7 +34,7 @@ void HighScores::start()
   barFade = 0;
 }
 
-void HighScores::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, vita2d_texture *circleImage, vita2d_pgf *pgf, bool keys[15], int batteryPercent, bool showBattery, int scores_int[10], std::string scores_str[10], int newScore)
+void HighScores::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, vita2d_texture *circleImage, vita2d_font *font, bool keys[15], int batteryPercent, bool showBattery, int scores_int[10], std::string scores_str[10], int newScore)
 {
   vita2d_draw_texture_scale(gameBackground, 0, 0, 2, 2);
 
@@ -70,7 +70,7 @@ void HighScores::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossIm
     {
       vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
     }
-    //vita2d_pgf_draw_textf(pgf, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 1.0f, "%d%%", batteryPercent);
+    //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 10.0f, "%d%%", batteryPercent);
     drawEmptyRect(battery, RGBA8(255, 255, 255, 255));
     vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(255, 255, 255, 255));
   }
@@ -78,14 +78,14 @@ void HighScores::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossIm
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
   drawEmptyRect(menuRect, RGBA8(0,255,0,fade));
 
-  vita2d_pgf_draw_text(pgf, menuRect.x + menuRect.w / 3 - vita2d_pgf_text_width(pgf, 1.0f, scores_str[0].c_str()) / 2, menuRect.y + 30, RGBA8(255,255,255,255), 1.0f, "HighScores:");
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 10.0f, scores_str[0].c_str()) / 2, menuRect.y + 30, RGBA8(255,255,255,255), 10.0f, "HighScores:");
   int tempIndex = 60 ;
   for(int i = 0; i < 10; i++)
   {
-    vita2d_pgf_draw_textf(pgf, menuRect.x + menuRect.w / 3 - vita2d_pgf_text_width(pgf, 1.0f, scores_str[0].c_str()) / 2, menuRect.y  + tempIndex, RGBA8(255,255,255,255), 1.0f,"%s %d", scores_str[i].c_str(), scores_int[i]);
+    vita2d_font_draw_textf(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 10.0f, scores_str[0].c_str()) / 2, menuRect.y  + tempIndex, RGBA8(255,255,255,255), 10.0f,"%s %d", scores_str[i].c_str(), scores_int[i]);
     if(newScore == scores_int[i])
     {
-      vita2d_pgf_draw_text(pgf, menuRect.x + menuRect.w / 3 - vita2d_pgf_text_width(pgf, 1.0f, scores_str[0].c_str()) / 2 - 15, menuRect.y  + tempIndex, RGBA8(0,255,0,barFade), 1.0f,">");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 10.0f, scores_str[0].c_str()) / 2 - 15, menuRect.y  + tempIndex, RGBA8(0,255,0,barFade), 10.0f,">");
     }
     tempIndex += 20;
   }
@@ -94,10 +94,10 @@ void HighScores::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossIm
   if(barFade >= 255)
     barFade = 0;
 
-  vita2d_pgf_draw_text(pgf, menuRect.x + menuRect.w - vita2d_pgf_text_width(pgf, 1.0f, "Return") - 40, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 1.0f,"Return");
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w - vita2d_font_text_width(font, 10.0f, "Return") - 40, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 10.0f,"Return");
   vita2d_draw_texture_scale(circleImage, menuRect.x + menuRect.w - 40,  menuRect.y + menuRect.h - 40, 1,1);
   vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
-  vita2d_pgf_draw_text(pgf, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 1.0f, "Play Game");
+  vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 10.0f, "Play Game");
   if(menuRect.y < target)
   {
     menuRect.y += 10;
@@ -155,21 +155,21 @@ void HighScores::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossIm
   }
 }
 
-void HighScores::menuPartial(vita2d_texture *crossImage, vita2d_texture *circleImage, vita2d_pgf *pgf, int scores_int[10], std::string scores_str[10])
+void HighScores::menuPartial(vita2d_texture *crossImage, vita2d_texture *circleImage, vita2d_font *font, int scores_int[10], std::string scores_str[10])
 {
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
   drawEmptyRect(menuRect, RGBA8(0,255,0,fade));
 
-  vita2d_pgf_draw_text(pgf, menuRect.x + menuRect.w / 3 - vita2d_pgf_text_width(pgf, 1.0f, scores_str[0].c_str()) / 2, menuRect.y + 20, RGBA8(255,255,255,255), 1.0f, "HighScores:");
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 10.0f, scores_str[0].c_str()) / 2, menuRect.y + 20, RGBA8(255,255,255,255), 10.0f, "HighScores:");
   int tempIndex = 60 ;
   for(int i = 0; i < 10; i++)
   {
-    vita2d_pgf_draw_textf(pgf, menuRect.x + menuRect.w / 2 - vita2d_pgf_text_width(pgf, 1.0f, scores_str[0].c_str()) / 2, menuRect.y  + tempIndex, RGBA8(255,255,255,255), 1.0f,"%s %d", scores_str[i].c_str(), scores_int[i]);
+    vita2d_font_draw_textf(font, menuRect.x + menuRect.w / 2 - vita2d_font_text_width(font, 10.0f, scores_str[0].c_str()) / 2, menuRect.y  + tempIndex, RGBA8(255,255,255,255), 10.0f,"%s %d", scores_str[i].c_str(), scores_int[i]);
     tempIndex += 20;
   }
 
   vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
-  vita2d_pgf_draw_text(pgf, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 1.0f, "Play Game");
+  vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 10.0f, "Play Game");
   if(menuRect.y < target)
   {
     menuRect.y += 10;

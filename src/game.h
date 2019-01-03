@@ -35,7 +35,7 @@ private:
   std::string scores_str[10];
   double levelWidth, levelHeight;
   SceCtrlData pad;
-	vita2d_pgf *pgf;
+	vita2d_font *font;
 	vita2d_pvf *pvf;
 	vita2d_texture *garyImage;
   vita2d_texture *karenImage;

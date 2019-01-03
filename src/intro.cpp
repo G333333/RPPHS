@@ -5,7 +5,7 @@ Intro::Intro()
   crossNeedsReset = false;
 }
 
-void Intro::doIntro(vita2d_pgf *pgf)
+void Intro::doIntro(vita2d_font *font)
 {
   int timer = 0;
   int letterCounter1 = 0;
@@ -44,9 +44,9 @@ void Intro::doIntro(vita2d_pgf *pgf)
     vita2d_start_drawing();
 		vita2d_clear_screen();
 
-    vita2d_pgf_draw_text(pgf,443, 262, RGBA8(0,255,0,letterCounter1), 2.0f, "G");
-    vita2d_pgf_draw_text(pgf,473, 262, RGBA8(0,255,0,letterCounter2), 2.0f, "3");
-    vita2d_pgf_draw_text(pgf,503, 262, RGBA8(0,255,0,letterCounter3), 2.0f, "3");
+    vita2d_font_draw_text(font,443, 262, RGBA8(0,255,0,letterCounter1), 10.0f, "G");
+    vita2d_font_draw_text(font,473, 262, RGBA8(0,255,0,letterCounter2), 10.0f, "3");
+    vita2d_font_draw_text(font,503, 262, RGBA8(0,255,0,letterCounter3), 10.0f, "3");
 
 
     vita2d_end_drawing();
@@ -73,8 +73,8 @@ void Intro::doIntro(vita2d_pgf *pgf)
         vita2d_start_drawing();
     		vita2d_clear_screen();
 
-        vita2d_pgf_draw_text(pgf,960 / 2 - vita2d_pgf_text_width(pgf, 1.0f, "This game saves data automagically") / 2, 262, RGBA8(255,255,255,255), 1.0f, "This game saves data automagically");
-        vita2d_pgf_draw_text(pgf,960 / 2 - vita2d_pgf_text_width(pgf, 1.0f, "Do not exit or power off when you see this icon") / 2, 282, RGBA8(255,255,244,255), 1.0f, "Do not exit or power off when you see this icon");
+        vita2d_font_draw_text(font,960 / 2 - vita2d_font_text_width(font, 10.0f, "This game saves data automagically") / 2, 262, RGBA8(255,255,255,255), 10.0f, "This game saves data automagically");
+        vita2d_font_draw_text(font,960 / 2 - vita2d_font_text_width(font, 10.0f, "Do not exit or power off when you see this icon") / 2, 282, RGBA8(255,255,244,255), 10.0f, "Do not exit or power off when you see this icon");
         saveIcon.doStuff(960 / 2 - 8, 544 / 2 + 40);
 
         vita2d_end_drawing();

@@ -100,7 +100,7 @@ void Classic::doStuff(vita2d_texture *gameBackground,
                       vita2d_texture *cursor2,
                       vita2d_texture *circleImage,
                       vita2d_texture *triangleImage,
-                      vita2d_pgf *pgf,
+                      vita2d_font *font,
                       bool keys[15],
                       double lx,
                       double ly,
@@ -323,7 +323,7 @@ void Classic::doStuff(vita2d_texture *gameBackground,
 
   if(extraLives <= 0 && !player.getActive())
   {
-    gameOver(pgf, triangleImage);
+    gameOver(font, triangleImage);
     killPlayer();
     playGunSound = false;
     playExp = false;
@@ -332,11 +332,11 @@ void Classic::doStuff(vita2d_texture *gameBackground,
   drawEmptyRect(levelRect, RGBA8(0,255,0,255));
   checkMap();
 
-  drawHud(pgf, batteryPercent, playerImage, showBattery, showFps);
+  drawHud(font, batteryPercent, playerImage, showBattery, showFps);
 
   if(pause)
   {
-    pauseMenu(pgf, circleImage, triangleImage);
+    pauseMenu(font, circleImage, triangleImage);
   }
 
   /**quick reference:
@@ -842,7 +842,7 @@ void Classic::checkMap()
   }
 }
 
-void Classic::drawHud(vita2d_pgf *pgf, int batteryPercent, vita2d_texture *playerImage, bool showBattery, bool showFps)
+void Classic::drawHud(vita2d_font *font, int batteryPercent, vita2d_texture *playerImage, bool showBattery, bool showFps)
 {
   //draw left hud background
   int fade = 150;
@@ -909,20 +909,20 @@ void Classic::drawHud(vita2d_pgf *pgf, int batteryPercent, vita2d_texture *playe
      {
        vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
      }
-     //vita2d_pgf_draw_textf(pgf, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 1.0f, "%d%%", batteryPercent);
+     //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 10.0f, "%d%%", batteryPercent);
      drawEmptyRect(battery, RGBA8(255, 255, 255, 255));
      vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(255, 255, 255, 255));
    }
    //end battery stuff
 
    //draw points and multiplyer
-   vita2d_pgf_draw_textf(pgf, 15, 30, RGBA8(255,255,255,255), 0.9f, "P:%d", points);
-   vita2d_pgf_draw_textf(pgf, 15, 50, RGBA8(255,255,255,255), 0.9f, "M:%d", multiplyer);
+   vita2d_font_draw_textf(font, 15, 30, RGBA8(255,255,255,255), 10.0f, "P:%d", points);
+   vita2d_font_draw_textf(font, 15, 50, RGBA8(255,255,255,255), 10.0f, "M:%d", multiplyer);
 
    //draw Extra lives and bombs count
 
-   vita2d_pgf_draw_textf(pgf, 15, 70, RGBA8(255,255,255,255), 0.9f, "L:%d", extraLives);
-   vita2d_pgf_draw_textf(pgf, 45, 70, RGBA8(255,255,255,255), 0.9f, "B:%d", bombCount);
+   vita2d_font_draw_textf(font, 15, 70, RGBA8(255,255,255,255), 10.0f, "L:%d", extraLives);
+   vita2d_font_draw_textf(font, 45, 70, RGBA8(255,255,255,255), 10.0f, "B:%d", bombCount);
 }
 
 void Classic::drawCursor(vita2d_texture *cursorCrosshair, vita2d_texture *cursorDuck, vita2d_texture *cursorWatcher, vita2d_texture *cursor1, vita2d_texture *cursor2, double rx, double ry, bool showCursor, int cursorSetting)
@@ -965,24 +965,24 @@ bool Classic::getPlayExp()
   return playExp;
 }
 
-void Classic::pauseMenu(vita2d_pgf *pgf, vita2d_texture *circleImage, vita2d_texture *triangleImage)
+void Classic::pauseMenu(vita2d_font *font, vita2d_texture *circleImage, vita2d_texture *triangleImage)
 {
   drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(0, 255, 0, 100));
   vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(0, 0, 0, 100));
 
-  vita2d_pgf_draw_text(pgf, 960 / 2 - vita2d_pgf_text_width(pgf, 0.9f, "PAUSED") / 2, 544 / 2, RGBA8(255,255,255,255), 0.9f, "PAUSED");
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "PAUSED") / 2, 544 / 2, RGBA8(255,255,255,255), 10.0f, "PAUSED");
 
-  vita2d_pgf_draw_text(pgf, 960 / 2 - vita2d_pgf_text_width(pgf, 0.9f, "Current Score:") / 2, 544 / 2 + 20, RGBA8(255,255,255,255), 0.9f, "Current Score:");
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "Current Score:") / 2, 544 / 2 + 20, RGBA8(255,255,255,255), 10.0f, "Current Score:");
 
-  vita2d_pgf_draw_textf(pgf, 960 / 2 - vita2d_pgf_text_width(pgf, 0.9f, std::to_string(points).c_str()) / 2, 544 / 2 + 40, RGBA8(255,255,255,255), 0.9f, "%d", points);
+  vita2d_font_draw_textf(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, std::to_string(points).c_str()) / 2, 544 / 2 + 40, RGBA8(255,255,255,255), 10.0f, "%d", points);
 
   int tempWidth = vita2d_texture_get_width(circleImage); //get the width and height to draw in correct place.
   int tempHeight = vita2d_texture_get_height(circleImage); //both images are the same size. //used for text too
 
   //uh.. x = half the screen - 1/4 of the screen = edge of pause menu. draw image here. draw text to right of image.
   //y = half the screen plus 1/4 of screen = bottom edge of pause menu. draw image here. draw text here - image width - text tempWidth
-  vita2d_pgf_draw_text(pgf, 960 / 2 - 960 / 4 + tempWidth + 10, 544 / 2 + 544 / 4 - 10, RGBA8(255,255,255,255), 0.9f, "Continue");
-  vita2d_pgf_draw_text(pgf, 960 / 2 + 960 / 4 - vita2d_pgf_text_width(pgf, 0.9f, "Main Menu") - tempWidth - 10, 544 / 2 + 544 / 4 - 10, RGBA8(255,255,255,255), 0.9f, "Main Menu");
+  vita2d_font_draw_text(font, 960 / 2 - 960 / 4 + tempWidth + 10, 544 / 2 + 544 / 4 - 10, RGBA8(255,255,255,255), 10.0f, "Continue");
+  vita2d_font_draw_text(font, 960 / 2 + 960 / 4 - vita2d_font_text_width(font, 10.0f, "Main Menu") - tempWidth - 10, 544 / 2 + 544 / 4 - 10, RGBA8(255,255,255,255), 10.0f, "Main Menu");
 
   vita2d_draw_texture_scale(circleImage, 960 / 2 - 960 / 4 + 10, 544 / 2 + 544 / 4 - tempHeight, 1, 1);
   vita2d_draw_texture_scale(triangleImage, 960 / 2 + 960 / 4 - tempWidth - 10, 544 / 2 + 544 / 4 - tempHeight, 1, 1);
@@ -1325,22 +1325,22 @@ void Classic::spawnStuff()
   }
 }
 
-void Classic::gameOver(vita2d_pgf *pgf, vita2d_texture *triangleImage)
+void Classic::gameOver(vita2d_font *font, vita2d_texture *triangleImage)
 {
   drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(0, 255, 0, 100));
   vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(0, 0, 0, 100));
 
-  vita2d_pgf_draw_text(pgf, 960 / 2 - vita2d_pgf_text_width(pgf, 0.9f, "Game Over") / 2, 544 / 2, RGBA8(255,255,255,255), 0.9f, "Game Over");
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "Game Over") / 2, 544 / 2, RGBA8(255,255,255,255), 10.0f, "Game Over");
 
-  vita2d_pgf_draw_text(pgf, 960 / 2 - vita2d_pgf_text_width(pgf, 0.9f, "Current Score:") / 2, 544 / 2 + 20, RGBA8(255,255,255,255), 0.9f, "Current Score:");
-  vita2d_pgf_draw_textf(pgf, 960 / 2 - 50, 544 / 2 + 40, RGBA8(255,255,255,255), 0.9f, "%d", points);
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "Current Score:") / 2, 544 / 2 + 20, RGBA8(255,255,255,255), 10.0f, "Current Score:");
+  vita2d_font_draw_textf(font, 960 / 2 - 50, 544 / 2 + 40, RGBA8(255,255,255,255), 10.0f, "%d", points);
 
   int tempWidth = vita2d_texture_get_width(triangleImage); //get the width and height to draw in correct place.
   int tempHeight = vita2d_texture_get_height(triangleImage); //both images are the same size. //used for text too
 
   //uh.. x = half the screen - 1/4 of the screen = edge of pause menu. draw image here. draw text to right of image.
   //y = half the screen plus 1/4 of screen = bottom edge of pause menu. draw image here. draw text here - image width - text tempWidth
-  vita2d_pgf_draw_text(pgf, 960 / 2 - 960 / 4 + tempWidth + 10, 544 / 2 + 544 / 4 - 10, RGBA8(255,255,255,255), 0.9f, "Return to Menu");
+  vita2d_font_draw_text(font, 960 / 2 - 960 / 4 + tempWidth + 10, 544 / 2 + 544 / 4 - 10, RGBA8(255,255,255,255), 10.0f, "Return to Menu");
 
   vita2d_draw_texture_scale(triangleImage, 960 / 2 - 960 / 4 + 10, 544 / 2 + 544 / 4 - tempHeight, 1, 1);
 }

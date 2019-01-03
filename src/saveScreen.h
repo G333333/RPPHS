@@ -29,7 +29,7 @@ private:
 public:
   void init(int points);
   void start(int points);
-  void doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, vita2d_pgf *pgf, bool keys[15], int batteryPercent, bool showBattery);
+  void doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, vita2d_font *font, bool keys[15], int batteryPercent, bool showBattery);
   int getStatus();
   void setStatus(int status);
   bool getQuit();

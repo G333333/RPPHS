@@ -12,7 +12,7 @@ void Bullet::init()
   rad = 0;
   angle = 0;
 
-  for(int i = 0; i < 2; i++)
+  for(int i = 0; i < 1; i++)
   {
     particles[i].init();
   }
@@ -55,7 +55,7 @@ void Bullet::doStuff(vita2d_texture *bulletImage, vitaRect levelRect, vitaRect s
     rect.x = start.x + 12;
     rect.y = start.y + 12;
 
-    for(int i = 0; i < 2; i++)
+    for(int i = 0; i < 1; i++)
     {
       particles[i].doStuff(rect, RGBA8(241,244,66,255), pause);
     }
@@ -74,7 +74,7 @@ void Bullet::doStuff(vita2d_texture *bulletImage, vitaRect levelRect, vitaRect s
       active = false;
       int tempSpeed = 0;
       int tempLife = 0;
-      for(int i = 0; i < 2; i++)
+      for(int i = 0; i < 1; i++)
       {
         tempSpeed = rand() % 2 + 1;
         tempLife = rand() % 20 + 1;

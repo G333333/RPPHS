@@ -26,7 +26,7 @@ void Classic::init(double levelWidth, double levelHeight)
 
   player.init();
   extraLives = 4;
-  for(int i = 0; i < 100; i++)
+  for(int i = 0; i < 50; i++)
   {
     bullets[i].init();
   }
@@ -181,7 +181,7 @@ void Classic::doStuff(vita2d_texture *gameBackground,
       playGunSound = true;
       bullets[bulletCounter].spawn(rx,ry,player.getRect());
       bulletCounter++; // Play the wave
-      if(bulletCounter >= 99)
+      if(bulletCounter >= 49)
       {
         bulletCounter = 0;
       }
@@ -200,7 +200,7 @@ void Classic::doStuff(vita2d_texture *gameBackground,
         }
         bullets[bulletCounter].spawn(tempx, tempy, player.getRect());
         bulletCounter++;
-        if(bulletCounter >= 99)
+        if(bulletCounter >= 49)
         {
           bulletCounter = 0;
         }
@@ -247,7 +247,7 @@ void Classic::doStuff(vita2d_texture *gameBackground,
 
   player.doStuff(playerImage, lx, ly, deadZone, levelRect, pause);
 
-  for(int i = 0; i < 100; i++)
+  for(int i = 0; i < 50; i++)
   {//do bullets. duh
     bullets[i].doStuff(bulletImage, levelRect, player.getRect(), pause);
   }
@@ -401,7 +401,7 @@ void Classic::checkGarys()
         }
       }
     }
-    for(int x = 0; x < 100; x++)
+    for(int x = 0; x < 50; x++)
     {
       if(checkCollision(garys[i].getRect(), bullets[x].getRect()) && bullets[x].getActive() && garys[i].getActive())
       {
@@ -474,7 +474,7 @@ void Classic::checkKarens()
         }
       }
     }
-    for(int x = 0; x < 100; x++)
+    for(int x = 0; x < 50; x++)
     {
       if(checkCollision(karens[i].getRect(), bullets[x].getRect()) && bullets[x].getActive() && karens[i].getActive())
       {
@@ -546,7 +546,7 @@ void Classic::checkJeffs()
         }
       }
     }
-    for(int x = 0; x < 100; x++)
+    for(int x = 0; x < 50; x++)
     {
       if(checkCollision(jeffs[i].getRect(), bullets[x].getRect()) && bullets[x].getActive() && jeffs[i].getActive())
       {
@@ -641,7 +641,7 @@ void Classic::checkMiniJeffs()
   for(int
     i = 0; i < miniJeffTotal; i++)
   {
-    for(int x = 0; x < 100; x++)
+    for(int x = 0; x < 50; x++)
     {
       if(checkCollision(miniJeffs[i].getRect(), bullets[x].getRect()) && miniJeffs[i].getActive() && bullets[x].getActive())
       {
@@ -671,7 +671,7 @@ void Classic::checkSnakeGuys()
 {
   for(int i = 0; i < snakeTotal; i++)
   {
-    for(int x = 0; x < 100; x++)
+    for(int x = 0; x < 50; x++)
     {
       if(snakeGuys[i].getActive() && bullets[x].getActive())
       {
@@ -712,7 +712,7 @@ void Classic::checkMap()
   {
     levelRect.x -= player.getxVel();
     player.moveBackX();
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 50; i++)
     {
       bullets[i].moveBackX(player.getxVel());
     }
@@ -745,7 +745,7 @@ void Classic::checkMap()
   {
     levelRect.x -= player.getxVel();
     player.moveBackX();
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 50; i++)
     {
       bullets[i].moveBackX(player.getxVel());
     }
@@ -778,7 +778,7 @@ void Classic::checkMap()
   {
     levelRect.y -= player.getyVel();
     player.moveBackY();
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 50; i++)
     {
       bullets[i].moveBackY(player.getyVel());
     }
@@ -811,7 +811,7 @@ void Classic::checkMap()
   {
     levelRect.y -= player.getyVel();
     player.moveBackY();
-    for(int i = 0; i < 100; i++)
+    for(int i = 0; i < 50; i++)
     {
       bullets[i].moveBackY(player.getyVel());
     }
@@ -1050,7 +1050,7 @@ void Classic::killPlayer()
   mpUpgrade = 5;
   killCount = 0;
 
-  for(int i = 0; i < 100; i++)
+  for(int i = 0; i < 50; i++)
   {
     bullets[i].die();
   }

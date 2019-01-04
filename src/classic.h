@@ -34,7 +34,7 @@ private:
   bool pause, startNeedsReset;
   Player player;
   int extraLives;
-  Bullet bullets[100];
+  Bullet bullets[50];
   Gary garys[40]; //104 total enemies seems to be the limit. garys + karens + jeffs + miniJeffs
   int garyTotal;
   int garysAlive;

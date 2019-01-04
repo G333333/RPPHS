@@ -21,7 +21,7 @@ private:
   double angle;
   bool active;
   vitaRect rect;
-  Particle particles[2];
+  Particle particles[1];
 public:
   void init();
   void spawn(double rx, double ry, vitaRect start);

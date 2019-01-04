@@ -8,7 +8,7 @@ void Game::init()
   status = 1;
 	vita2d_set_clear_color(RGBA8(0,0,0,255));
 
-	font = vita2d_load_font_file( "app0:/font/font_main.ttf" );
+	font = vita2d_load_font_file( "app0:/font/font.ttf" );
 
   memset(&pad, 0, sizeof(pad));
 
@@ -573,7 +573,7 @@ void Game::doGame()
     fpsCounter.update();
     if(showFps)
     {
-      vita2d_font_draw_textf(font, 856, 30, RGBA8(255,255,255,255), 10.0f, "FPS:%d", fpsCounter.getFps());
+      vita2d_font_draw_textf(font, 856, 30, RGBA8(255,255,255,255), 20.0f, "FPS:%d", fpsCounter.getFps());
     }
 		vita2d_end_drawing();
 		vita2d_swap_buffers();

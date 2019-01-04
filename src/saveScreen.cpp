@@ -82,7 +82,7 @@ void SaveScreen::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossIm
     {
       vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
     }
-    //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 10.0f, "%d%%", batteryPercent);
+    //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 20.0f, "%d%%", batteryPercent);
     drawEmptyRect(battery, RGBA8(255, 255, 255, 255));
     vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(255, 255, 255, 255));
   }
@@ -90,23 +90,23 @@ void SaveScreen::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossIm
   drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(0, 255, 0, 100));
   vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(0, 0, 0, 100));
 
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "New High Score! Please enter your initials.") / 2, 544 / 2, RGBA8(255,255,255,255), 10.0f, "New High Score! Please enter your initials.");
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "New High Score! Please enter your initials.") / 2, 544 / 2, RGBA8(255,255,255,255), 20.0f, "New High Score! Please enter your initials.");
 
-  vita2d_font_draw_textf(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "Current Score:") / 2, 544 / 2 + 20, RGBA8(255,255,255,255), 10.0f, "Current Score: %d", points);
+  vita2d_font_draw_textf(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "Current Score:") / 2, 544 / 2 + 20, RGBA8(255,255,255,255), 20.0f, "Current Score: %d", points);
 
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "Current Score:") / 2 + 20, 544 / 2 + 40, RGBA8(255,255,255,255), 10.0f, letters[pos1].c_str());
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "Current Score:") / 2 + 40, 544 / 2 + 40, RGBA8(255,255,255,255), 10.0f, letters[pos2].c_str());
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "Current Score:") / 2 + 60, 544 / 2 + 40, RGBA8(255,255,255,255), 10.0f, letters[pos3].c_str());
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "Current Score:") / 2 + 20, 544 / 2 + 40, RGBA8(255,255,255,255), 20.0f, letters[pos1].c_str());
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "Current Score:") / 2 + 40, 544 / 2 + 40, RGBA8(255,255,255,255), 20.0f, letters[pos2].c_str());
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "Current Score:") / 2 + 60, 544 / 2 + 40, RGBA8(255,255,255,255), 20.0f, letters[pos3].c_str());
 
   switch (menuPos) {
     case 1:
-      vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "Current Score:") / 2 + 20, 544 / 2 + 50, RGBA8(255,255,255,255), 10.0f, "_");
+      vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "Current Score:") / 2 + 20, 544 / 2 + 50, RGBA8(255,255,255,255), 20.0f, "_");
       break;
     case 2:
-      vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "Current Score:") / 2 + 40, 544 / 2 + 50, RGBA8(255,255,255,255), 10.0f, "_");
+      vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "Current Score:") / 2 + 40, 544 / 2 + 50, RGBA8(255,255,255,255), 20.0f, "_");
       break;
     case 3:
-      vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 10.0f, "Current Score:") / 2 + 60, 544 / 2 + 50, RGBA8(255,255,255,255), 10.0f, "_");
+      vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "Current Score:") / 2 + 60, 544 / 2 + 50, RGBA8(255,255,255,255), 20.0f, "_");
       break;
   }
 
@@ -115,7 +115,7 @@ void SaveScreen::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossIm
 
   //uh.. x = half the screen - 1/4 of the screen = edge of pause menu. draw image here. draw text to right of image.
   //y = half the screen plus 1/4 of screen = bottom edge of pause menu. draw image here. draw text here - image width - text tempWidth
-  vita2d_font_draw_text(font, 960 / 2 - 960 / 4 + tempWidth + 10, 544 / 2 + 544 / 4 - 10, RGBA8(255,255,255,255), 10.0f, "Continue");
+  vita2d_font_draw_text(font, 960 / 2 - 960 / 4 + tempWidth + 10, 544 / 2 + 544 / 4 - 10, RGBA8(255,255,255,255), 20.0f, "Continue");
 
   vita2d_draw_texture_scale(crossImage, 960 / 2 - 960 / 4 + 10, 544 / 2 + 544 / 4 - tempHeight, 1, 1);
 

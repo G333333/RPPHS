@@ -44,9 +44,9 @@ void Intro::doIntro(vita2d_font *font)
     vita2d_start_drawing();
 		vita2d_clear_screen();
 
-    vita2d_font_draw_text(font,443, 262, RGBA8(0,255,0,letterCounter1), 10.0f, "G");
-    vita2d_font_draw_text(font,473, 262, RGBA8(0,255,0,letterCounter2), 10.0f, "3");
-    vita2d_font_draw_text(font,503, 262, RGBA8(0,255,0,letterCounter3), 10.0f, "3");
+    vita2d_font_draw_text(font,443, 262, RGBA8(0,255,0,letterCounter1), 20.0f, "G");
+    vita2d_font_draw_text(font,473, 262, RGBA8(0,255,0,letterCounter2), 20.0f, "3");
+    vita2d_font_draw_text(font,503, 262, RGBA8(0,255,0,letterCounter3), 20.0f, "3");
 
 
     vita2d_end_drawing();
@@ -73,8 +73,8 @@ void Intro::doIntro(vita2d_font *font)
         vita2d_start_drawing();
     		vita2d_clear_screen();
 
-        vita2d_font_draw_text(font,960 / 2 - vita2d_font_text_width(font, 10.0f, "This game saves data automagically") / 2, 262, RGBA8(255,255,255,255), 10.0f, "This game saves data automagically");
-        vita2d_font_draw_text(font,960 / 2 - vita2d_font_text_width(font, 10.0f, "Do not exit or power off when you see this icon") / 2, 282, RGBA8(255,255,244,255), 10.0f, "Do not exit or power off when you see this icon");
+        vita2d_font_draw_text(font,960 / 2 - vita2d_font_text_width(font, 20.0f, "This game saves data automagically") / 2, 262, RGBA8(255,255,255,255), 20.0f, "This game saves data automagically");
+        vita2d_font_draw_text(font,960 / 2 - vita2d_font_text_width(font, 20.0f, "Do not exit or power off when you see this icon") / 2, 282, RGBA8(255,255,244,255), 20.0f, "Do not exit or power off when you see this icon");
         saveIcon.doStuff(960 / 2 - 8, 544 / 2 + 40);
 
         vita2d_end_drawing();

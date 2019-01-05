@@ -602,7 +602,6 @@ void Game::quit()
   vita2d_free_texture(cursor1);
   vita2d_free_texture(cursor2);
   vita2d_free_font(font);
-	vita2d_free_pvf(pvf);
 
   saveIcon.cleanUp();
 

@@ -1,22 +1,7 @@
 #ifndef _Game_Class_
 #define _Game_Class_
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <time.h>       /* time */
-
-#include <psp2/ctrl.h>
-#include <psp2/kernel/processmgr.h>
-#include <psp2/power.h>
-#include <psp2/audioout.h>
-#include <psp2/kernel/clib.h>
-
-#include <vita2d.h>
-#include "soloud.h"
-#include "soloud_wav.h"
-#include "soloud_wavstream.h"
-
+#include "common.h"
 #include"functions.h"
 #include"intro.h"
 #include"menu.h"
@@ -36,22 +21,7 @@ private:
   double levelWidth, levelHeight;
   SceCtrlData pad;
 	vita2d_font *font;
-	vita2d_texture *garyImage;
-  vita2d_texture *karenImage;
-  vita2d_texture *jeffImage;
-  vita2d_texture *snakeImage1;
-  vita2d_texture *snakeImage2;
-  vita2d_texture *gameBackground;
-  vita2d_texture *playerImage;
-  vita2d_texture *bulletImage;
-  vita2d_texture *crossImage;
-  vita2d_texture *circleImage;
-  vita2d_texture *triangleImage;
-  vita2d_texture *cursorCrosshair;
-  vita2d_texture *cursorDuck;
-  vita2d_texture *cursorWatcher;
-  vita2d_texture *cursor1;
-  vita2d_texture *cursor2;
+  
   bool showFps, showCursor, showBattery;
   int cursorSetting, deadZone;
   double musicVol, soundVol;

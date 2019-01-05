@@ -37,6 +37,7 @@ include_directories(
 
 add_executable(${SHORT_NAME}.elf
 src/main.cpp
+src/common.cpp
 src/intro.cpp
 src/game.cpp
 src/functions.cpp

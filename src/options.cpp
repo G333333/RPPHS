@@ -148,25 +148,25 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
 
   switch (menuPos) {
     case 1:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 15, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 2:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 65, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 3:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 115, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 4:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 165, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 5:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 215, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 200, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 6:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 265, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 250, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 7:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 315, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 300, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
   }
 
@@ -174,39 +174,39 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
   if(showFps)
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 50, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 50, RGBA8(255,255,255,fade), 20.0f, "Show Fps:");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "Show Fps:");
   }
   else
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 50, RGBA8(255,255,255,fade), 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 50, RGBA8(255,255,255,fade), 20.0f, "Show Fps:");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "< No >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "Show Fps:");
   }
 
   if(showCursor)
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 100, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 100, RGBA8(255,255,255,fade), 20.0f, "Show Cursor");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "Show Cursor");
   }
   else
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 100, RGBA8(255,255,255,fade), 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 100, RGBA8(255,255,255,fade), 20.0f, "Show Cursor");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "< No >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "Show Cursor");
   }
   if(showBattery)
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 150, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 150, RGBA8(255,255,255,fade), 20.0f, "Show Battery:");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "Show Battery:");
   }
   else
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 150, RGBA8(255,255,255,fade), 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 150, RGBA8(255,255,255,fade), 20.0f, "Show Battery:");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "< No >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "Show Battery:");
   }
 
   /**
@@ -218,39 +218,39 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
   switch (cursorSetting) {
     case 1:
       tempWidth = vita2d_font_text_width(font, 20.0f, "< Crosshair >");
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "< Crosshair >");
-      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "< Crosshair >");
+      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
       break;
     case 2:
       tempWidth = vita2d_font_text_width(font, 20.0f, "< Duck >");
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "< Duck >");
-      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "< Duck >");
+      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
       break;
     case 3:
       tempWidth = vita2d_font_text_width(font, 20.0f, "< Watcher? >");
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "< Watcher? >");
-      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "< Watcher? >");
+      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
       break;
     case 4:
       tempWidth = vita2d_font_text_width(font, 20.0f, "< Crosshair 2 >");
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "< Crosshair 2 >");
-      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "< Crosshair 2 >");
+      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
       break;
     case 5:
       tempWidth = vita2d_font_text_width(font, 20.0f, "< Finger >");
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "< Finger >");
-      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "< Finger >");
+      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
       break;
   }
 
-  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 250, RGBA8(255,255,255,fade), 20.0f, "Deadzone: %d", deadZone);
-  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 235, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 230, RGBA8(255,255,255,fade), 20.0f, "Deadzone: %d", deadZone);
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 215, 50, 20, RGBA8(255, 255, 255, 255));
   int r = 0;
   int g = 255;
   int b = 0;
   for(int i = 0; i < deadZone; i++)
   {
-    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 236, menuRect.x + menuRect.w - 59 + i, menuRect.y + 254, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 216, menuRect.x + menuRect.w - 59 + i, menuRect.y + 234, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)
@@ -271,14 +271,14 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
     }
   }
 
-  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 300, RGBA8(255,255,255,fade), 20.0f, "Music: %.0lf", musicLevel);
-  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 280, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 280, RGBA8(255,255,255,fade), 20.0f, "Music: %.0lf", musicLevel);
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 260, 50, 20, RGBA8(255, 255, 255, 255));
   r = 0;
   g = 255;
   b = 0;
   for(double i = 0; i < musicLevel * 5.0; i += 1.0)
   {
-    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 281, menuRect.x + menuRect.w - 59 + i, menuRect.y + 299, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 261, menuRect.x + menuRect.w - 59 + i, menuRect.y + 279, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)
@@ -299,14 +299,14 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
     }
   }
 
-  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 350, RGBA8(255,255,255,fade), 20.0f, "Sounds: %.0lf", soundsLevel);
-  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 330, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 330, RGBA8(255,255,255,fade), 20.0f, "Sounds: %.0lf", soundsLevel);
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 315, 50, 20, RGBA8(255, 255, 255, 255));
   r = 0;
   g = 255;
   b = 0;
   for(double i = 0; i < soundsLevel * 5.0; i += 1.0)
   {
-    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 331, menuRect.x + menuRect.w - 59 + i, menuRect.y + 349, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 316, menuRect.x + menuRect.w - 59 + i, menuRect.y + 334, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)
@@ -541,25 +541,25 @@ void Options::menuPartial(vita2d_texture *circleImage, vita2d_font *font)
 
   switch (menuPos) {
     case 1:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 15, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 2:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 65, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 3:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 115, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 4:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 165, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 5:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 215, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 200, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 6:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 265, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 250, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 7:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 315, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 300, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
   }
 
@@ -567,39 +567,39 @@ void Options::menuPartial(vita2d_texture *circleImage, vita2d_font *font)
   if(showFps)
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 50, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 50, RGBA8(255,255,255,fade), 20.0f, "Show Fps:");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "Show Fps:");
   }
   else
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 50, RGBA8(255,255,255,fade), 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 50, RGBA8(255,255,255,fade), 20.0f, "Show Fps:");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "< No >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "Show Fps:");
   }
 
   if(showCursor)
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 100, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 100, RGBA8(255,255,255,fade), 20.0f, "Show Cursor");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "Show Cursor");
   }
   else
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 100, RGBA8(255,255,255,fade), 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 100, RGBA8(255,255,255,fade), 20.0f, "Show Cursor");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "< No >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "Show Cursor");
   }
   if(showBattery)
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 150, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 150, RGBA8(255,255,255,fade), 20.0f, "Show Battery:");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "< Yes >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "Show Battery:");
   }
   else
   {
     tempWidth = vita2d_font_text_width(font, 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 150, RGBA8(255,255,255,fade), 20.0f, "< No >");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 150, RGBA8(255,255,255,fade), 20.0f, "Show Battery:");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "< No >");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "Show Battery:");
   }
 
   /**
@@ -611,39 +611,39 @@ void Options::menuPartial(vita2d_texture *circleImage, vita2d_font *font)
   switch (cursorSetting) {
     case 1:
       tempWidth = vita2d_font_text_width(font, 20.0f, "< Crosshair >");
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "< Crosshair >");
-      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "< Crosshair >");
+      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
       break;
     case 2:
       tempWidth = vita2d_font_text_width(font, 20.0f, "< Duck >");
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "< Duck >");
-      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "< Duck >");
+      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
       break;
     case 3:
       tempWidth = vita2d_font_text_width(font, 20.0f, "< Watcher? >");
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "< Watcher? >");
-      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "< Watcher? >");
+      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
       break;
     case 4:
       tempWidth = vita2d_font_text_width(font, 20.0f, "< Crosshair 2 >");
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "< Crosshair 2 >");
-      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "< Crosshair 2 >");
+      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
       break;
     case 5:
       tempWidth = vita2d_font_text_width(font, 20.0f, "< Finger >");
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "< Finger >");
-      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 200, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "< Finger >");
+      vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Cursor:");
       break;
   }
 
-  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 250, RGBA8(255,255,255,fade), 20.0f, "Deadzone: %d", deadZone);
-  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 235, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 230, RGBA8(255,255,255,fade), 20.0f, "Deadzone: %d", deadZone);
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 215, 50, 20, RGBA8(255, 255, 255, 255));
   int r = 0;
   int g = 255;
   int b = 0;
   for(int i = 0; i < deadZone; i++)
   {
-    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 236, menuRect.x + menuRect.w - 59 + i, menuRect.y + 254, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 216, menuRect.x + menuRect.w - 59 + i, menuRect.y + 234, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)
@@ -664,14 +664,14 @@ void Options::menuPartial(vita2d_texture *circleImage, vita2d_font *font)
     }
   }
 
-  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 300, RGBA8(255,255,255,fade), 20.0f, "Music: %.0lf", musicLevel);
-  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 280, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 280, RGBA8(255,255,255,fade), 20.0f, "Music: %.0lf", musicLevel);
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 260, 50, 20, RGBA8(255, 255, 255, 255));
   r = 0;
   g = 255;
   b = 0;
   for(double i = 0; i < musicLevel * 5.0; i += 1.0)
   {
-    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 281, menuRect.x + menuRect.w - 59 + i, menuRect.y + 299, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 261, menuRect.x + menuRect.w - 59 + i, menuRect.y + 279, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)
@@ -692,14 +692,14 @@ void Options::menuPartial(vita2d_texture *circleImage, vita2d_font *font)
     }
   }
 
-  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 350, RGBA8(255,255,255,fade), 20.0f, "Sounds: %.0lf", soundsLevel);
-  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 330, 50, 20, RGBA8(255, 255, 255, 255));
+  vita2d_font_draw_textf(font, menuRect.x + 10, menuRect.y + 330, RGBA8(255,255,255,fade), 20.0f, "Sounds: %.0lf", soundsLevel);
+  vita2d_draw_rectangle(menuRect.x + menuRect.w - 60, menuRect.y + 315, 50, 20, RGBA8(255, 255, 255, 255));
   r = 0;
   g = 255;
   b = 0;
   for(double i = 0; i < soundsLevel * 5.0; i += 1.0)
   {
-    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 331, menuRect.x + menuRect.w - 59 + i, menuRect.y + 349, RGBA8(r, g, b, 255));
+    vita2d_draw_line(menuRect.x + menuRect.w - 59 + i, menuRect.y + 316, menuRect.x + menuRect.w - 59 + i, menuRect.y + 334, RGBA8(r, g, b, 255));
     r += 5;
     g -= 5;
     if(r > 255)

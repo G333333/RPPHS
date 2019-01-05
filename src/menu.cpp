@@ -90,18 +90,22 @@ void Menu::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, v
 
     switch (menuPos) {
       case 1:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 15, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
         break;
       case 2:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 65, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
         break;
       case 3:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 115, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+        break;
+      case 4:
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
         break;
     }
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 50, RGBA8(255,255,255,fade), 20.0f, "Play");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 100, RGBA8(255,255,255,fade), 20.0f, "Options");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 150, RGBA8(255,255,255,fade), 20.0f, "Quit");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "Play");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "Options");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "Credits");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Quit");
 
     vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
     vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 20.0f, "Select");
@@ -131,6 +135,9 @@ void Menu::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, v
             status = 3;
             break;
           case 3:
+            credits = true;
+            break;
+          case 4:
             quit = true;
             break;
         }
@@ -161,18 +168,18 @@ void Menu::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, v
       moveDown = false;
     }
 
-    if(menuPos > 3)
+    if(menuPos > 4)
     {
       menuPos = 1;
     }
     if(menuPos < 1)
     {
-      menuPos = 3;
+      menuPos = 4;
     }
-    if(keys[14])
+    /*if(keys[14])
     {
       credits = true;
-    }
+    }*/
   }
   else if(credits)
   {
@@ -210,18 +217,19 @@ void Menu::menuPartial(vita2d_texture *crossImage, vita2d_font *font)
 
   switch (menuPos) {
     case 1:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 15, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 2:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 65, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
     case 3:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 115, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
   }
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 50, RGBA8(255,255,255,fade), 20.0f, "Play");
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 100, RGBA8(255,255,255,fade), 20.0f, "Options");
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 150, RGBA8(255,255,255,fade), 20.0f, "Quit");
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "Play");
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "Options");
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "Credits");
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Quit");
 
   vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
   vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 20.0f, "Select");
@@ -281,7 +289,7 @@ void Menu::showCredits(vita2d_texture *circleImage, vita2d_font *font)
   int tempWidth = vita2d_texture_get_width(circleImage); //get the width and height to draw in correct place.
   int tempHeight = vita2d_texture_get_height(circleImage); //both images are the same size. //used for text too
 
-  vita2d_font_draw_text(font, 160 + tempWidth + 10, 544 / 2 + 544 / 4 + 47, RGBA8(255,255,255,255), 20.0f, "Main Menu");
+  vita2d_font_draw_text(font, 160 + tempWidth + 10, 544 / 2 + 544 / 4 + 47, RGBA8(0,255,0,255), 20.0f, "Main Menu");
 
   vita2d_draw_texture_scale(circleImage, 160 + 5, 544 / 2 + 544 / 4 + 55 - tempHeight, 1, 1);
 }

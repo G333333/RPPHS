@@ -267,7 +267,7 @@ void Menu::showCredits(vita2d_texture *circleImage, vita2d_font *font)
 
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 - 10, RGBA8(255,255,255,255), 20.0f, "Credits:");
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 10, RGBA8(255,255,255,255), 20.0f, "G33 - Programming - Design");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 30, RGBA8(255,255,255,255), 20.0f, "MotoLegacy - Player/Enemy/Icon Images - Design");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 30, RGBA8(255,255,255,255), 20.0f, "MotoLegacy - Player/Enemy/Icon Images - Design - Programming");
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 60, RGBA8(255,255,255,255), 20.0f, "Special Thanks:");
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 80, RGBA8(255,255,255,255), 20.0f, "Xerpi - LibVita2d");
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 100, RGBA8(255,255,255,255), 20.0f, "Xyz - SoLoud Ps Vita port");

@@ -42,7 +42,7 @@ void Menu::start()
   crossNeedsReset = true;
 }
 
-void Menu::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, vita2d_texture *circleImage, vita2d_font *font, bool keys[15], int batteryPercent, bool showBattery)
+void Menu::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool showBattery)
 {
   vita2d_draw_texture_scale(gameBackground, 0, 0, 2, 2);
 
@@ -183,7 +183,7 @@ void Menu::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, v
   }
   else if(credits)
   {
-    showCredits(circleImage, font);
+    showCredits(font);
     if(keys[5]) credits = false;
   }
   if(menuRect.x < target)
@@ -210,7 +210,7 @@ void Menu::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, v
   }
 }
 
-void Menu::menuPartial(vita2d_texture *crossImage, vita2d_font *font)
+void Menu::menuPartial(vita2d_font *font)
 {
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
   drawEmptyRect(menuRect, RGBA8(0,255,0,fade));
@@ -268,7 +268,7 @@ bool Menu::getQuit()
   return quit;
 }
 
-void Menu::showCredits(vita2d_texture *circleImage, vita2d_font *font)
+void Menu::showCredits(vita2d_font *font)
 {
   vita2d_draw_rectangle(960 / 2 - 960 / 4 - 80 + 1, 544 / 2 - 522 / 4 + 1, 960 - 319, 544 / 2 + 60 - 1, RGBA8(0, 0, 0, 100));
   drawEmptyRect(960 / 2 - 960 / 4 - 80, 544 / 2 - 544 / 4 , 960 - 320, 544 / 2 + 60, RGBA8(0, 255, 0, 100));
@@ -284,6 +284,8 @@ void Menu::showCredits(vita2d_texture *circleImage, vita2d_font *font)
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 180, RGBA8(255,255,255,255), 20.0f, "- Ivan voirol @ OpenGameArt: Background Grid");
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 200, RGBA8(255,255,255,255), 20.0f, "- yd @ OpenGameArt: Menu Music (outhere.ogg)");
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 220, RGBA8(255,255,255,255), 20.0f, "- Trevor Lentz @ OpenGameArt: Game Music (heroimmortal.ogg)");
+  
+  vita2d_font_draw_text(font, 160 + 5, 544 - 20, RGBA8(255,255,255,255), 20.0f, buildDate.c_str());
 
 
   int tempWidth = vita2d_texture_get_width(circleImage); //get the width and height to draw in correct place.

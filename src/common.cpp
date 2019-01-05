@@ -1,5 +1,6 @@
 #include"common.h"
 
+std::string buildDate;
 
 vita2d_texture *garyImage;
 vita2d_texture *karenImage;

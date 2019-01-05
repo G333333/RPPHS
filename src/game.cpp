@@ -200,6 +200,12 @@ void Game::loadSettings()
 
     options.setAll(showFps, showCursor, showBattery, cursorSetting, deadZone, musicVol, soundVol);
     loadFile.close();
+
+    std::ifstream loadFile;
+    loadFile.open("app0:/buildDate.txt");
+    std::getline(loadFile, buildDate);
+    loadFile.close();
+
   }
 }
 
@@ -405,7 +411,7 @@ void Game::doGame()
 
     switch (status) {
       case 1:
-        menu.doStuff(gameBackground, crossImage, circleImage, font, keys, scePowerGetBatteryLifePercent(), showBattery);
+        menu.doStuff(font, keys, scePowerGetBatteryLifePercent(), showBattery);
         status = menu.getStatus();
         quitGame = menu.getQuit();
         classic.setStatus(status);
@@ -493,7 +499,7 @@ void Game::doGame()
         classic.setStatus(status);
         menu.setStatus(status);
         saveScreen.setStatus(status);
-        menu.menuPartial(crossImage, font);
+        menu.menuPartial(font);
         showFps = options.getShowFps();
         showCursor = options.getShowCursor();
         showBattery = options.getShowBattery();
@@ -534,7 +540,7 @@ void Game::doGame()
         options.setStatus(status);
         saveScreen.setStatus(status);
         menu.setStatus(status);
-        menu.menuPartial(circleImage, font);
+        menu.menuPartial(font);
         options.menuPartial(circleImage, font);
 
 

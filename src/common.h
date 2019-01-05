@@ -2,7 +2,7 @@
 #define _COMMON_
 
 #include <stdio.h>
-#include <string.h>
+#include <string>
 #include <stdlib.h>
 #include <time.h>       /* time */
 
@@ -16,6 +16,8 @@
 #include "soloud.h"
 #include "soloud_wav.h"
 #include "soloud_wavstream.h"
+
+extern std::string buildDate;
 
 extern vita2d_texture *garyImage;
 extern vita2d_texture *karenImage;

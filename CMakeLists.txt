@@ -123,4 +123,6 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
   FILE sce_sys/livearea/contents/template.xml sce_sys/livearea/contents/template.xml
 
   FILE font/font.ttf font/font.ttf
+
+  FILE build/buildDate.txt buildDate.txt
 )

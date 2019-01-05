@@ -42,6 +42,11 @@ void SnakeGuy::init()
   rect8.w = 16;
   rect8.h = 16;
 
+  realTarget.x = 0;
+  realTarget.y = 0;
+  realTarget.w = 1;
+  realTarget.h = 1; 
+
   rect1Active = false;
   rect2Active = false;
   rect3Active = false;
@@ -54,6 +59,8 @@ void SnakeGuy::init()
   spawning = false;
   spawnCount = 0;
   spawnRadius = 0;
+
+  targetTimer = 0;
 
   pause = false;
 
@@ -69,6 +76,7 @@ void SnakeGuy::init()
 void SnakeGuy::spawn(vitaRect levelRect)
 {
   spawning = true;
+  this->levelRect = levelRect;
 
   int tempx, tempy;
   int x = levelRect.x;
@@ -77,6 +85,14 @@ void SnakeGuy::spawn(vitaRect levelRect)
   int h = levelRect.h;
   tempx = rand() % w + x;
   tempy = rand() % h + y;
+
+  realTarget.x = rand() % w + x;
+  realTarget.y = rand() % h + y;
+  
+  if(realTarget.x < levelRect.x) realTarget.x = levelRect.x;
+  if(realTarget.x > levelRect.x + levelRect.w) realTarget.x = levelRect.x + levelRect.w - 10;
+  if(realTarget.y < levelRect.y) realTarget.y = levelRect.x;
+  if(realTarget.y> levelRect.y + levelRect.h) realTarget.y = levelRect.y - 10;
 
   if(tempx < levelRect.x)
   {
@@ -922,6 +938,19 @@ bool SnakeGuy::hit(vitaRect bullet)
 
 void SnakeGuy::doStuff(vitaRect target, bool pause, vita2d_texture *snakeImage1, vita2d_texture *snakeImage2)
 {
+  targetTimer++;
+  
+  if(targetTimer > 300)
+  {
+    targetTimer = 0;
+    realTarget.x = rand() % 400 + (target.x - 200);
+    realTarget.y = rand() % 400 + (target.y - 200);
+
+    if(realTarget.x < levelRect.x) realTarget.x = levelRect.x;
+    if(realTarget.x > levelRect.x + levelRect.w) realTarget.x = levelRect.x + levelRect.w - 10;
+    if(realTarget.y < levelRect.y) realTarget.y = levelRect.x;
+    if(realTarget.y> levelRect.y + levelRect.h) realTarget.y = levelRect.y - 10;
+  }
   this->pause = pause;
   //keep the rects together for when spawning particles is needed.
   vitaRect tempRect;
@@ -1001,7 +1030,7 @@ void SnakeGuy::doStuff(vitaRect target, bool pause, vita2d_texture *snakeImage1,
 
     if(moveInterval > 15)
     {
-      move(target);
+      move(realTarget);
       moveInterval = 0;
     }
 

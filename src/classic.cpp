@@ -2,7 +2,7 @@
 
 void Classic::init(double levelWidth, double levelHeight)
 {
-  god = false;
+  god = true;
 
   levelRect.x = -240;
   levelRect.y = -139;

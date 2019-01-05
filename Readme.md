@@ -15,6 +15,18 @@ Blast your way through those shapes in this Geometry Wars-inspired twin stick sh
 - run the following from a terminal `cd build && cmake ../ && make`
 - .vpk is output to the build folder
 - install with vitashell 
+## Credits
+- G33 Programming, Design
+- MotoLegacy: Live Area, Player/Enemies, Programming, Design
+
+#### Special Thanks
+- Xerpi libVita2s
+- Xyz SoLoud Vita Port
+- Rinnegatamante: Fps Counter code
+- VitaSDK Contributors
+- Ivan voiro @ OpenGameArt: Background Grid
+- yd @ openGameArt: Menu Music
+- Trevor Lentz @OpenGameArt: Game Music
 
 ## Screenshots
 

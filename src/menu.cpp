@@ -265,23 +265,23 @@ void Menu::showCredits(vita2d_texture *circleImage, vita2d_font *font)
   vita2d_draw_rectangle(960 / 2 - 960 / 4 - 80 + 1, 544 / 2 - 522 / 4 + 1, 960 - 319, 544 / 2 + 60 - 1, RGBA8(0, 0, 0, 100));
   drawEmptyRect(960 / 2 - 960 / 4 - 80, 544 / 2 - 544 / 4 , 960 - 320, 544 / 2 + 60, RGBA8(0, 255, 0, 100));
 
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 - 10, RGBA8(255,255,255,255), 20.0f, "Credits:");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 10, RGBA8(255,255,255,255), 20.0f, "G33 - Programming - Design");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 30, RGBA8(255,255,255,255), 20.0f, "MotoLegacy - Player/Enemy/Icon Images - Design - Programming");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 60, RGBA8(255,255,255,255), 20.0f, "Special Thanks:");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 80, RGBA8(255,255,255,255), 20.0f, "Xerpi - LibVita2d");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 100, RGBA8(255,255,255,255), 20.0f, "Xyz - SoLoud Ps Vita port");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 120, RGBA8(255,255,255,255), 20.0f, "Rinnegatamante - Frame Counter Code");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 140, RGBA8(255,255,255,255), 20.0f, "Every one that contributed to the Vita Sdk");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 160, RGBA8(255,255,255,255), 20.0f, "Ivan voirol @ opengameart.org - Background images");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 180, RGBA8(255,255,255,255), 20.0f, "yd @ opengameart.org - Outhere.ogg - Menu Music");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 200, RGBA8(255,255,255,255), 20.0f, "Trevor Lentz @ opengameart.org - HeroImmortal.ogg - Game Music");
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "CREDITS") / 2, 544 / 3 - 15, RGBA8(255,255,255,255), 20.0f, "CREDITS");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 10, RGBA8(255,255,255,255), 20.0f, "G33: Programming, Design");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 30, RGBA8(255,255,255,255), 20.0f, "MotoLegacy: Livearea, Player/Enemies, Programming, Design");
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "SPECIAL THANKS") / 2, 544 / 3 + 80, RGBA8(255,255,255,255), 20.0f, "SPECIAL THANKS");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 100, RGBA8(255,255,255,255), 20.0f, "- Xerpi: libVita2D");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 120, RGBA8(255,255,255,255), 20.0f, "- Xyz: SoLoud Vita Port");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 140, RGBA8(255,255,255,255), 20.0f, "- Rinnegatamante: FPS Counter Code");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 160, RGBA8(255,255,255,255), 20.0f, "- VitaSDK Contributors");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 180, RGBA8(255,255,255,255), 20.0f, "- Ivan voirol @ OpenGameArt: Background Grid");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 200, RGBA8(255,255,255,255), 20.0f, "- yd @ OpenGameArt: Menu Music (outhere.ogg)");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 220, RGBA8(255,255,255,255), 20.0f, "- Trevor Lentz @ OpenGameArt: Game Music (heroimmortal.ogg)");
 
 
   int tempWidth = vita2d_texture_get_width(circleImage); //get the width and height to draw in correct place.
   int tempHeight = vita2d_texture_get_height(circleImage); //both images are the same size. //used for text too
 
-  vita2d_font_draw_text(font, 160 + tempWidth + 10, 544 / 2 + 544 / 4 + 40, RGBA8(255,255,255,255), 20.0f, "Main Menu");
+  vita2d_font_draw_text(font, 160 + tempWidth + 10, 544 / 2 + 544 / 4 + 47, RGBA8(255,255,255,255), 20.0f, "Main Menu");
 
-  vita2d_draw_texture_scale(circleImage, 160 + 5, 544 / 2 + 544 / 4 + 45 - tempHeight, 1, 1);
+  vita2d_draw_texture_scale(circleImage, 160 + 5, 544 / 2 + 544 / 4 + 55 - tempHeight, 1, 1);
 }

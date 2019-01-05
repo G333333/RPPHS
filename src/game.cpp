@@ -573,22 +573,7 @@ void Game::doGame()
         }
         break;
       case 2:
-        classic.doStuff(gameBackground,
-        playerImage,
-        bulletImage,
-        garyImage,
-        karenImage,
-        jeffImage,
-        snakeImage1,
-        snakeImage2,
-        cursorCrosshair,
-        cursorDuck,
-        cursorWatcher,
-        cursor1,
-        cursor2,
-        circleImage,
-        triangleImage,
-        font,
+        classic.doStuff(font,
         keys,
         pad.lx,
         pad.ly,

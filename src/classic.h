@@ -1,18 +1,7 @@
  #ifndef _Classic_Class
 #define _Classic_Class
 
-#include <stdio.h>
-#include <sstream>
-#include <string.h>
-#include <stdlib.h>
-
-#include <psp2/ctrl.h>
-#include <psp2/kernel/processmgr.h>
-
-#include <vita2d.h>
-#include "soloud.h"
-#include "soloud_wav.h"
-#include <psp2/audioout.h>
+#include"common.h"
 
 #include"functions.h"
 #include"player.h"
@@ -63,22 +52,7 @@ private:
   bool jeffEvent;
 public:
   void init(double levelWidth, double levelHeight);
-  void doStuff(vita2d_texture *gameBackground,
-              vita2d_texture *playerImage,
-              vita2d_texture *bulletImage,
-              vita2d_texture *garyImage,
-              vita2d_texture *karenImage,
-              vita2d_texture *snakeImage1,
-              vita2d_texture *snakeImage2,
-              vita2d_texture *jeffImage,
-              vita2d_texture *cursorCrosshair,
-              vita2d_texture *cursorDuck,
-              vita2d_texture *cursorWatcher,
-              vita2d_texture *cursor1,
-              vita2d_texture *cursor2,
-              vita2d_texture *circleImage,
-              vita2d_texture *triangleImage,
-              vita2d_font *font,
+  void doStuff(vita2d_font *font,
               bool keys[15],
               double lx,
               double ly,
@@ -103,23 +77,18 @@ public:
   void checkSnakeGuys();
   void checkMap();
 
-  void drawHud(vita2d_font * font, int batteryPercent, vita2d_texture *playerImage, bool showBattery, bool showFps);
-  void drawCursor(vita2d_texture *cursorCrosshair,
-                  vita2d_texture *cursorDuck,
-                  vita2d_texture *cursorWatcher,
-                  vita2d_texture *cursor1,
-                  vita2d_texture *cursor2,
-                  double rx, double ry, bool showCursor, int cursorSetting);
+  void drawHud(vita2d_font * font, int batteryPercent, bool showBattery, bool showFps);
+  void drawCursor(double rx, double ry, bool showCursor, int cursorSetting);
 
   bool playGun();
   bool getPlayExp();
-  void pauseMenu(vita2d_font *font, vita2d_texture *circleImage, vita2d_texture *triangleImage);
+  void pauseMenu(vita2d_font *font);
   int getPoints();
   bool checkPlayer();
   void killPlayer();
   void spawnStuff();
 
-  void gameOver(vita2d_font *font, vita2d_texture *triangleImage);
+  void gameOver(vita2d_font *font);
 
   void checkBomb();
   bool bombActive();

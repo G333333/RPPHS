@@ -85,22 +85,7 @@ void Classic::init(double levelWidth, double levelHeight)
   jeffEvent = false;
 }
 
-void Classic::doStuff(vita2d_texture *gameBackground,
-                      vita2d_texture *playerImage,
-                      vita2d_texture *bulletImage,
-                      vita2d_texture *garyImage,
-                      vita2d_texture *karenImage,
-                      vita2d_texture *jeffImage,
-                      vita2d_texture *snakeImage1,
-                      vita2d_texture *snakeImage2,
-                      vita2d_texture *cursorCrosshair,
-                      vita2d_texture *cursorDuck,
-                      vita2d_texture *cursorWatcher,
-                      vita2d_texture *cursor1,
-                      vita2d_texture *cursor2,
-                      vita2d_texture *circleImage,
-                      vita2d_texture *triangleImage,
-                      vita2d_font *font,
+void Classic::doStuff(vita2d_font *font,
                       bool keys[15],
                       double lx,
                       double ly,
@@ -173,7 +158,7 @@ void Classic::doStuff(vita2d_texture *gameBackground,
       if(player.getActive())
       {
         bulletTimer++;
-        drawCursor(cursorCrosshair, cursorDuck, cursorWatcher, cursor1, cursor2, rx, ry, showCursor, cursorSetting);
+        drawCursor(rx, ry, showCursor, cursorSetting);
       }
     }
     if(bulletTimer > bulletInterval)
@@ -323,7 +308,7 @@ void Classic::doStuff(vita2d_texture *gameBackground,
 
   if(extraLives <= 0 && !player.getActive())
   {
-    gameOver(font, triangleImage);
+    gameOver(font);
     killPlayer();
     playGunSound = false;
     playExp = false;
@@ -332,11 +317,11 @@ void Classic::doStuff(vita2d_texture *gameBackground,
   drawEmptyRect(levelRect, RGBA8(0,255,0,255));
   checkMap();
 
-  drawHud(font, batteryPercent, playerImage, showBattery, showFps);
+  drawHud(font, batteryPercent, showBattery, showFps);
 
   if(pause)
   {
-    pauseMenu(font, circleImage, triangleImage);
+    pauseMenu(font);
   }
 
   /**quick reference:
@@ -842,7 +827,7 @@ void Classic::checkMap()
   }
 }
 
-void Classic::drawHud(vita2d_font *font, int batteryPercent, vita2d_texture *playerImage, bool showBattery, bool showFps)
+void Classic::drawHud(vita2d_font *font, int batteryPercent, bool showBattery, bool showFps)
 {
   //draw left hud background
   int fade = 150;
@@ -925,7 +910,7 @@ void Classic::drawHud(vita2d_font *font, int batteryPercent, vita2d_texture *pla
    vita2d_font_draw_textf(font, 45, 70, RGBA8(255,255,255,255), 20.0f, "B:%d", bombCount);
 }
 
-void Classic::drawCursor(vita2d_texture *cursorCrosshair, vita2d_texture *cursorDuck, vita2d_texture *cursorWatcher, vita2d_texture *cursor1, vita2d_texture *cursor2, double rx, double ry, bool showCursor, int cursorSetting)
+void Classic::drawCursor(double rx, double ry, bool showCursor, int cursorSetting)
   {
     //cursor
     int tempCursorX = 125 - rx;
@@ -972,7 +957,7 @@ bool Classic::getPlayExp()
   return playExp;
 }
 
-void Classic::pauseMenu(vita2d_font *font, vita2d_texture *circleImage, vita2d_texture *triangleImage)
+void Classic::pauseMenu(vita2d_font *font)
 {
   drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(0, 255, 0, 100));
   vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(0, 0, 0, 100));
@@ -1332,7 +1317,7 @@ void Classic::spawnStuff()
   }
 }
 
-void Classic::gameOver(vita2d_font *font, vita2d_texture *triangleImage)
+void Classic::gameOver(vita2d_font *font)
 {
   drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(0, 255, 0, 100));
   vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(0, 0, 0, 100));

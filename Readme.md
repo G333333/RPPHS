@@ -1,10 +1,22 @@
-RPPHS is a top down shooter inspired by Geometry wars. The goal of the game is simple, shoot stuff and don't run into stuff. 
+## About
+Blast your way through those shapes in this Geometry Wars-inspired twin stick shooter for the PlayStation Vita! Enter your initials for the offline leaderboards, customize your crosshair, and mess with our super-cool settings menu.. or don't, that's entirely up to you. 
 
-Controls: Movement = left stick. Shooting = right stick. Bombs = Left or Right trigger. 
+## Controls
+  #### Movement: Left stick. 
+  #### Aiming: Right Stick.
+  #### Bombs: Left or Right trigger.
+  #### Pause: Start.
+  
+## Install
+<a href="https://github.com/G333333/RPPHS/releases/download/v1.0/RPPHS.vpk">Get the latest version here</a> and install using vitashell. If you would like to test the latest latest changes see the build instructions below. 
 
-Press Right Trigger from the main menu to view credits. 
+## Build instructions (Linux)
+- Clone or download the project
+- run the following from a terminal `cd build && cmake . && make`
+- .vpk is output to the build folder
+- install with vitashell 
 
-Have fun. 
+## Screenshots
 
 ![Game Menu](screenshots/screen2.jpg?raw=true "Game Menu")
 

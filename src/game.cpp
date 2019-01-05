@@ -48,6 +48,23 @@ void Game::loadFiles()
   vita2d_end_drawing();
   vita2d_wait_rendering_done();
 
+  vita2d_free_texture(garyImage);
+  vita2d_free_texture(karenImage);
+  vita2d_free_texture(jeffImage);
+  vita2d_free_texture(snakeImage1);
+  vita2d_free_texture(snakeImage2);
+  vita2d_free_texture(playerImage);
+  vita2d_free_texture(gameBackground);
+  vita2d_free_texture(bulletImage);
+  vita2d_free_texture(crossImage);
+  vita2d_free_texture(circleImage);
+  vita2d_free_texture(triangleImage);
+  vita2d_free_texture(cursorCrosshair);
+  vita2d_free_texture(cursorDuck);
+  vita2d_free_texture(cursorWatcher);
+  vita2d_free_texture(cursor1);
+  vita2d_free_texture(cursor2);
+
   garyImage = vita2d_load_PNG_file("app0:/images/gary.png");
   karenImage = vita2d_load_PNG_file("app0:/images/karen.png");
   jeffImage = vita2d_load_PNG_file("app0:/images/jeff.png");
@@ -82,6 +99,23 @@ void Game::loadNewFiles(std::string folder)
 
   vita2d_end_drawing();
   vita2d_wait_rendering_done();
+
+  vita2d_free_texture(garyImage);
+  vita2d_free_texture(karenImage);
+  vita2d_free_texture(jeffImage);
+  vita2d_free_texture(snakeImage1);
+  vita2d_free_texture(snakeImage2);
+  vita2d_free_texture(playerImage);
+  vita2d_free_texture(gameBackground);
+  vita2d_free_texture(bulletImage);
+  vita2d_free_texture(crossImage);
+  vita2d_free_texture(circleImage);
+  vita2d_free_texture(triangleImage);
+  vita2d_free_texture(cursorCrosshair);
+  vita2d_free_texture(cursorDuck);
+  vita2d_free_texture(cursorWatcher);
+  vita2d_free_texture(cursor1);
+  vita2d_free_texture(cursor2);
 
   std::string srcBase = "app0:/images/";
   std::string src;

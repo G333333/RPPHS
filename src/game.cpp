@@ -2,6 +2,7 @@
 
 void Game::init()
 {
+  theme = 0;
   levelWidth = 1449;
   levelHeight = 816;
   quitGame = false;
@@ -38,7 +39,15 @@ void Game::init()
 }
 
 void Game::loadFiles()
-{
+{ 
+  gWave.stop();
+  exp1.stop();
+  OutThere.stop();
+  HeroImmortal.stop();
+
+  vita2d_end_drawing();
+  vita2d_wait_rendering_done();
+
   garyImage = vita2d_load_PNG_file("app0:/images/gary.png");
   karenImage = vita2d_load_PNG_file("app0:/images/karen.png");
   jeffImage = vita2d_load_PNG_file("app0:/images/jeff.png");
@@ -62,27 +71,99 @@ void Game::loadFiles()
   HeroImmortal.load("app0:/sounds/HeroImmortal.ogg");
   loadScores();
   loadSettings();
-  theme = 0;
 }
 
-void Game::loadNewFiles()
+void Game::loadNewFiles(std::string folder)
 {
-  garyImage = vita2d_load_PNG_file("app0:/images/theme/gary.png");
-  karenImage = vita2d_load_PNG_file("app0:/images/theme/karen.png");
-  jeffImage = vita2d_load_PNG_file("app0:/images/theme/jeff.png");
-  gameBackground = vita2d_load_PNG_file("app0:/images/theme/Grid3.png");
-  playerImage = vita2d_load_PNG_file("app0:/images/theme/player.png");
-  bulletImage = vita2d_load_PNG_file("app0:/images/theme/bullet.png");
-  crossImage = vita2d_load_PNG_file("app0:/images/theme/cross.png");
-  circleImage = vita2d_load_PNG_file("app0:/images/theme/circle.png");
-  triangleImage = vita2d_load_PNG_file("app0:/images/theme/triangle.png");
-  cursorCrosshair = vita2d_load_PNG_file("app0:/images/theme/cursor-crosshair.png");
-  cursorDuck = vita2d_load_PNG_file("app0:/images/theme/cursor-duck.png");
-  cursorWatcher = vita2d_load_PNG_file("app0:/images/theme/cursor-watcher.png");
-  cursor1 = vita2d_load_PNG_file("app0:/images/theme/cursor1.png");
-  cursor2 = vita2d_load_PNG_file("app0:/images/theme/cursor2.png");
-  snakeImage1 = vita2d_load_PNG_file("app0:/images/theme/snakeImage1.png");
-  snakeImage2 = vita2d_load_PNG_file("app0:/images/theme/snakeImage2.png");
+  gWave.stop();
+  exp1.stop();
+  OutThere.stop();
+  HeroImmortal.stop();
+
+  vita2d_end_drawing();
+  vita2d_wait_rendering_done();
+
+  std::string srcBase = "app0:/images/";
+  std::string src;
+  src = srcBase;
+  src += folder;
+  src += "/gary.png";
+  garyImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/karen.png";
+  karenImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/jeff.png";
+  jeffImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/Grid3.png";
+  gameBackground = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/player.png.png";
+  playerImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/bullet.png";
+  bulletImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/cross.png";
+  crossImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/circle.png";
+  circleImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/triangle.png";
+  triangleImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/cursor-crosshair.png";
+  cursorCrosshair = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/cursor-duck.png";
+  cursorDuck = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/cursor-watcher.png";
+  cursorWatcher = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/cursor1.png";
+  cursor1 = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/cursor2.png";
+  cursor2 = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/snakeImage1.png";
+  snakeImage1 = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/snakeImage2.png";
+  snakeImage2 = vita2d_load_PNG_file(src.c_str());
 
 }
 
@@ -415,7 +496,7 @@ void Game::doGame()
     {
       if(!keys[13])
       {
-        if(theme == 0) loadNewFiles();
+        if(theme == 0) loadNewFiles("theme");
         else loadFiles();
         theme++;
         if(theme > 1) theme = 0;

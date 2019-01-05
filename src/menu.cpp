@@ -105,10 +105,6 @@ void Menu::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool sh
     vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "Play");
     vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "Options");
     vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "Credits");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "Credits");
-
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "l = next theme");
-
     vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Quit");
 
     vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);

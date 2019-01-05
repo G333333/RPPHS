@@ -20,6 +20,7 @@
 extern std::string buildDate;
 
 extern int theme;
+extern bool changeTheme;
 
 extern vita2d_texture *garyImage;
 extern vita2d_texture *karenImage;

@@ -3,6 +3,8 @@
 void Game::init()
 {
   theme = 0;
+  changeTheme = false;
+
   levelWidth = 1449;
   levelHeight = 816;
   quitGame = false;
@@ -528,13 +530,6 @@ void Game::doGame()
     }
     if(pad.buttons & SCE_CTRL_LTRIGGER)
     {
-      if(!keys[13])
-      {
-        if(theme == 0) loadNewFiles("theme");
-        else loadFiles();
-        theme++;
-        if(theme > 1) theme = 0;
-      }
       keys[13] = true;
     }
     else
@@ -562,7 +557,7 @@ void Game::doGame()
         options.setStatus(status);
         saveScreen.setStatus(status);
         highScores.setStatus(status);
-        options.menuPartial(circleImage, font);
+        options.menuPartial(font);
         if(status == 2)
         {
           status = 5;
@@ -637,7 +632,7 @@ void Game::doGame()
         }
         break;
       case 3:
-        options.doStuff(gameBackground, circleImage, font, keys, scePowerGetBatteryLifePercent());
+        options.doStuff(font, keys, scePowerGetBatteryLifePercent());
         status = options.getStatus();
         quitGame = options.getQuit();
         classic.setStatus(status);
@@ -685,7 +680,7 @@ void Game::doGame()
         saveScreen.setStatus(status);
         menu.setStatus(status);
         menu.menuPartial(font);
-        options.menuPartial(circleImage, font);
+        options.menuPartial(font);
 
 
         if(status == 1)
@@ -725,6 +720,14 @@ void Game::doGame()
     {
       vita2d_font_draw_textf(font, 856, 30, RGBA8(255,255,255,255), 20.0f, "FPS:%d", fpsCounter.getFps());
     }
+
+    if(changeTheme)
+    {
+      if(theme == 0) loadFiles(); //default theme
+      if(theme == 1) loadNewFiles("theme");
+      changeTheme = false;
+    }
+
 		vita2d_end_drawing();
 		vita2d_swap_buffers();
     vita2d_wait_rendering_done();

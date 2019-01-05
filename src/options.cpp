@@ -5,9 +5,9 @@ void Options::init()
   status = 3;
 
   menuRect.x = -255;
-  menuRect.y = 50;
+  menuRect.y = 22;
   menuRect.w = 255;
-  menuRect.h = 400;
+  menuRect.h = 500;
 
   battery.x = 856;
   battery.y = 40;
@@ -64,7 +64,7 @@ void Options::start()
   circleNeedsReset = true;
 }
 
-void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImage, vita2d_font *font, bool keys[15], int batteryPercent)
+void Options::doStuff(vita2d_font *font, bool keys[15], int batteryPercent)
 {
   //make sure things don't go out of bounds. like deadZone
   if(cursorSetting < 1)
@@ -168,6 +168,9 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
     case 7:
       vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 300, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
+    case 8:
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 350, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      break;
   }
 
   int tempWidth = 0; //used to calculate the space needed for the text that changes
@@ -327,6 +330,17 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
     }
   }
 
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "Theme");
+  if(theme == 0)
+  {
+    tempWidth = vita2d_font_text_width(font, 20.0f, "< Default >");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "< Default >");
+  }
+  if(theme == 1)
+  {
+    tempWidth = vita2d_font_text_width(font, 20.0f, "< Grey >");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "< Grey >");
+  }
   vita2d_draw_texture_scale(circleImage ,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
   vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 20.0f, "Return");
   if(menuRect.x < target)
@@ -420,6 +434,12 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
         break;
       case 7:
         soundsLevel -= 1.0;
+        break;
+      case 8:
+        theme--;
+        if(theme < 0) theme = 1;
+        changeTheme = true;
+        break;
     }
   }
   if(!keys[2] && !keys[11])
@@ -473,6 +493,11 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
       case 7:
         soundsLevel += 1.0;
         break;
+      case 8:
+        theme++;
+        if(theme > 1) theme = 0;
+        changeTheme = true;
+        break;
     }
   }
   if(!keys[3] && !keys[12])
@@ -524,17 +549,17 @@ void Options::doStuff(vita2d_texture *gameBackground, vita2d_texture *circleImag
     moveDown = false;
   }
 
-  if(menuPos > 7)
+  if(menuPos > 8)
   {
     menuPos = 1;
   }
   if(menuPos < 1)
   {
-    menuPos = 7;
+    menuPos = 8;
   }
 }
 
-void Options::menuPartial(vita2d_texture *circleImage, vita2d_font *font)
+void Options::menuPartial(vita2d_font *font)
 {
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
   drawEmptyRect(menuRect, RGBA8(0,255,0,fade));
@@ -560,6 +585,9 @@ void Options::menuPartial(vita2d_texture *circleImage, vita2d_font *font)
       break;
     case 7:
       vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 300, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      break;
+    case 8:
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 350, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
   }
 
@@ -718,6 +746,18 @@ void Options::menuPartial(vita2d_texture *circleImage, vita2d_font *font)
     {
       g = 0;
     }
+  }
+
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "Theme");
+  if(theme == 0)
+  {
+    tempWidth = vita2d_font_text_width(font, 20.0f, "< Default >");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "< Default >");
+  }
+  if(theme == 1)
+  {
+    tempWidth = vita2d_font_text_width(font, 20.0f, "< Grey >");
+    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "< Grey >");
   }
 
   vita2d_draw_texture_scale(circleImage ,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);

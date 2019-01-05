@@ -3,6 +3,7 @@
 std::string buildDate;
 
 int theme;
+bool changeTheme;
 
 vita2d_texture *garyImage;
 vita2d_texture *karenImage;

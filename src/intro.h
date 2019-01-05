@@ -16,9 +16,17 @@ private:
   SaveIcon saveIcon;
   SceCtrlData pad;
   bool crossNeedsReset;
+  int introState;
+  int introTimer;
+  int letterCounter[3];
+  vita2d_texture *motoSplash;
+  int fade;
 public:
   Intro();
   void doIntro(vita2d_font *font);
+  void introG33(vita2d_font *font);
+  void introMoto(vita2d_font *font);
+  void saveWarning(vita2d_font *font);
 };
 
 #endif

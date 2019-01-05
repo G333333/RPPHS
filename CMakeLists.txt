@@ -108,6 +108,7 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
   FILE images/saveImage.png images/saveImage.png
   FILE images/snakeImage1.png images/snakeImage1.png
   FILE images/snakeImage2.png images/snakeImage2.png
+  FILE images/motoSplash.png images/motoSplash.png
 
   FILE sounds/blaster.wav sounds/blaster.wav
   FILE sounds/exp.wav sounds/exp1.wav

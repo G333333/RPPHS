@@ -1,5 +1,0 @@
-/RPPHS/CMakeFiles/edit_cache.dir
-/RPPHS/CMakeFiles/RPPHS.vpk_.dir
-/RPPHS/CMakeFiles/RPPHS.elf.dir
-/RPPHS/CMakeFiles/rebuild_cache.dir
-/RPPHS/CMakeFiles/RPPHS.self_.dir

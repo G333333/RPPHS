@@ -25,6 +25,9 @@ void Bullet::spawn(double rx, double ry, vitaRect start)
   tx = 125 - rx;
   ty = 130 - ry;
 
+  rect.x = start.x + start.w / 2 - rect.w;
+  rect.y = start.y + start.h / 2 - rect.h;
+
   angle = atan2(-ty, -tx) * 180 / pi;//angle for movement.
   rad = atan2(-ty, -tx);//radians for image rotation.
   xVel = 10*(cos(angle*pi/180));   // move x

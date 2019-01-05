@@ -922,7 +922,7 @@ void Classic::drawHud(vita2d_font *font, int batteryPercent, vita2d_texture *pla
    //draw Extra lives and bombs count
 
    vita2d_font_draw_textf(font, 15, 70, RGBA8(255,255,255,255), 20.0f, "L:%d", extraLives);
-   vita2d_font_draw_textf(font, 45, 70, RGBA8(255,255,255,255), 20.0f, "B:%d", bombCount);
+   vita2d_font_draw_textf(font, 45, 70, RGBA8(255,255,255,255), 20.0f, "fuck fuck fuck fuck fuck fuck fuck fuck fuck :%d", bombCount);
 }
 
 void Classic::drawCursor(vita2d_texture *cursorCrosshair, vita2d_texture *cursorDuck, vita2d_texture *cursorWatcher, vita2d_texture *cursor1, vita2d_texture *cursor2, double rx, double ry, bool showCursor, int cursorSetting)
@@ -931,25 +931,32 @@ void Classic::drawCursor(vita2d_texture *cursorCrosshair, vita2d_texture *cursor
     int tempCursorX = 125 - rx;
     int tempCursorY = 130 - ry;
 
+    double angle = atan2(-tempCursorY, -tempCursorX);
+  
+    // Distance = sqrt[ (b-y)^2 + (a-x)^2 ]
+  
+    double xpos = player.getRect().x + (player.getRect().w / 2) - (-100.0 * cos(angle));
+    double ypos = player.getRect().y + (player.getRect().h / 2) - (-100.0 * sin(angle));
+
     float rad = atan2(-tempCursorY, -tempCursorX);
 
     if(showCursor)
     {
       switch (cursorSetting) {
         case 1:
-          vita2d_draw_texture_rotate(cursorCrosshair, (player.getRect().x + player.getRect().w / 2) - tempCursorX, (player.getRect().y + player.getRect().w / 2) - tempCursorY, 0);
+          vita2d_draw_texture_rotate(cursorCrosshair, xpos, ypos, 0);
           break;
         case 2:
-          vita2d_draw_texture_rotate(cursorDuck, (player.getRect().x + player.getRect().w / 2) - tempCursorX, (player.getRect().y + player.getRect().w / 2) - tempCursorY, 0);
+          vita2d_draw_texture_rotate(cursorDuck, xpos, ypos, 0);
           break;
         case 3:
-          vita2d_draw_texture_rotate(cursorWatcher, (player.getRect().x + player.getRect().w / 2) - tempCursorX, (player.getRect().y + player.getRect().w / 2) - tempCursorY, rad + 1.5708);
+          vita2d_draw_texture_rotate(cursorWatcher, xpos, ypos, rad + 1.5708);
           break;
         case 4:
-          vita2d_draw_texture_rotate(cursor1, (player.getRect().x + player.getRect().w / 2) - tempCursorX, (player.getRect().y + player.getRect().w / 2) - tempCursorY, 0);
+          vita2d_draw_texture_rotate(cursor1, xpos, ypos, 0);
           break;
         case 5:
-          vita2d_draw_texture_rotate(cursor2, (player.getRect().x + player.getRect().w / 2) - tempCursorX, (player.getRect().y + player.getRect().w / 2) - tempCursorY, rad + 1.5708);
+          vita2d_draw_texture_rotate(cursor2, xpos, ypos, rad + 1.5708);
           break;
       }
     }

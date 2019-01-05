@@ -53,7 +53,7 @@ CMAKE_BINARY_DIR = /home/rob/Projects/RPPHS/build
 # Include the progress variables for this target.
 include CMakeFiles/RPPHS.vpk_.dir/progress.make
 
-CMakeFiles/RPPHS.vpk_: ../RPPHS.vpk
+CMakeFiles/RPPHS.vpk_: RPPHS.vpk
 
 
 RPPHS.vpk: RPPHS.vpk_param.sfo

@@ -1,6 +1,6 @@
-set(CMAKE_HOST_SYSTEM "Linux-3.18.0-17554-g9194949d4df2")
+set(CMAKE_HOST_SYSTEM "Linux-4.14.29-galliumos")
 set(CMAKE_HOST_SYSTEM_NAME "Linux")
-set(CMAKE_HOST_SYSTEM_VERSION "3.18.0-17554-g9194949d4df2")
+set(CMAKE_HOST_SYSTEM_VERSION "4.14.29-galliumos")
 set(CMAKE_HOST_SYSTEM_PROCESSOR "x86_64")
 
 include("/usr/local/vitasdk/share/vita.toolchain.cmake")

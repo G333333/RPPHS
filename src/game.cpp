@@ -62,6 +62,28 @@ void Game::loadFiles()
   HeroImmortal.load("app0:/sounds/HeroImmortal.ogg");
   loadScores();
   loadSettings();
+  theme = 0;
+}
+
+void Game::loadNewFiles()
+{
+  garyImage = vita2d_load_PNG_file("app0:/images/theme/gary.png");
+  karenImage = vita2d_load_PNG_file("app0:/images/theme/karen.png");
+  jeffImage = vita2d_load_PNG_file("app0:/images/theme/jeff.png");
+  gameBackground = vita2d_load_PNG_file("app0:/images/theme/Grid3.png");
+  playerImage = vita2d_load_PNG_file("app0:/images/theme/player.png");
+  bulletImage = vita2d_load_PNG_file("app0:/images/theme/bullet.png");
+  crossImage = vita2d_load_PNG_file("app0:/images/theme/cross.png");
+  circleImage = vita2d_load_PNG_file("app0:/images/theme/circle.png");
+  triangleImage = vita2d_load_PNG_file("app0:/images/theme/triangle.png");
+  cursorCrosshair = vita2d_load_PNG_file("app0:/images/theme/cursor-crosshair.png");
+  cursorDuck = vita2d_load_PNG_file("app0:/images/theme/cursor-duck.png");
+  cursorWatcher = vita2d_load_PNG_file("app0:/images/theme/cursor-watcher.png");
+  cursor1 = vita2d_load_PNG_file("app0:/images/theme/cursor1.png");
+  cursor2 = vita2d_load_PNG_file("app0:/images/theme/cursor2.png");
+  snakeImage1 = vita2d_load_PNG_file("app0:/images/theme/snakeImage1.png");
+  snakeImage2 = vita2d_load_PNG_file("app0:/images/theme/snakeImage2.png");
+
 }
 
 void Game::loadScores()
@@ -391,6 +413,13 @@ void Game::doGame()
     }
     if(pad.buttons & SCE_CTRL_LTRIGGER)
     {
+      if(!keys[13])
+      {
+        if(theme == 0) loadNewFiles();
+        else loadFiles();
+        theme++;
+        if(theme > 1) theme = 0;
+      }
       keys[13] = true;
     }
     else

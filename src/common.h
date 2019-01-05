@@ -19,6 +19,8 @@
 
 extern std::string buildDate;
 
+extern int theme;
+
 extern vita2d_texture *garyImage;
 extern vita2d_texture *karenImage;
 extern vita2d_texture *jeffImage;

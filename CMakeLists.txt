@@ -111,6 +111,25 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
   FILE images/snakeImage2.png images/snakeImage2.png
   FILE images/motoSplash.png images/motoSplash.png
 
+  FILE images/theme/gary.png images/theme/gary.png
+  FILE images/theme/karen.png images/theme/karen.png
+  FILE images/theme/jeff.png images/theme/jeff.png
+  FILE images/theme/player.png images/theme/player.png
+  FILE images/theme/Grid3.png images/theme/Grid3.png
+  FILE images/theme/bullet.png images/theme/bullet.png
+  FILE images/theme/cross.png images/theme/cross.png
+  FILE images/theme/circle.png images/theme/circle.png
+  FILE images/theme/triangle.png images/theme/triangle.png
+  FILE images/theme/cursor-crosshair.png images/theme/cursor-crosshair.png
+  FILE images/theme/cursor-duck.png images/theme/cursor-duck.png
+  FILE images/theme/cursor-watcher.png images/theme/cursor-watcher.png
+  FILE images/theme/cursor1.png images/theme/cursor1.png
+  FILE images/theme/cursor2.png images/theme/cursor2.png
+  FILE images/theme/saveImage.png images/theme/saveImage.png
+  FILE images/theme/snakeImage1.png images/theme/snakeImage1.png
+  FILE images/theme/snakeImage2.png images/theme/snakeImage2.png
+  FILE images/theme/motoSplash.png images/theme/motoSplash.png
+
   FILE sounds/blaster.wav sounds/blaster.wav
   FILE sounds/exp.wav sounds/exp1.wav
   FILE sounds/OutThere.ogg sounds/OutThere.ogg

@@ -2,6 +2,8 @@
 
 std::string buildDate;
 
+int theme;
+
 vita2d_texture *garyImage;
 vita2d_texture *karenImage;
 vita2d_texture *jeffImage;

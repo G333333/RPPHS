@@ -47,6 +47,7 @@ private:
 public:
   void init();
   void loadFiles();
+  void loadNewFiles();
   void saveScores(int newScore, std::string newStr);
   bool checkScores(int newScore);
   void loadScores();

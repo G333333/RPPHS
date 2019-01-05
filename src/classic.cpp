@@ -922,7 +922,7 @@ void Classic::drawHud(vita2d_font *font, int batteryPercent, vita2d_texture *pla
    //draw Extra lives and bombs count
 
    vita2d_font_draw_textf(font, 15, 70, RGBA8(255,255,255,255), 20.0f, "L:%d", extraLives);
-   vita2d_font_draw_textf(font, 45, 70, RGBA8(255,255,255,255), 20.0f, "fuck fuck fuck fuck fuck fuck fuck fuck fuck :%d", bombCount);
+   vita2d_font_draw_textf(font, 45, 70, RGBA8(255,255,255,255), 20.0f, "B:%d", bombCount);
 }
 
 void Classic::drawCursor(vita2d_texture *cursorCrosshair, vita2d_texture *cursorDuck, vita2d_texture *cursorWatcher, vita2d_texture *cursor1, vita2d_texture *cursor2, double rx, double ry, bool showCursor, int cursorSetting)

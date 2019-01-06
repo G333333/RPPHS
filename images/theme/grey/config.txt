@@ -1,19 +1,25 @@
 mainTextColor
 {
-    Red:255
-    Green:255
-    Blue:255
+    Red:0
+    Green:0
+    Blue:0
 }
 helpTextColor
 {
-    Red:255
-    Green:255
-    Blue:255
+    Red:0
+    Green:0
+    Blue:0
 }
 menuBorderColor
 {
     Red:0
     Green:4
+    Blue:255
+}
+menuBGColor
+{
+    Red:255
+    Green:255
     Blue:255
 }
 garyColor

@@ -16,6 +16,12 @@ menuBorderColor
     Green:255
     Blue:255
 }
+menuBGColor
+{
+    Red:0
+    Green:0
+    Blue:0
+}
 garyColor
 {
     Red:73

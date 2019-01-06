@@ -5,6 +5,10 @@ void Game::init()
   theme = 0;
   changeTheme = false;
 
+  themes[0] = "";
+  themes[1] = "";
+  themeCount = 0;
+
   levelWidth = 1449;
   levelHeight = 816;
   quitGame = false;
@@ -38,10 +42,12 @@ void Game::init()
   gSoloud.init(); // Initialize SoLoud
 
   saveScreen.init(0);
+
 }
 
 void Game::loadFiles()
 { 
+  loadThemes();
   gWave.stop();
   exp1.stop();
   OutThere.stop();
@@ -67,22 +73,7 @@ void Game::loadFiles()
   vita2d_free_texture(cursor1);
   vita2d_free_texture(cursor2);
 
-  garyImage = vita2d_load_PNG_file("app0:/images/gary.png");
-  karenImage = vita2d_load_PNG_file("app0:/images/karen.png");
-  jeffImage = vita2d_load_PNG_file("app0:/images/jeff.png");
-  gameBackground = vita2d_load_PNG_file("app0:/images/Grid3.png");
-  playerImage = vita2d_load_PNG_file("app0:/images/player.png");
-  bulletImage = vita2d_load_PNG_file("app0:/images/bullet.png");
-  crossImage = vita2d_load_PNG_file("app0:/images/cross.png");
-  circleImage = vita2d_load_PNG_file("app0:/images/circle.png");
-  triangleImage = vita2d_load_PNG_file("app0:/images/triangle.png");
-  cursorCrosshair = vita2d_load_PNG_file("app0:/images/cursor-crosshair.png");
-  cursorDuck = vita2d_load_PNG_file("app0:/images/cursor-duck.png");
-  cursorWatcher = vita2d_load_PNG_file("app0:/images/cursor-watcher.png");
-  cursor1 = vita2d_load_PNG_file("app0:/images/cursor1.png");
-  cursor2 = vita2d_load_PNG_file("app0:/images/cursor2.png");
-  snakeImage1 = vita2d_load_PNG_file("app0:/images/snakeImage1.png");
-  snakeImage2 = vita2d_load_PNG_file("app0:/images/snakeImage2.png");
+  loadNewFiles("default");
 
   gWave.load("app0:/sounds/blaster.wav"); // Load a wave
   exp1.load("app0:/sounds/exp1.wav");
@@ -119,7 +110,7 @@ void Game::loadNewFiles(std::string folder)
   vita2d_free_texture(cursor1);
   vita2d_free_texture(cursor2);
 
-  std::string srcBase = "app0:/images/";
+  std::string srcBase = "app0:/images/theme/";
   std::string src;
   src = srcBase;
   src += folder;
@@ -143,7 +134,7 @@ void Game::loadNewFiles(std::string folder)
 
   src = srcBase;
   src += folder;
-  src += "/player.png.png";
+  src += "/player.png";
   playerImage = vita2d_load_PNG_file(src.c_str());
 
   src = srcBase;
@@ -708,8 +699,8 @@ void Game::doGame()
 
     if(changeTheme)
     {
-      if(theme == 0) loadFiles(); //default theme
-      if(theme == 1) loadNewFiles("theme");
+      //if(theme == 0) loadFiles(); //default theme
+      loadNewFiles(themes[theme].c_str());
       changeTheme = false;
     }
 

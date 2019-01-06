@@ -331,18 +331,13 @@ void Options::doStuff(vita2d_font *font, bool keys[15], int batteryPercent)
   }
 
   vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "Theme");
-  if(theme == 0)
-  {
-    tempWidth = vita2d_font_text_width(font, 20.0f, "< Default >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "< Default >");
-  }
-  if(theme == 1)
-  {
-    tempWidth = vita2d_font_text_width(font, 20.0f, "< Grey >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "< Grey >");
-  }
+  
+  tempWidth = vita2d_font_text_width(font, 20.0f, themes[theme].c_str());
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, themes[theme].c_str());
+  
   vita2d_draw_texture_scale(circleImage ,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
   vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 20.0f, "Return");
+  
   if(menuRect.x < target)
   {
     menuRect.x += 10;
@@ -437,7 +432,7 @@ void Options::doStuff(vita2d_font *font, bool keys[15], int batteryPercent)
         break;
       case 8:
         theme--;
-        if(theme < 0) theme = 1;
+        if(theme < 0) theme = themeCount - 1;
         changeTheme = true;
         break;
     }
@@ -495,7 +490,7 @@ void Options::doStuff(vita2d_font *font, bool keys[15], int batteryPercent)
         break;
       case 8:
         theme++;
-        if(theme > 1) theme = 0;
+        if(theme > themeCount - 1) theme = 0;
         changeTheme = true;
         break;
     }
@@ -748,18 +743,9 @@ void Options::menuPartial(vita2d_font *font)
     }
   }
 
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "Theme");
-  if(theme == 0)
-  {
-    tempWidth = vita2d_font_text_width(font, 20.0f, "< Default >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "< Default >");
-  }
-  if(theme == 1)
-  {
-    tempWidth = vita2d_font_text_width(font, 20.0f, "< Grey >");
-    vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, "< Grey >");
-  }
-
+  tempWidth = vita2d_font_text_width(font, 20.0f, themes[theme].c_str());
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, themes[theme].c_str());
+  
   vita2d_draw_texture_scale(circleImage ,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
   vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 20.0f, "Return");
   if(menuRect.x < target)

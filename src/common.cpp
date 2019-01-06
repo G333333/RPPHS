@@ -4,6 +4,39 @@ std::string buildDate;
 
 int theme;
 bool changeTheme;
+int themeCount;
+std::string themes[2];
+
+void loadThemes(){
+    const char* PATH = "app0:/images/theme";
+
+    SceUID dir = sceIoDopen(PATH);
+    SceIoDirent *subDir;
+
+    int i = 0;
+    int entry = sceIoDread (dir, subDir);
+    while (entry > 0)
+    {
+        themes[i] = subDir->d_name;
+        i++;
+        themeCount++;
+        entry = sceIoDread (dir, subDir);
+    }
+
+    sceIoDclose(dir);
+
+    std::ifstream themeFile;
+    themeFile.open("app0:/images/themes.txt"); //fix me
+    std::string temp;
+    i = 0;
+    while(std::getline(themeFile, temp))
+    {
+        themes[i] = temp;
+        i++;
+        themeCount++;
+    }
+    themeFile.close();
+}
 
 vita2d_texture *garyImage;
 vita2d_texture *karenImage;

@@ -92,43 +92,46 @@ vita_create_self(${SHORT_NAME}.self ${SHORT_NAME}.elf)
 vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
   VERSION ${VITA_VERSION}
   NAME ${VITA_APP_NAME}
-  FILE images/gary.png images/gary.png
-  FILE images/karen.png images/karen.png
-  FILE images/jeff.png images/jeff.png
-  FILE images/player.png images/player.png
-  FILE images/Grid3.png images/Grid3.png
-  FILE images/bullet.png images/bullet.png
-  FILE images/cross.png images/cross.png
-  FILE images/circle.png images/circle.png
-  FILE images/triangle.png images/triangle.png
-  FILE images/cursor-crosshair.png images/cursor-crosshair.png
-  FILE images/cursor-duck.png images/cursor-duck.png
-  FILE images/cursor-watcher.png images/cursor-watcher.png
-  FILE images/cursor1.png images/cursor1.png
-  FILE images/cursor2.png images/cursor2.png
-  FILE images/saveImage.png images/saveImage.png
-  FILE images/snakeImage1.png images/snakeImage1.png
-  FILE images/snakeImage2.png images/snakeImage2.png
-  FILE images/motoSplash.png images/motoSplash.png
+  FILE images/theme/default/gary.png images/theme/default/gary.png
+  FILE images/theme/default/karen.png images/theme/default/karen.png
+  FILE images/theme/default/jeff.png images/theme/default/jeff.png
+  FILE images/theme/default/player.png images/theme/default/player.png
+  FILE images/theme/default/Grid3.png images/theme/default/Grid3.png
+  FILE images/theme/default/bullet.png images/theme/default/bullet.png
+  FILE images/theme/default/cross.png images/theme/default/cross.png
+  FILE images/theme/default/circle.png images/theme/default/circle.png
+  FILE images/theme/default/triangle.png images/theme/default/triangle.png
+  FILE images/theme/default/cursor-crosshair.png images/theme/default/cursor-crosshair.png
+  FILE images/theme/default/cursor-duck.png images/theme/default/cursor-duck.png
+  FILE images/theme/default/cursor-watcher.png images/theme/default/cursor-watcher.png
+  FILE images/theme/default/cursor1.png images/theme/default/cursor1.png
+  FILE images/theme/default/cursor2.png images/theme/default/cursor2.png
+  FILE images/theme/default/saveImage.png images/theme/default/saveImage.png
+  FILE images/theme/default/snakeImage1.png images/theme/default/snakeImage1.png
+  FILE images/theme/default/snakeImage2.png images/theme/default/snakeImage2.png
 
-  FILE images/theme/gary.png images/theme/gary.png
-  FILE images/theme/karen.png images/theme/karen.png
-  FILE images/theme/jeff.png images/theme/jeff.png
-  FILE images/theme/player.png images/theme/player.png
-  FILE images/theme/Grid3.png images/theme/Grid3.png
-  FILE images/theme/bullet.png images/theme/bullet.png
-  FILE images/theme/cross.png images/theme/cross.png
-  FILE images/theme/circle.png images/theme/circle.png
-  FILE images/theme/triangle.png images/theme/triangle.png
-  FILE images/theme/cursor-crosshair.png images/theme/cursor-crosshair.png
-  FILE images/theme/cursor-duck.png images/theme/cursor-duck.png
-  FILE images/theme/cursor-watcher.png images/theme/cursor-watcher.png
-  FILE images/theme/cursor1.png images/theme/cursor1.png
-  FILE images/theme/cursor2.png images/theme/cursor2.png
-  FILE images/theme/saveImage.png images/theme/saveImage.png
-  FILE images/theme/snakeImage1.png images/theme/snakeImage1.png
-  FILE images/theme/snakeImage2.png images/theme/snakeImage2.png
-  FILE images/theme/motoSplash.png images/theme/motoSplash.png
+  FILE images/theme/grey/gary.png images/theme/grey/gary.png
+  FILE images/theme/grey/karen.png images/theme/grey/karen.png
+  FILE images/theme/grey/jeff.png images/theme/grey/jeff.png
+  FILE images/theme/grey/player.png images/theme/grey/player.png
+  FILE images/theme/grey/Grid3.png images/theme/grey/Grid3.png
+  FILE images/theme/grey/bullet.png images/theme/grey/bullet.png
+  FILE images/theme/grey/cross.png images/theme/grey/cross.png
+  FILE images/theme/grey/circle.png images/theme/grey/circle.png
+  FILE images/theme/grey/triangle.png images/theme/grey/triangle.png
+  FILE images/theme/grey/cursor-crosshair.png images/theme/grey/cursor-crosshair.png
+  FILE images/theme/grey/cursor-duck.png images/theme/grey/cursor-duck.png
+  FILE images/theme/grey/cursor-watcher.png images/theme/grey/cursor-watcher.png
+  FILE images/theme/grey/cursor1.png images/theme/grey/cursor1.png
+  FILE images/theme/grey/cursor2.png images/theme/grey/cursor2.png
+  FILE images/theme/grey/saveImage.png images/theme/grey/saveImage.png
+  FILE images/theme/grey/snakeImage1.png images/theme/grey/snakeImage1.png
+  FILE images/theme/grey/snakeImage2.png images/theme/grey/snakeImage2.png
+  
+  FILE images/motoSplash.png images/motoSplash.png
+  FILE images/theme/default/saveImage.png images/saveImage.png
+
+  FILE images/themes.txt images/themes.txt
 
   FILE sounds/blaster.wav sounds/blaster.wav
   FILE sounds/exp.wav sounds/exp1.wav

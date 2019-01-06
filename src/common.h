@@ -5,6 +5,11 @@
 #include <string>
 #include <stdlib.h>
 #include <time.h>       /* time */
+#include <dirent.h>
+
+#include <iostream>
+#include <fstream>
+
 
 #include <psp2/ctrl.h>
 #include <psp2/kernel/processmgr.h>
@@ -21,6 +26,9 @@ extern std::string buildDate;
 
 extern int theme;
 extern bool changeTheme;
+extern int themeCount;
+extern std::string themes[2];
+extern void loadThemes();
 
 extern vita2d_texture *garyImage;
 extern vita2d_texture *karenImage;

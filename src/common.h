@@ -28,7 +28,8 @@ extern int theme;
 extern bool changeTheme;
 extern int themeCount;
 extern std::string themes[2];
-extern void loadThemes();
+extern void loadThemes(); //load the Them information
+extern void loadImages(std::string folder); //load the images for the theme
 
 extern vita2d_texture *garyImage;
 extern vita2d_texture *karenImage;

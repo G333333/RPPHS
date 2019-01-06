@@ -47,7 +47,6 @@ void Game::init()
 
 void Game::loadFiles()
 { 
-  loadThemes();
   gWave.stop();
   exp1.stop();
   OutThere.stop();
@@ -56,24 +55,7 @@ void Game::loadFiles()
   vita2d_end_drawing();
   vita2d_wait_rendering_done();
 
-  vita2d_free_texture(garyImage);
-  vita2d_free_texture(karenImage);
-  vita2d_free_texture(jeffImage);
-  vita2d_free_texture(snakeImage1);
-  vita2d_free_texture(snakeImage2);
-  vita2d_free_texture(playerImage);
-  vita2d_free_texture(gameBackground);
-  vita2d_free_texture(bulletImage);
-  vita2d_free_texture(crossImage);
-  vita2d_free_texture(circleImage);
-  vita2d_free_texture(triangleImage);
-  vita2d_free_texture(cursorCrosshair);
-  vita2d_free_texture(cursorDuck);
-  vita2d_free_texture(cursorWatcher);
-  vita2d_free_texture(cursor1);
-  vita2d_free_texture(cursor2);
-
-  loadNewFiles("default");
+  loadImages("default");
 
   gWave.load("app0:/sounds/blaster.wav"); // Load a wave
   exp1.load("app0:/sounds/exp1.wav");
@@ -81,117 +63,6 @@ void Game::loadFiles()
   HeroImmortal.load("app0:/sounds/HeroImmortal.ogg");
   loadScores();
   loadSettings();
-}
-
-void Game::loadNewFiles(std::string folder)
-{
-  gWave.stop();
-  exp1.stop();
-  OutThere.stop();
-  HeroImmortal.stop();
-
-  vita2d_end_drawing();
-  vita2d_wait_rendering_done();
-
-  vita2d_free_texture(garyImage);
-  vita2d_free_texture(karenImage);
-  vita2d_free_texture(jeffImage);
-  vita2d_free_texture(snakeImage1);
-  vita2d_free_texture(snakeImage2);
-  vita2d_free_texture(playerImage);
-  vita2d_free_texture(gameBackground);
-  vita2d_free_texture(bulletImage);
-  vita2d_free_texture(crossImage);
-  vita2d_free_texture(circleImage);
-  vita2d_free_texture(triangleImage);
-  vita2d_free_texture(cursorCrosshair);
-  vita2d_free_texture(cursorDuck);
-  vita2d_free_texture(cursorWatcher);
-  vita2d_free_texture(cursor1);
-  vita2d_free_texture(cursor2);
-
-  std::string srcBase = "app0:/images/theme/";
-  std::string src;
-  src = srcBase;
-  src += folder;
-  src += "/gary.png";
-  garyImage = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/karen.png";
-  karenImage = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/jeff.png";
-  jeffImage = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/Grid3.png";
-  gameBackground = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/player.png";
-  playerImage = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/bullet.png";
-  bulletImage = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/cross.png";
-  crossImage = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/circle.png";
-  circleImage = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/triangle.png";
-  triangleImage = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/cursor-crosshair.png";
-  cursorCrosshair = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/cursor-duck.png";
-  cursorDuck = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/cursor-watcher.png";
-  cursorWatcher = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/cursor1.png";
-  cursor1 = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/cursor2.png";
-  cursor2 = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/snakeImage1.png";
-  snakeImage1 = vita2d_load_PNG_file(src.c_str());
-
-  src = srcBase;
-  src += folder;
-  src += "/snakeImage2.png";
-  snakeImage2 = vita2d_load_PNG_file(src.c_str());
-
 }
 
 void Game::loadScores()
@@ -700,7 +571,7 @@ void Game::doGame()
     if(changeTheme)
     {
       //if(theme == 0) loadFiles(); //default theme
-      loadNewFiles(themes[theme].c_str());
+      loadImages(themes[theme].c_str());
       changeTheme = false;
     }
 

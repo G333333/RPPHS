@@ -86,7 +86,8 @@ void Menu::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool sh
   if(!credits)
   {
     vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
-    drawEmptyRect(menuRect, RGBA8(0,255,0,fade));
+    drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
+
 
     switch (menuPos) {
       case 1:
@@ -213,7 +214,8 @@ void Menu::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool sh
 void Menu::menuPartial(vita2d_font *font)
 {
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
-  drawEmptyRect(menuRect, RGBA8(0,255,0,fade));
+  drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
+
 
   switch (menuPos) {
     case 1:

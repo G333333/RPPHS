@@ -55,6 +55,7 @@ void Game::loadFiles()
   vita2d_end_drawing();
   vita2d_wait_rendering_done();
 
+  loadThemes();
   loadImages("default");
 
   gWave.load("app0:/sounds/blaster.wav"); // Load a wave
@@ -574,6 +575,8 @@ void Game::doGame()
       loadImages(themes[theme].c_str());
       changeTheme = false;
     }
+
+    vita2d_font_draw_textf(font, 960 / 2, 544 - 200, RGBA8(255,255,255,255), 20.0f, "%d", menuBorderR);
 
 		vita2d_end_drawing();
 		vita2d_swap_buffers();

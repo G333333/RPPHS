@@ -109,6 +109,7 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
   FILE images/theme/default/saveImage.png images/theme/default/saveImage.png
   FILE images/theme/default/snakeImage1.png images/theme/default/snakeImage1.png
   FILE images/theme/default/snakeImage2.png images/theme/default/snakeImage2.png
+  FILE images/theme/default/config.txt images/theme/default/config.txt
 
   FILE images/theme/grey/gary.png images/theme/grey/gary.png
   FILE images/theme/grey/karen.png images/theme/grey/karen.png
@@ -127,6 +128,7 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
   FILE images/theme/grey/saveImage.png images/theme/grey/saveImage.png
   FILE images/theme/grey/snakeImage1.png images/theme/grey/snakeImage1.png
   FILE images/theme/grey/snakeImage2.png images/theme/grey/snakeImage2.png
+  FILE images/theme/grey/config.txt images/theme/grey/config.txt
   
   FILE images/motoSplash.png images/motoSplash.png
   FILE images/theme/default/saveImage.png images/saveImage.png

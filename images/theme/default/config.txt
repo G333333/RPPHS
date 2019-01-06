@@ -1,0 +1,48 @@
+mainTextColor
+{
+    Red:255
+    Green:255
+    Blue:255
+}
+helpTextColor
+{
+    Red:255
+    Green:255
+    Blue:255
+}
+menuBorderColor
+{
+    Red:255
+    Green:255
+    Blue:255
+}
+garyColor
+{
+    Red:73
+    Green:73
+    Blue:73
+}
+jeffColor
+{
+    Red:73
+    Green:73
+    Blue:73
+}
+miniColor
+{
+    Red:73
+    Green:73
+    Blue:73
+}
+karenColor
+{
+    Red:73
+    Green:73
+    Blue:73
+}
+snakeColor
+{
+    Red:73
+    Green:73
+    Blue:73
+}

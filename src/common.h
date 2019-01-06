@@ -58,5 +58,6 @@ extern vita2d_texture *cursorDuck;
 extern vita2d_texture *cursorWatcher;
 extern vita2d_texture *cursor1;
 extern vita2d_texture *cursor2;
+extern vita2d_texture *saveImage;;
 
 #endif

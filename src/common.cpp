@@ -123,6 +123,10 @@ void loadImages(std::string folder)
   src += "/snakeImage2.png";
   snakeImage2 = vita2d_load_PNG_file(src.c_str());
 
+  src = srcBase;
+  src += folder;
+  src += "/saveImage.png";
+  saveImage = vita2d_load_PNG_file(src.c_str());
   loadThemeConfig(folder);
 }
 
@@ -257,3 +261,4 @@ vita2d_texture *cursorDuck;
 vita2d_texture *cursorWatcher;
 vita2d_texture *cursor1;
 vita2d_texture *cursor2;
+vita2d_texture *saveImage;

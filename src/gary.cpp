@@ -155,7 +155,7 @@ void Gary::moveBackY(double playeryVel)
   }
 }
 
-void Gary::doStuff(vita2d_texture *garyImage, vitaRect target, bool pause, vitaRect levelRect)
+void Gary::doStuff(vitaRect target, bool pause, vitaRect levelRect)
 {
   this->pause = pause;
   if(rect.x < levelRect.x)

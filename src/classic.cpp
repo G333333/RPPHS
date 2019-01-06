@@ -248,7 +248,7 @@ void Classic::doStuff(vita2d_font *font,
   checkGarys();
   for(int i = 0; i < garyTotal; i++)
   {//move garys and check if they are dead.
-    garys[i].doStuff(garyImage, player.getRect(), pause, levelRect);
+    garys[i].doStuff(player.getRect(), pause, levelRect);
   }
 
   checkKarens();

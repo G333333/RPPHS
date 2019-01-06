@@ -1,18 +1,7 @@
 #ifndef _Gary_Class_
 #define _Gary_Class_
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <math.h>
-#include <time.h>       /* time */
-
-
-#include <psp2/ctrl.h>
-#include <psp2/kernel/processmgr.h>
-
-#include <vita2d.h>
-
+#include"common.h"
 #include"functions.h"
 #include"particle.h"
 
@@ -38,7 +27,7 @@ public:
   void moveBackY();
   void moveBackX(double playerxVel);
   void moveBackY(double playeryVel);
-  void doStuff(vita2d_texture *garyImage, vitaRect target, bool pause, vitaRect levelRect);
+  void doStuff(vitaRect target, bool pause, vitaRect levelRect);
 };
 
 #endif

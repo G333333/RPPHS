@@ -48,7 +48,7 @@ vitaRect MiniJeff::getRect()
   return rect;
 }
 
-void MiniJeff::doStuff(vita2d_texture *jeffImage, bool pause, vitaRect levelRect)
+void MiniJeff::doStuff(bool pause, vitaRect levelRect)
 {
   double pi = 3.14159;
   if(active)

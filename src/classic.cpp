@@ -266,7 +266,7 @@ void Classic::doStuff(vita2d_font *font,
   checkMiniJeffs();
   for(int i = 0; i < miniJeffTotal; i++)
   {
-    miniJeffs[i].doStuff(jeffImage, pause, levelRect);
+    miniJeffs[i].doStuff(pause, levelRect);
   }
 
   checkSnakeGuys();

@@ -1,14 +1,7 @@
 #ifndef _Mini_Jeff_
 #define _Mini_Jeff_
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-#include <psp2/ctrl.h>
-#include <psp2/kernel/processmgr.h>
-
-#include <vita2d.h>
+#include"common.h"
 
 #include"functions.h"
 #include"particle.h"
@@ -27,7 +20,7 @@ public:
   void spawn(vitaRect start, double angle);
   bool getActive();
   vitaRect getRect();
-  void doStuff(vita2d_texture *jeffImage, bool pause, vitaRect levelRect);
+  void doStuff(bool pause, vitaRect levelRect);
   void moveBackX(double playerxVel);
   void moveBackY(double playeryVel);
   void die();

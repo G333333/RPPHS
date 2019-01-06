@@ -9,7 +9,7 @@ SaveIcon::SaveIcon()
   }
   timer = 0;
   rad = 0.0;
-  saveImage = vita2d_load_PNG_file("app0:/images/saveImage.png");
+  //saveImage = vita2d_load_PNG_file("app0:/images/saveImage.png");
 }
 
 void SaveIcon::doStuff(int xStart, int yStart)
@@ -80,6 +80,6 @@ int SaveIcon::getTimer()
 
 void SaveIcon::cleanUp()
 {
-  vita2d_free_texture(saveImage);
-  saveImage = NULL;
+  //vita2d_free_texture(saveImage);
+  //saveImage = NULL;
 }

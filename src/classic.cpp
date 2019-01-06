@@ -230,7 +230,7 @@ void Classic::doStuff(vita2d_font *font,
     bombUpgrade += 80000;
   }
 
-  player.doStuff(playerImage, lx, ly, deadZone, levelRect, pause);
+  player.doStuff(lx, ly, deadZone, levelRect, pause);
 
   for(int i = 0; i < 50; i++)
   {//do bullets. duh

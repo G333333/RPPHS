@@ -1,15 +1,7 @@
 #ifndef _Player_Class
 #define _Player_Class
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <math.h>
-
-#include <psp2/ctrl.h>
-#include <psp2/kernel/processmgr.h>
-
-#include <vita2d.h>
+#include"common.h"
 
 #include"functions.h"
 
@@ -22,7 +14,7 @@ private:
   bool active;
 public:
   void init();
-  void doStuff(vita2d_texture *playerImage, double lx, double ly, int deadZone, vitaRect levelRect, bool pause);
+  void doStuff(double lx, double ly, int deadZone, vitaRect levelRect, bool pause);
   vitaRect getRect();
   bool getActive();
   void setxVel(double xVel);

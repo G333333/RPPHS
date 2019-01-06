@@ -15,7 +15,7 @@ void Player::init()
   active = false;
 }
 
-void Player::doStuff(vita2d_texture *playerImage, double lx, double ly, int deadZone, vitaRect levelRect, bool pause)
+void Player::doStuff(double lx, double ly, int deadZone, vitaRect levelRect, bool pause)
 {
   if(active)
   {

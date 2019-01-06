@@ -192,7 +192,7 @@ void Jeff::moveBackY(double playeryVel)
   }
 }
 
-void Jeff::doStuff(vita2d_texture *jeffImage, vitaRect levelRect, vitaRect playerRect, bool pause)
+void Jeff::doStuff(vitaRect levelRect, vitaRect playerRect, bool pause)
 {
   this->pause = pause;
 

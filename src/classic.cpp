@@ -260,7 +260,7 @@ void Classic::doStuff(vita2d_font *font,
   checkJeffs();
   for(int i = 0; i < jeffTotal; i++)
   {
-    jeffs[i].doStuff(jeffImage, levelRect, player.getRect(), pause);
+    jeffs[i].doStuff(levelRect, player.getRect(), pause);
   }
 
   checkMiniJeffs();

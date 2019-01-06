@@ -19,7 +19,7 @@ private:
   int introState;
   int introTimer;
   int letterCounter[3];
-  vita2d_texture *motoSplash;
+  vita2d_texture *g33Splash, *motoSplash;
   int fade;
 public:
   Intro();

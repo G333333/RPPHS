@@ -131,6 +131,7 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
   FILE images/theme/grey/config.txt images/theme/grey/config.txt
   
   FILE images/motoSplash.png images/motoSplash.png
+  FILE images/g33Splash.png images/g33splash.png
   FILE images/theme/default/saveImage.png images/saveImage.png
 
   FILE images/themes.txt images/themes.txt

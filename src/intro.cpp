@@ -16,6 +16,7 @@ void Intro::doIntro(vita2d_font *font)
 
     fade = 255;
 
+    g33Splash = vita2d_load_PNG_file("app0:/images/g33Splash.png");
     motoSplash = vita2d_load_PNG_file("app0:/images/motoSplash.png");
 
     //main intro handler, switch between intros
@@ -36,6 +37,8 @@ void Intro::doIntro(vita2d_font *font)
     }
 
     vita2d_wait_rendering_done();
+    vita2d_free_texture(g33Splash);
+    vita2d_free_texture(motoSplash);
     saveIcon.cleanUp();
 }
 
@@ -48,6 +51,7 @@ void Intro::introG33(vita2d_font *font)
         introState = 1;
         introTimer = 0;
         crossNeedsReset = true;
+        saveIcon.start();
     } else if (!(pad.buttons & SCE_CTRL_CROSS)) {
         crossNeedsReset = false;
     }
@@ -57,34 +61,29 @@ void Intro::introG33(vita2d_font *font)
     if (introTimer > 180) {
         introState = 1;
         introTimer = 0;
+        saveIcon.start();
     }
 
-    //G
-    letterCounter[0] += 5;
-    if (letterCounter[0] >= 255)
-        letterCounter[0] = 255;
-
-    //3-1
-    if (introTimer > 51) {
-        letterCounter[1] += 5;
-        if (letterCounter[1] >= 255)
-            letterCounter[1] = 255;
+    if (introTimer < 51) {
+        if (fade > 0) {
+            fade -= 5;
+        } else if (fade < 0) {
+            fade = 0;
+        }
     }
 
-    //3-2
-    if (introTimer > 102) {
-        letterCounter[2] += 5;
-        if (letterCounter[2] >= 255)
-            letterCounter[2] = 255;
+    if (introTimer > 129) {
+        fade += 5;
+
+        if (fade > 255)
+            fade = 255;
     }
 
     vita2d_start_drawing();
 	vita2d_clear_screen();
 
-    vita2d_font_draw_text(font, 443, 262, RGBA8(0, 255, 0, letterCounter[0]), 20.0f, "G");
-    vita2d_font_draw_text(font, 473, 262, RGBA8(0, 255, 0, letterCounter[1]), 20.0f, "3");
-    vita2d_font_draw_text(font, 503, 262, RGBA8(0, 255, 0, letterCounter[2]), 20.0f, "3");
-
+    vita2d_draw_texture(g33Splash, 0, 0);
+    vita2d_draw_rectangle(0, 0, 960, 544, RGBA8(0, 0, 0, fade));
 
     vita2d_end_drawing();
 	vita2d_swap_buffers();

@@ -506,7 +506,7 @@ void Game::doGame()
         }
         break;
       case 4:
-        saveScreen.doStuff(gameBackground, crossImage, font, keys, scePowerGetBatteryLifePercent(), showBattery);
+        saveScreen.doStuff(font, keys, scePowerGetBatteryLifePercent(), showBattery);
         status = saveScreen.getStatus();
         classic.setStatus(status);
         options.setStatus(status);

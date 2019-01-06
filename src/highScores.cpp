@@ -34,7 +34,7 @@ void HighScores::start()
   barFade = 0;
 }
 
-void HighScores::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossImage, vita2d_texture *circleImage, vita2d_font *font, bool keys[15], int batteryPercent, bool showBattery, int scores_int[10], std::string scores_str[10], int newScore)
+void HighScores::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool showBattery, int scores_int[10], std::string scores_str[10], int newScore)
 {
   vita2d_draw_texture_scale(gameBackground, 0, 0, 2, 2);
 
@@ -155,7 +155,7 @@ void HighScores::doStuff(vita2d_texture *gameBackground, vita2d_texture *crossIm
   }
 }
 
-void HighScores::menuPartial(vita2d_texture *crossImage, vita2d_texture *circleImage, vita2d_font *font, int scores_int[10], std::string scores_str[10])
+void HighScores::menuPartial(vita2d_font *font, int scores_int[10], std::string scores_str[10])
 {
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
   drawEmptyRect(menuRect, RGBA8(0,255,0,fade));

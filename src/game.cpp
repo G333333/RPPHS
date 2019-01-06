@@ -521,7 +521,7 @@ void Game::doGame()
         }
         break;
       case 5:
-        highScores.doStuff(gameBackground, crossImage, circleImage, font, keys, scePowerGetBatteryLifePercent(), showBattery, scores_int, scores_str, classic.getPoints());
+        highScores.doStuff(font, keys, scePowerGetBatteryLifePercent(), showBattery, scores_int, scores_str, classic.getPoints());
         status = highScores.getStatus();
         classic.setStatus(status);
         options.setStatus(status);

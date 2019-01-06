@@ -576,8 +576,6 @@ void Game::doGame()
       changeTheme = false;
     }
 
-    vita2d_font_draw_textf(font, 960 / 2, 544 - 200, RGBA8(255,255,255,255), 20.0f, "%d", menuBorderR);
-
 		vita2d_end_drawing();
 		vita2d_swap_buffers();
     vita2d_wait_rendering_done();

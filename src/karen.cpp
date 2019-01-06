@@ -177,7 +177,7 @@ void Karen::moveBackY(double playeryVel)
   }
 }
 
-void Karen::doStuff(vita2d_texture *karenImage, vitaRect levelRect, bool pause)
+void Karen::doStuff(vitaRect levelRect, bool pause)
 {
   this->pause = pause;
 

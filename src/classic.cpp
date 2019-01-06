@@ -254,7 +254,7 @@ void Classic::doStuff(vita2d_font *font,
   checkKarens();
   for(int i = 0; i < karenTotal; i++)
   {
-    karens[i].doStuff(karenImage, levelRect, pause);
+    karens[i].doStuff(levelRect, pause);
   }
 
   checkJeffs();

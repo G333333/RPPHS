@@ -78,14 +78,14 @@ void HighScores::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, b
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
   drawEmptyRect(menuRect, RGBA8(0,255,0,fade));
 
-  vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2, menuRect.y + 30, RGBA8(255,255,255,255), 20.0f, "HighScores:");
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2, menuRect.y + 30, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "HighScores:");
   int tempIndex = 60 ;
   for(int i = 0; i < 10; i++)
   {
-    vita2d_font_draw_textf(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2, menuRect.y  + tempIndex, RGBA8(255,255,255,255), 20.0f,"%s %d", scores_str[i].c_str(), scores_int[i]);
+    vita2d_font_draw_textf(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2, menuRect.y  + tempIndex, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f,"%s %d", scores_str[i].c_str(), scores_int[i]);
     if(newScore == scores_int[i])
     {
-      vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2 - 15, menuRect.y  + tempIndex, RGBA8(0,255,0,barFade), 20.0f,">");
+      vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2 - 15, menuRect.y  + tempIndex, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f,">");
     }
     tempIndex += 20;
   }
@@ -94,10 +94,10 @@ void HighScores::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, b
   if(barFade >= 255)
     barFade = 0;
 
-  vita2d_font_draw_text(font, menuRect.x + menuRect.w - vita2d_font_text_width(font, 20.0f, "Return") - 40, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 20.0f,"Return");
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w - vita2d_font_text_width(font, 20.0f, "Return") - 40, menuRect.y + menuRect.h - 20, RGBA8(helpTextR,helpTextG, helpTextB, 255), 20.0f,"Return");
   vita2d_draw_texture_scale(circleImage, menuRect.x + menuRect.w - 40,  menuRect.y + menuRect.h - 40, 1,1);
   vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
-  vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 20.0f, "Play Game");
+  vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(helpTextR,helpTextG,helpTextB, 255), 20.0f, "Play Game");
   if(menuRect.y < target)
   {
     menuRect.y += 10;
@@ -160,16 +160,16 @@ void HighScores::menuPartial(vita2d_font *font, int scores_int[10], std::string 
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
   drawEmptyRect(menuRect, RGBA8(0,255,0,fade));
 
-  vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2, menuRect.y + 20, RGBA8(255,255,255,255), 20.0f, "HighScores:");
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2, menuRect.y + 20, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "HighScores:");
   int tempIndex = 60 ;
   for(int i = 0; i < 10; i++)
   {
-    vita2d_font_draw_textf(font, menuRect.x + menuRect.w / 2 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2, menuRect.y  + tempIndex, RGBA8(255,255,255,255), 20.0f,"%s %d", scores_str[i].c_str(), scores_int[i]);
+    vita2d_font_draw_textf(font, menuRect.x + menuRect.w / 2 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2, menuRect.y  + tempIndex, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f,"%s %d", scores_str[i].c_str(), scores_int[i]);
     tempIndex += 20;
   }
 
   vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
-  vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 20.0f, "Play Game");
+  vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(helpTextR,helpTextG,helpTextB, 255), 20.0f, "Play Game");
   if(menuRect.y < target)
   {
     menuRect.y += 10;

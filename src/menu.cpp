@@ -103,13 +103,13 @@ void Menu::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool sh
         vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
         break;
     }
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "Play");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "Options");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "Credits");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Quit");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Play");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Options");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Credits");
+    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Quit");
 
     vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
-    vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 20.0f, "Select");
+    vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(helpTextR,helpTextG,helpTextB, fade), 20.0f, "Select");
 
     if(keys[0] && !moveUp)
     {
@@ -228,13 +228,13 @@ void Menu::menuPartial(vita2d_font *font)
       vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
       break;
   }
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(255,255,255,fade), 20.0f, "Play");
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(255,255,255,fade), 20.0f, "Options");
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(255,255,255,fade), 20.0f, "Credits");
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(255,255,255,fade), 20.0f, "Quit");
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Play");
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Options");
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Credits");
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Quit");
 
   vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
-  vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(0,255, 0, 255), 20.0f, "Select");
+  vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(helpTextR,helpTextG, helpTextB,fade), 20.0f, "Select");
   if(menuRect.x < target)
   {
     menuRect.x += 10;
@@ -275,25 +275,27 @@ void Menu::showCredits(vita2d_font *font)
   vita2d_draw_rectangle(960 / 2 - 960 / 4 - 80 + 1, 544 / 2 - 522 / 4 + 1, 960 - 319, 544 / 2 + 60 - 1, RGBA8(0, 0, 0, 100));
   drawEmptyRect(960 / 2 - 960 / 4 - 80, 544 / 2 - 544 / 4 , 960 - 320, 544 / 2 + 60, RGBA8(0, 255, 0, 100));
 
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "CREDITS") / 2, 544 / 3 - 15, RGBA8(255,255,255,255), 20.0f, "CREDITS");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 10, RGBA8(255,255,255,255), 20.0f, "G33: Programming, Design");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 30, RGBA8(255,255,255,255), 20.0f, "MotoLegacy: Livearea, Player/Enemies, Programming, Design");
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "SPECIAL THANKS") / 2, 544 / 3 + 80, RGBA8(255,255,255,255), 20.0f, "SPECIAL THANKS");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 100, RGBA8(255,255,255,255), 20.0f, "- Xerpi: libVita2D");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 120, RGBA8(255,255,255,255), 20.0f, "- Xyz: SoLoud Vita Port");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 140, RGBA8(255,255,255,255), 20.0f, "- Rinnegatamante: FPS Counter Code");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 160, RGBA8(255,255,255,255), 20.0f, "- VitaSDK Contributors");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 180, RGBA8(255,255,255,255), 20.0f, "- Ivan voirol @ OpenGameArt: Background Grid");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 200, RGBA8(255,255,255,255), 20.0f, "- yd @ OpenGameArt: Menu Music (outhere.ogg)");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 220, RGBA8(255,255,255,255), 20.0f, "- Trevor Lentz @ OpenGameArt: Game Music (heroimmortal.ogg)");
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "CREDITS") / 2, 544 / 3 - 15, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "CREDITS");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 10, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "G33: Programming, Design");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 30, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "MotoLegacy: Livearea, Player/Enemies, Programming, Design");
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "SPECIAL THANKS") / 2, 544 / 3 + 80, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "SPECIAL THANKS");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 100, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Xerpi: libVita2D");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 120, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Xyz: SoLoud Vita Port");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 140, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Rinnegatamante: FPS Counter Code");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 160, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- VitaSDK Contributors");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 180, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Ivan voirol @ OpenGameArt: Background Grid");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 200, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- yd @ OpenGameArt: Menu Music (outhere.ogg)");
+  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 220, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Trevor Lentz @ OpenGameArt: Game Music (heroimmortal.ogg)");
   
-  vita2d_font_draw_text(font, 160 + 5, 544 - 20, RGBA8(255,255,255,255), 20.0f, buildDate.c_str());
+  std::string tempString = "Build Date: ";
+  tempString += buildDate;
+  vita2d_font_draw_text(font, 160 + 5, 544 - 20, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, tempString.c_str());
 
 
   int tempWidth = vita2d_texture_get_width(circleImage); //get the width and height to draw in correct place.
   int tempHeight = vita2d_texture_get_height(circleImage); //both images are the same size. //used for text too
 
-  vita2d_font_draw_text(font, 160 + tempWidth + 10, 544 / 2 + 544 / 4 + 47, RGBA8(0,255,0,255), 20.0f, "Main Menu");
+  vita2d_font_draw_text(font, 160 + tempWidth + 10, 544 / 2 + 544 / 4 + 47, RGBA8(helpTextR,helpTextG,helpTextB,255), 20.0f, "Main Menu");
 
   vita2d_draw_texture_scale(circleImage, 160 + 5, 544 / 2 + 544 / 4 + 55 - tempHeight, 1, 1);
 }

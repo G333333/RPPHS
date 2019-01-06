@@ -566,7 +566,7 @@ void Game::doGame()
     fpsCounter.update();
     if(showFps)
     {
-      vita2d_font_draw_textf(font, 856, 30, RGBA8(255,255,255,255), 20.0f, "FPS:%d", fpsCounter.getFps());
+      vita2d_font_draw_textf(font, 856, 30, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "FPS:%d", fpsCounter.getFps());
     }
 
     if(changeTheme)

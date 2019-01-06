@@ -131,7 +131,7 @@ void loadImages(std::string folder)
 }
 
 int mainTextR, mainTextG, mainTextB;
-int helTextR, helpTextG, helpTextB;
+int helpTextR, helpTextG, helpTextB;
 int menuBorderR, menuBorderG, menuBorderB;
 int menuBGColorR, menuBGColorG, menuBGColorB;
 int garyColorR, garyColorG, garyColorB;
@@ -200,7 +200,7 @@ void loadThemeConfig(std::string folder)
                 mainTextB = valueB;
         }
         else if(var == "helpTextColor"){ 
-                helTextR = valueR;
+                helpTextR = valueR;
                 helpTextG = valueG;
                 helpTextB = valueB;
         }

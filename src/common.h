@@ -33,7 +33,7 @@ extern void loadImages(std::string folder); //load the images for the theme
 extern void loadThemeConfig(std::string folder); //load config file for theme
 
 extern int mainTextR, mainTextG, mainTextB;
-extern int helTextR, helpTextG, helpTextB;
+extern int helpTextR, helpTextG, helpTextB;
 extern int menuBorderR, menuBorderG, menuBorderB;
 extern int menuBGColorR, menuBGColorG, menuBGColorB;
 extern int garyColorR, garyColorG, garyColorB;

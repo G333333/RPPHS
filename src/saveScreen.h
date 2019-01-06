@@ -19,6 +19,7 @@ private:
   int pos1, pos2, pos3;
   std::string finalInput;
   int points;
+  int fade;
 public:
   void init(int points);
   void start(int points);

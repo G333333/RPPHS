@@ -51,7 +51,7 @@ vitaRect Bullet::getRect()
   return rect;
 }
 
-void Bullet::doStuff(vita2d_texture *bulletImage, vitaRect levelRect, vitaRect start, bool pause)
+void Bullet::doStuff(vitaRect levelRect, vitaRect start, bool pause)
 {
   if(!active)
   {

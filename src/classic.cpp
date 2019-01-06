@@ -234,7 +234,7 @@ void Classic::doStuff(vita2d_font *font,
 
   for(int i = 0; i < 50; i++)
   {//do bullets. duh
-    bullets[i].doStuff(bulletImage, levelRect, player.getRect(), pause);
+    bullets[i].doStuff(levelRect, player.getRect(), pause);
   }
 
   for(int i = 0; i < particleCount; i++)

@@ -1,15 +1,7 @@
 #ifndef _Bullet_Class_
 #define _Bullet_Class_
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-
-#include <psp2/ctrl.h>
-#include <psp2/kernel/processmgr.h>
-
-#include <vita2d.h>
-
+#include"common.h"
 #include"functions.h"
 #include"player.h"
 #include"particle.h"
@@ -28,7 +20,7 @@ public:
   bool getActive();
   void die();
   vitaRect getRect();
-  void doStuff(vita2d_texture *bulletImage, vitaRect levelRect, vitaRect start, bool pause);
+  void doStuff(vitaRect levelRect, vitaRect start, bool pause);
   void moveBackX(double playerXvel);
   void moveBackY(double playerYvel);
 };

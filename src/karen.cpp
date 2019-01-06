@@ -89,7 +89,7 @@ void Karen::preSpawn()
     active = true;
     spawning = false;
   }
-  vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, spawnRadius, RGBA8(60,170, 244, 100));
+  vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, spawnRadius, RGBA8(karenColorR,karenColorG,karenColorB, 100));
 }
 
 bool Karen::getSpawning()
@@ -229,14 +229,14 @@ void Karen::doStuff(vitaRect levelRect, bool pause)
     }
 
     vita2d_draw_texture_rotate(karenImage, rect.x + 16, rect.y + 16, rad);
-    vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, 32, RGBA8(60,170, 244, 25));
+    vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, 32, RGBA8(karenColorR,karenColorG,karenColorB, 25));
     //drawEmptyRect(rect, RGBA8(0,255,0,255));
   }
   if(!active)
   {
     for(int i = 0; i < 15; i++)
     {
-      particles[i].doStuff(rect, RGBA8(0, 0, 244, 255), pause);
+      particles[i].doStuff(rect, RGBA8(karenColorR,karenColorG,karenColorB, 255), pause);
     }
   }
   if(spawning)

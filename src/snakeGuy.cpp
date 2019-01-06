@@ -152,7 +152,7 @@ void SnakeGuy::preSpawn()
     rect8Active = true;
     spawning = false;
   }
-  vita2d_draw_fill_circle(rect1.x + rect1.w / 2, rect1.y + rect1.h / 2, spawnRadius, RGBA8(244, 240, 66, 100));
+  vita2d_draw_fill_circle(rect1.x + rect1.w / 2, rect1.y + rect1.h / 2, spawnRadius, RGBA8(snakeColorR, snakeColorG,snakeColorB, 100));
 }
 
 bool SnakeGuy::getSpawning()
@@ -1111,7 +1111,7 @@ void SnakeGuy::doStuff(vitaRect target, bool pause)
   {
     for(int i = 0; i < 15; i++)
     {
-      particles[i].doStuff(rect1, RGBA8(244,240,66,255), pause);
+      particles[i].doStuff(rect1, RGBA8(snakeColorR,snakeColorG,snakeColorB,255), pause);
     }
   }
   if(spawning)

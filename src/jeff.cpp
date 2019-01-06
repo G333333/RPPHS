@@ -104,7 +104,7 @@ void Jeff::preSpawn()
     active = true;
     spawning = false;
   }
-  vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, spawnRadius, RGBA8(0,200, 0, 100));
+  vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, spawnRadius, RGBA8(jeffColorR,jeffColorG,jeffColorB, 100));
 }
 
 bool Jeff::getSpawning()
@@ -261,14 +261,14 @@ void Jeff::doStuff(vitaRect levelRect, vitaRect playerRect, bool pause)
     }
 
     vita2d_draw_texture_rotate(jeffImage, rect.x + 16, rect.y + 16, rad + 1.5708);
-    vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, 32, RGBA8(0,255, 0, 25));
+    vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, 32, RGBA8(jeffColorR,jeffColorG,jeffColorB, 25));
     //drawEmptyRect(bigRect, RGBA8(0,255,0,255));
   }
   if(!active)
   {
     for(int i = 0; i < 15; i++)
     {
-      particles[i].doStuff(rect, RGBA8(0, 255, 0, 255), pause);
+      particles[i].doStuff(rect, RGBA8(jeffColorR,jeffColorG,jeffColorB, 255), pause);
     }
   }
   if(spawning)

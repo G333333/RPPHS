@@ -67,7 +67,7 @@ void Gary::preSpawn()
     active = true;
     spawning = false;
   }
-  vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, spawnRadius, RGBA8(255,127,80,100));
+  vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, spawnRadius, RGBA8(garyColorR,garyColorG,garyColorB,100));
 }
 
 bool Gary::getSpawning()
@@ -187,14 +187,14 @@ void Gary::doStuff(vitaRect target, bool pause, vitaRect levelRect)
     yVel = 2*(sin(angle*pi/180));   // move y
 
     vita2d_draw_texture_rotate(garyImage, rect.x + 16, rect.y + 16, rad);
-    vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, 32, RGBA8(255,127,80,20));
+    vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, 32, RGBA8(garyColorR,garyColorG,garyColorB,20));
     //drawEmptyRect(rect, RGBA8(0,255,0,255));
   }
   if(!active)
   {
     for(int i = 0; i < 15; i++)
     {
-      particles[i].doStuff(rect, RGBA8(255,127,80,255), pause);
+      particles[i].doStuff(rect, RGBA8(garyColorR,garyColorG,garyColorB,255), pause);
     }
   }
   if(spawning)

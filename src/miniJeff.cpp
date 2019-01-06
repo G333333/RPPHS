@@ -196,7 +196,7 @@ void MiniJeff::doStuff(bool pause, vitaRect levelRect)
   {
     for(int i = 0; i < 15; i++)
     {
-      particles[i].doStuff(rect, RGBA8(0,255,0 ,255), pause);
+      particles[i].doStuff(rect, RGBA8(miniColorR,miniColorG,miniColorB ,255), pause);
     }
   }
 }

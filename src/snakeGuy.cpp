@@ -936,7 +936,7 @@ bool SnakeGuy::hit(vitaRect bullet)
   return false;
 }
 
-void SnakeGuy::doStuff(vitaRect target, bool pause, vita2d_texture *snakeImage1, vita2d_texture *snakeImage2)
+void SnakeGuy::doStuff(vitaRect target, bool pause)
 {
   targetTimer++;
   

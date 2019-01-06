@@ -272,7 +272,7 @@ void Classic::doStuff(vita2d_font *font,
   checkSnakeGuys();
   for(int i = 0; i < snakeTotal; i++)
   {
-    snakeGuys[i].doStuff(player.getRect(), pause, snakeImage1, snakeImage2);
+    snakeGuys[i].doStuff(player.getRect(), pause);
   }
 
   if(!pause)

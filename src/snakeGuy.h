@@ -1,18 +1,7 @@
 #ifndef _Snake_Guy_
 #define _Snake_Guy_
 
-#include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <math.h>
-#include <time.h>       /* time */
-
-
-#include <psp2/ctrl.h>
-#include <psp2/kernel/processmgr.h>
-#include <psp2/kernel/clib.h>
-
-#include <vita2d.h>
+#include"common.h"
 
 #include"functions.h"
 #include"particle.h"
@@ -60,7 +49,7 @@ public:
   int newHead();
   bool takeDamage(vitaRect bullet, vitaRect target);
   bool hit(vitaRect bullet);
-  void doStuff(vitaRect target, bool pause, vita2d_texture *snakeImage1, vita2d_texture *snakeImage2);
+  void doStuff(vitaRect target, bool pause);
 };
 
 #endif

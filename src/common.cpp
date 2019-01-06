@@ -129,6 +129,7 @@ void loadImages(std::string folder)
 int mainTextR, mainTextG, mainTextB;
 int helTextR, helpTextG, helpTextB;
 int menuBorderR, menuBorderG, menuBorderB;
+int menuBGColorR, menuBGColorG, menuBGColorB;
 int garyColorR, garyColorG, garyColorB;
 int jeffColorR, jeffColorG, jeffColorB;
 int miniColorR, miniColorG, miniColorB;
@@ -172,7 +173,7 @@ void loadThemeConfig(std::string folder)
     int valueR = 0;
     int valueG = 0;
     int valueB = 0;
-    int i = 0;
+    
     while(std::getline(configFile, var))//first line = variable
     {
         std::getline(configFile, garbage);//second line = {}
@@ -203,6 +204,11 @@ void loadThemeConfig(std::string folder)
                 menuBorderR = valueR;
                 menuBorderG = valueG;
                 menuBorderB = valueB;
+        }
+        else if(var == "menuBGColor"){
+                menuBGColorR = valueR;
+                menuBGColorG = valueG;
+                menuBGColorB = valueB;
         }
         else if(var == "garyColor"){ 
                 garyColorR = valueR;

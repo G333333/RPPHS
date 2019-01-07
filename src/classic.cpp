@@ -1221,12 +1221,18 @@ void Classic::spawnStuff()
           }
         }
       }
-      if(garyEvent && garysAlive == 0 && player.getRect().x > levelRect.x + 180 && player.getRect().x < levelRect.x + levelRect.w - 180 && player.getRect().y > levelRect.y + 180 && player.getRect().y < levelRect.y + levelRect.h - 180)
+      if(garyEvent && garysAlive == 0)
       {
         eventTimer = 0;
         garyEvent = false;
         int spawnX = player.getRect().x - 175;
         int spawnY = player.getRect().y - 175;
+
+        if(spawnX <= levelRect.x) spawnX = levelRect.x + 10;
+        if(spawnX >= levelRect.x + levelRect.w) spawnX = levelRect.x + levelRect.w - 397;
+        if(spawnY <= levelRect.y) spawnY = levelRect.y + 10;
+        if(spawnY >= levelRect.y + levelRect.h) spawnY = levelRect.y + levelRect.h - 397;
+        
         for(int i = 0; i < 10; i++)
         {
           spawnGary(i, spawnX, spawnY);

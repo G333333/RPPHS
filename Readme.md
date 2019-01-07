@@ -12,7 +12,7 @@ Blast your way through those shapes in this Geometry Wars-inspired twin stick sh
 
 ## Build instructions (Linux)
 - Clone or download the project
-- run the following from a terminal `cd build && cmake ../ && make`
+- run the following from a terminal `cd build && cmake ../ && ./make.sh`
 - .vpk is output to the build folder
 - install with vitashell 
 

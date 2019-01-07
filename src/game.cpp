@@ -55,6 +55,9 @@ void Game::loadFiles()
   vita2d_end_drawing();
   vita2d_wait_rendering_done();
 
+  loadScores();
+  loadSettings();
+
   loadThemes();
   loadImages("default");
 
@@ -62,8 +65,6 @@ void Game::loadFiles()
   exp1.load("app0:/sounds/exp1.wav");
   OutThere.load("app0:/sounds/OutThere.ogg");
   HeroImmortal.load("app0:/sounds/HeroImmortal.ogg");
-  loadScores();
-  loadSettings();
 }
 
 void Game::loadScores()
@@ -572,6 +573,14 @@ void Game::doGame()
     if(changeTheme)
     {
       //if(theme == 0) loadFiles(); //default theme
+      gWave.stop();
+      exp1.stop();
+      OutThere.stop();
+      HeroImmortal.stop();
+
+      vita2d_end_drawing();
+      vita2d_wait_rendering_done();
+      
       loadImages(themes[theme].c_str());
       changeTheme = false;
     }

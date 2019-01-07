@@ -10,8 +10,20 @@ std::vector<std::string> themes(2);
 void loadThemes()
 {    
     std::ifstream themeFile;
-    themeFile.open("app0:/images/themes.txt");
+    themeFile.open("ux0:/data/RPPHS/themes.txt");
     std::string temp;
+    std::getline(themeFile, temp);
+    themeFile.close();
+    if(temp.empty())
+    {
+        std::ofstream tempFile;
+        sceIoMkdir("ux0:/data/RPPHS", 0777);
+        tempFile.open("ux0:/data/RPPHS/themes.txt");
+        tempFile << "default\n";
+        tempFile << "grey\n";
+        tempFile.close();
+    }
+    themeFile.open("ux0:/data/RPPHS/themes.txt");
     int i = 0;
     int size = 2;
     while(std::getline(themeFile, temp))
@@ -47,7 +59,16 @@ void loadImages(std::string folder)
   vita2d_free_texture(cursor1);
   vita2d_free_texture(cursor2);
 
-  std::string srcBase = "app0:/images/theme/";
+  std::string srcBase;
+
+  if(folder == "default" || folder == "grey")
+  {
+    srcBase = "app0:/images/theme/";
+  }
+  else
+  {
+    srcBase = "ux0:/data/RPPHS/theme/";
+  }
   std::string src;
   src = srcBase;
   src += folder;
@@ -173,7 +194,18 @@ void loadThemeConfig(std::string folder)
      * */ 
 
     std::ifstream configFile;
-    std::string src = "app0:/images/theme/";
+    
+    std::string src;
+
+    if(folder == "default" || folder == "grey")
+    {
+      src = "app0:/images/theme/";
+    }
+    else
+    {
+      src = "ux0:/data/RPPHS/theme/";
+    }
+    
     src += folder;
     src += "/config.txt";
 

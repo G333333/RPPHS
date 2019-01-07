@@ -79,28 +79,28 @@ void Menu::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool sh
       vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
     }
     //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 20.0f, "%d%%", batteryPercent);
-    drawEmptyRect(battery, RGBA8(255, 255, 255, 255));
-    vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(255, 255, 255, 255));
+    drawEmptyRect(battery, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
+    vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
   }
 
   if(!credits)
   {
-    vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
+    vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
     drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
 
 
     switch (menuPos) {
       case 1:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
         break;
       case 2:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
         break;
       case 3:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
         break;
       case 4:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
         break;
     }
     vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Play");
@@ -213,21 +213,24 @@ void Menu::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool sh
 
 void Menu::menuPartial(vita2d_font *font)
 {
-  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
+  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
   drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
 
 
   switch (menuPos) {
-    case 1:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
-      break;
-    case 2:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
-      break;
-    case 3:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
-      break;
-  }
+      case 1:
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
+        break;
+      case 2:
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
+        break;
+      case 3:
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
+        break;
+      case 4:
+        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
+        break;
+    }
   vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Play");
   vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Options");
   vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Credits");
@@ -272,8 +275,8 @@ bool Menu::getQuit()
 
 void Menu::showCredits(vita2d_font *font)
 {
-  vita2d_draw_rectangle(960 / 2 - 960 / 4 - 80 + 1, 544 / 2 - 522 / 4 + 1, 960 - 319, 544 / 2 + 60 - 1, RGBA8(0, 0, 0, 100));
-  drawEmptyRect(960 / 2 - 960 / 4 - 80, 544 / 2 - 544 / 4 , 960 - 320, 544 / 2 + 60, RGBA8(0, 255, 0, 100));
+  vita2d_draw_rectangle(960 / 2 - 960 / 4 - 80 + 1, 544 / 2 - 522 / 4 + 1, 960 - 319, 544 / 2 + 60 - 1, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
+  drawEmptyRect(960 / 2 - 960 / 4 - 80, 544 / 2 - 544 / 4 , 960 - 320, 544 / 2 + 60, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
 
   vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "CREDITS") / 2, 544 / 3 - 15, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "CREDITS");
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 10, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "G33: Programming, Design");

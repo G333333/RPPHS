@@ -84,12 +84,12 @@ void SaveScreen::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, b
       vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
     }
     //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 20.0f, "%d%%", batteryPercent);
-    drawEmptyRect(battery, RGBA8(255, 255, 255, 255));
-    vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(255, 255, 255, 255));
+    drawEmptyRect(battery, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
+    vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
   }
 
-  drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(0, 255, 0, 100));
-  vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(0, 0, 0, 100));
+  drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
+  vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
 
   vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "New High Score! Please enter your initials.") / 2, 544 / 2, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "New High Score! Please enter your initials.");
 

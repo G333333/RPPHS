@@ -60,7 +60,7 @@ void Bullet::doStuff(vitaRect levelRect, vitaRect start, bool pause)
 
     for(int i = 0; i < 1; i++)
     {
-      particles[i].doStuff(rect, RGBA8(241,244,66,255), pause);
+      particles[i].doStuff(rect, RGBA8(bulletPColorR,bulletPColorG,bulletPColorB,255), pause);
     }
   }
 

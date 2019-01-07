@@ -71,12 +71,12 @@ void HighScores::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, b
       vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
     }
     //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 20.0f, "%d%%", batteryPercent);
-    drawEmptyRect(battery, RGBA8(255, 255, 255, 255));
-    vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(255, 255, 255, 255));
+    drawEmptyRect(battery, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
+    vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
   }
 
-  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
-  drawEmptyRect(menuRect, RGBA8(0,255,0,fade));
+  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
+  drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
 
   vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2, menuRect.y + 30, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "HighScores:");
   int tempIndex = 60 ;
@@ -157,8 +157,8 @@ void HighScores::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, b
 
 void HighScores::menuPartial(vita2d_font *font, int scores_int[10], std::string scores_str[10])
 {
-  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
-  drawEmptyRect(menuRect, RGBA8(0,255,0,fade));
+  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
+  drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
 
   vita2d_font_draw_text(font, menuRect.x + menuRect.w / 3 - vita2d_font_text_width(font, 20.0f, scores_str[0].c_str()) / 2, menuRect.y + 20, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "HighScores:");
   int tempIndex = 60 ;

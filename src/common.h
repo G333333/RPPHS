@@ -36,11 +36,13 @@ extern int mainTextR, mainTextG, mainTextB;
 extern int helpTextR, helpTextG, helpTextB;
 extern int menuBorderR, menuBorderG, menuBorderB;
 extern int menuBGColorR, menuBGColorG, menuBGColorB;
+extern int menuBarColorR, menuBarColorG, menuBarColorB;
 extern int garyColorR, garyColorG, garyColorB;
 extern int jeffColorR, jeffColorG, jeffColorB;
 extern int miniColorR, miniColorG, miniColorB;
 extern int karenColorR, karenColorG, karenColorB;
 extern int snakeColorR, snakeColorG, snakeColorB;
+extern int bulletPColorR, bulletPColorG, bulletPColorB;
 
 extern vita2d_texture *garyImage;
 extern vita2d_texture *karenImage;

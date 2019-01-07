@@ -314,7 +314,7 @@ void Classic::doStuff(vita2d_font *font,
     playExp = false;
   }
 
-  drawEmptyRect(levelRect, RGBA8(0,255,0,255));
+  drawEmptyRect(levelRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,255));
   checkMap();
 
   drawHud(font, batteryPercent, showBattery, showFps);
@@ -833,7 +833,7 @@ void Classic::drawHud(vita2d_font *font, int batteryPercent, bool showBattery, b
   int fade = 150;
   for(int i = 0; i < 150; i++)
   {
-    vita2d_draw_line(10 + i, 10, 9 + i, 80, RGBA8(0, 255, 0, fade));
+    vita2d_draw_line(10 + i, 10, 9 + i, 80, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, fade));
     if(fade > 0)
     {
       fade--;
@@ -845,7 +845,7 @@ void Classic::drawHud(vita2d_font *font, int batteryPercent, bool showBattery, b
     fade = 150;
     for(int i = 0; i < 150; i++)
     {
-      vita2d_draw_line(955 - i, 10, 955 - i, 80, RGBA8(0, 255, 0, fade));
+      vita2d_draw_line(955 - i, 10, 955 - i, 80, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, fade));
       if(fade > 0)
       {
         fade--;
@@ -895,8 +895,8 @@ void Classic::drawHud(vita2d_font *font, int batteryPercent, bool showBattery, b
        vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
      }
      //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 20.0f, "%d%%", batteryPercent);
-     drawEmptyRect(battery, RGBA8(255, 255, 255, 255));
-     vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(255, 255, 255, 255));
+     drawEmptyRect(battery, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
+     vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
    }
    //end battery stuff
 
@@ -959,8 +959,8 @@ bool Classic::getPlayExp()
 
 void Classic::pauseMenu(vita2d_font *font)
 {
-  drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(0, 255, 0, 100));
-  vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(0, 0, 0, 100));
+  drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
+  vita2d_draw_rectangle(960 / 2 - 960 / 4, 544 / 2 - 522 / 4, 960 / 2, 544 / 2, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
 
   vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "PAUSED") / 2, 544 / 2, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "PAUSED");
 
@@ -1319,8 +1319,8 @@ void Classic::spawnStuff()
 
 void Classic::gameOver(vita2d_font *font)
 {
-  drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(0, 255, 0, 100));
-  vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(0, 0, 0, 100));
+  drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
+  vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
 
   vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "Game Over") / 2, 544 / 2, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "Game Over");
 

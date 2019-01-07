@@ -139,37 +139,37 @@ void Options::doStuff(vita2d_font *font, bool keys[15], int batteryPercent)
       vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
     }
     //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 20.0f, "%d%%", batteryPercent);
-    drawEmptyRect(battery, RGBA8(255, 255, 255, 255));
-    vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(255, 255, 255, 255));
+    drawEmptyRect(battery, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
+    vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
   }
 
-  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
+  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
   drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
 
   switch (menuPos) {
     case 1:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 2:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 3:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 4:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 5:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 200, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 200, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 6:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 250, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 250, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 7:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 300, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 300, menuRect.w - 1, 50, RGBA8(menuBarColorR, menuBarColorG,menuBarColorB, barFade));
       break;
     case 8:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 350, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 350, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
   }
 
@@ -556,34 +556,34 @@ void Options::doStuff(vita2d_font *font, bool keys[15], int batteryPercent)
 
 void Options::menuPartial(vita2d_font *font)
 {
-  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(0, 0, 0, fade));
+  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
   drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
 
 
   switch (menuPos) {
     case 1:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 2:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 3:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 4:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 5:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 200, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 200, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 6:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 250, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 250, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 7:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 300, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 300, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
     case 8:
-      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 350, menuRect.w - 1, 50, RGBA8(0, 255, 0, barFade));
+      vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 350, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
       break;
   }
 
@@ -745,7 +745,7 @@ void Options::menuPartial(vita2d_font *font)
   }
 
   tempWidth = vita2d_font_text_width(font, 20.0f, themes[theme].c_str());
-  vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(255,255,255,fade), 20.0f, themes[theme].c_str());
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, themes[theme].c_str());
   
   vita2d_draw_texture_scale(circleImage ,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
   vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(helpTextR,helpTextG, helpTextB, 255), 20.0f, "Return");

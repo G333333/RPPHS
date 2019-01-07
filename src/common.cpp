@@ -134,11 +134,13 @@ int mainTextR, mainTextG, mainTextB;
 int helpTextR, helpTextG, helpTextB;
 int menuBorderR, menuBorderG, menuBorderB;
 int menuBGColorR, menuBGColorG, menuBGColorB;
+int menuBarColorR, menuBarColorG, menuBarColorB;
 int garyColorR, garyColorG, garyColorB;
 int jeffColorR, jeffColorG, jeffColorB;
 int miniColorR, miniColorG, miniColorB;
 int karenColorR, karenColorG, karenColorB;
 int snakeColorR, snakeColorG, snakeColorB;
+int bulletPColorR, bulletPColorG, bulletPColorB;
 
 void loadThemeConfig(std::string folder)
 {
@@ -214,6 +216,12 @@ void loadThemeConfig(std::string folder)
                 menuBGColorG = valueG;
                 menuBGColorB = valueB;
         }
+        else if(var == "menuBarColor")
+        {
+                menuBarColorR = valueR;
+                menuBarColorG = valueG;
+                menuBarColorB = valueB;
+        }
         else if(var == "garyColor"){ 
                 garyColorR = valueR;
                 garyColorG = valueG;
@@ -239,10 +247,17 @@ void loadThemeConfig(std::string folder)
                 snakeColorG = valueG;
                 snakeColorB = valueB;
         }
+        else if(var == "bulletPColor")
+        {
+                bulletPColorR = valueR;
+                bulletPColorG = valueG;
+                bulletPColorB = valueB;
+        }
 
         std::getline(configFile, garbage);        
     }
     configFile.close();
+    vita2d_set_clear_color(RGBA8(menuBGColorR,menuBGColorG,menuBGColorB,255));
 }
 
 vita2d_texture *garyImage;

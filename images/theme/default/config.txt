@@ -6,15 +6,15 @@ mainTextColor
 }
 helpTextColor
 {
-    Red:255
+    Red:0
     Green:255
-    Blue:255
+    Blue:0
 }
 menuBorderColor
 {
-    Red:255
+    Red:0
     Green:255
-    Blue:255
+    Blue:0
 }
 menuBGColor
 {
@@ -22,33 +22,45 @@ menuBGColor
     Green:0
     Blue:0
 }
+menuBarColor
+{
+    Red:0
+    Green:255
+    Blue:0
+}
 garyColor
 {
-    Red:73
-    Green:73
-    Blue:73
+    Red:255
+    Green:0
+    Blue:0
 }
 jeffColor
 {
-    Red:73
-    Green:73
-    Blue:73
+    Red:0
+    Green:255
+    Blue:0
 }
 miniColor
 {
-    Red:73
-    Green:73
-    Blue:73
+    Red:0
+    Green:255
+    Blue:0
 }
 karenColor
 {
-    Red:73
-    Green:73
-    Blue:73
+    Red:0
+    Green:0
+    Blue:255
 }
 snakeColor
 {
-    Red:73
-    Green:73
-    Blue:73
+    Red:255
+    Green:255
+    Blue:0
+}
+bulletPColor
+{
+    Red:255
+    Green:255
+    Blue:0
 }

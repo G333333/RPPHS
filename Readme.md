@@ -17,15 +17,12 @@ Blast your way through those shapes in this Geometry Wars-inspired twin stick sh
 - install with vitashell 
 
 ## Creating custom themes
-- After installing the game you will have a folder called "images" within the games folder. 
-- Within this folder is a themes.txt file. Edit this and add your theme's name to the bottom of the file. 
-- Within this folder is also a folder called "theme" the default themes installed in the theme folder are called "default" and "grey". Copy the folder titled "default" to your computer. This is a theme and contains everything needed besides the text file that was edited earlier. 
-- Rename the folder on your pc to the name that you added to the themes.txt file earlier. 
-- Replace the images in this folder with images for your theme. New image files need to have the exact same name as the one they are replacing. New image files also need to have the same dimensions as the ones they are replacing. 
-- Images should have a transparent backgrounds if they do not fill the entire image dimensions. 
-- Next open the config.txt file located in your theme folder on your desktop.
-- This file contains the colors for things like menu borders, text color, enemy particle/bakground color. 
-- Here is the basic format of the config file for a theme
+- Download the default theme zip file from [images/theme/default.zip](https://github.com/G333333/RPPHS/raw/master/images/theme/default.zip) and unzip it to your pc somewhere. 
+- The folder you have downloaded and unzipped is the default theme and contains almost everything needed to create custom themes
+- Rename the folder to the name of your theme
+- Replace the images with images for your theme. (Images need to have the same names and dimensions as the ones being replaced)
+- Edit the config.txt file within your themes folder. 
+- The data in this file represents the colors for things in game. The format is:
 ```
 mainTextColor
 {
@@ -36,7 +33,9 @@ mainTextColor
 ```
 - the first line is the variable name and the lines inside the quoutes are the values that will be assigned to that variables color values. 
 - Your themes config.txt file needs to follow this format and copying the original version and only modifing the color values is strongly suggested.
-- Once you have replaced the images with custom images and modified the config.txt file place your theme folder back in the games folder in "images/theme/" with the "default" and "grey" themes
+- Copy your theme folder to `ux0:/data/RPPHS/theme/`
+- Finally Edit the file located at `ux0:/data/RPPHS/themes.txt` and add the name of your theme to the bottom of the file.
+- If this file does not exist 
 
 ## Credits
 - G33 Programming, Design

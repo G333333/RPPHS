@@ -5,16 +5,22 @@ std::string buildDate;
 int theme;
 bool changeTheme;
 int themeCount;
-std::string themes[2];
-
+//std::string themes[2];
+std::vector<std::string> themes(2);
 void loadThemes()
 {    
     std::ifstream themeFile;
     themeFile.open("app0:/images/themes.txt");
     std::string temp;
     int i = 0;
+    int size = 2;
     while(std::getline(themeFile, temp))
     {
+            if(i > size -1)
+            {
+                themes.resize(size + 1);
+                size++;
+            }
         themes[i] = temp;
         i++;
         themeCount++;

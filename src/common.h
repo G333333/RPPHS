@@ -10,6 +10,8 @@
 #include <iostream>
 #include <fstream>
 
+#include <vector>
+
 
 #include <psp2/ctrl.h>
 #include <psp2/kernel/processmgr.h>
@@ -27,7 +29,8 @@ extern std::string buildDate;
 extern int theme;
 extern bool changeTheme;
 extern int themeCount;
-extern std::string themes[2];
+//extern std::string themes[2];
+extern std::vector<std::string> themes;
 extern void loadThemes(); //load the Them information
 extern void loadImages(std::string folder); //load the images for the theme
 extern void loadThemeConfig(std::string folder); //load config file for theme

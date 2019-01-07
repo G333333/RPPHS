@@ -959,8 +959,8 @@ bool Classic::getPlayExp()
 
 void Classic::pauseMenu(vita2d_font *font)
 {
-  drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
-  vita2d_draw_rectangle(960 / 2 - 960 / 4, 544 / 2 - 522 / 4, 960 / 2, 544 / 2, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
+  vita2d_draw_rectangle(240, 136, 480, 272, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
+  drawEmptyRect(240, 136, 480, 272, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
 
   vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "PAUSED") / 2, 544 / 2, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "PAUSED");
 

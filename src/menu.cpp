@@ -5,7 +5,7 @@ void Menu::init()
   status = 1;
 
   menuRect.x = 966;
-  menuRect.y = 150;
+  menuRect.y = 122;
   menuRect.w = 255;
   menuRect.h = 300;
 
@@ -275,8 +275,8 @@ bool Menu::getQuit()
 
 void Menu::showCredits(vita2d_font *font)
 {
-  vita2d_draw_rectangle(960 / 2 - 960 / 4 - 80 + 1, 544 / 2 - 522 / 4 + 1, 960 - 319, 544 / 2 + 60 - 1, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
-  drawEmptyRect(960 / 2 - 960 / 4 - 80, 544 / 2 - 544 / 4 , 960 - 320, 544 / 2 + 60, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
+  vita2d_draw_rectangle(160, 142, 640, 332, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
+  drawEmptyRect(160, 142, 640, 332, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
 
   vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "CREDITS") / 2, 544 / 3 - 15, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "CREDITS");
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 10, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "G33: Programming, Design");

@@ -24,7 +24,9 @@ private:
   Player player;
   int extraLives;
   Bullet bullets[50];
-  Gary garys[40]; //104 total enemies seems to be the limit. garys + karens + jeffs + miniJeffs
+  //Gary garys[40]; //104 total enemies seems to be the limit. garys + karens + jeffs + miniJeffs
+  std::vector<Gary> garys;
+
   int garyTotal;
   int garysAlive;
   Karen karens[10];

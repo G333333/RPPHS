@@ -38,7 +38,8 @@ void Classic::init(double levelWidth, double levelHeight)
   safeTime = 0;
   spawnTime = 0;
 
-  garyTotal = 40;
+  garys.resize(10);  
+  garyTotal = 10;
   garysAlive = 0;
   for(int i = 0; i < garyTotal; i++)
   {
@@ -415,6 +416,18 @@ void Classic::checkGarys()
 
 void Classic::spawnGary(int index, int x, int y)
 {
+  if(garyTotal == 0) garyTotal = 1;
+  if(garysAlive >= garyTotal && garyTotal <= 20)
+  {
+    garys.resize(garyTotal * 2);
+    garyTotal = garyTotal * 2;
+  }
+  else if(garysAlive >= garyTotal && garyTotal < 40) //stop it from going over 40 by doubling. 
+  {
+    garyTotal = 40;
+    garys.resize(garyTotal);
+  }
+  garys[index].init();
   garys[index].spawn(levelRect, x, y);
   for(int i = 0; i < garyTotal; i++)
   {
@@ -1109,6 +1122,12 @@ void Classic::spawnStuff()
 
   if(safeTime >= 120)
   {
+    if(garysAlive < garyTotal / 2) 
+    {
+      garys.resize(garyTotal / 2);
+      garyTotal = garyTotal / 2;
+    }
+    
     spawnTime++;
     int spawnTimeEnd;
     if(garyEvent || jeffEvent) spawnTimeEnd = 240;
@@ -1223,6 +1242,8 @@ void Classic::spawnStuff()
       }
       if(garyEvent && garysAlive == 0)
       {
+        garyTotal = 40;
+        garys.resize(garyTotal);
         eventTimer = 0;
         garyEvent = false;
         int spawnX = player.getRect().x - 175;

@@ -86,8 +86,7 @@ void Classic::init(double levelWidth, double levelHeight)
   jeffEvent = false;
 }
 
-void Classic::doStuff(vita2d_font *font,
-                      bool keys[15],
+void Classic::doStuff(bool keys[15],
                       double lx,
                       double ly,
                       double rx,
@@ -309,7 +308,7 @@ void Classic::doStuff(vita2d_font *font,
 
   if(extraLives <= 0 && !player.getActive())
   {
-    gameOver(font);
+    gameOver();
     killPlayer();
     playGunSound = false;
     playExp = false;
@@ -318,11 +317,11 @@ void Classic::doStuff(vita2d_font *font,
   drawEmptyRect(levelRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,255));
   checkMap();
 
-  drawHud(font, batteryPercent, showBattery, showFps);
+  drawHud(batteryPercent, showBattery, showFps);
 
   if(pause)
   {
-    pauseMenu(font);
+    pauseMenu();
   }
 
   /**quick reference:
@@ -840,7 +839,7 @@ void Classic::checkMap()
   }
 }
 
-void Classic::drawHud(vita2d_font *font, int batteryPercent, bool showBattery, bool showFps)
+void Classic::drawHud(int batteryPercent, bool showBattery, bool showFps)
 {
   //draw left hud background
   int fade = 150;
@@ -970,7 +969,7 @@ bool Classic::getPlayExp()
   return playExp;
 }
 
-void Classic::pauseMenu(vita2d_font *font)
+void Classic::pauseMenu()
 {
   vita2d_draw_rectangle(240, 136, 480, 272, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
   drawEmptyRect(240, 136, 480, 272, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
@@ -1344,7 +1343,7 @@ void Classic::spawnStuff()
   }
 }
 
-void Classic::gameOver(vita2d_font *font)
+void Classic::gameOver()
 {
   drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
   vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));

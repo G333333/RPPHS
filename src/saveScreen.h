@@ -23,7 +23,7 @@ private:
 public:
   void init(int points);
   void start(int points);
-  void doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool showBattery);
+  void doStuff(bool keys[15], int batteryPercent, bool showBattery);
   int getStatus();
   void setStatus(int status);
   bool getQuit();

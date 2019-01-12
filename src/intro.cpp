@@ -5,7 +5,7 @@ Intro::Intro()
     crossNeedsReset = false;
 }
 
-void Intro::doIntro(vita2d_font *font)
+void Intro::doIntro()
 {
     introState = 0;
     introTimer = 0;
@@ -23,13 +23,13 @@ void Intro::doIntro(vita2d_font *font)
     while (introState != 3) {
         switch(introState) {
             case 0:
-                Intro::introG33(font);
+                Intro::introG33();
                 break;
             case 1:
-                Intro::introMoto(font);
+                Intro::introMoto();
                 break;
             case 2:
-                Intro::saveWarning(font);
+                Intro::saveWarning();
                 break;
             default:
                 break;
@@ -42,7 +42,7 @@ void Intro::doIntro(vita2d_font *font)
     saveIcon.cleanUp();
 }
 
-void Intro::introG33(vita2d_font *font)
+void Intro::introG33()
 {
     sceCtrlPeekBufferPositive(0, &pad, 1);
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
@@ -89,7 +89,7 @@ void Intro::introG33(vita2d_font *font)
 	vita2d_swap_buffers();
 }
 
-void Intro::introMoto(vita2d_font *font)
+void Intro::introMoto()
 {
     sceCtrlPeekBufferPositive(0, &pad, 1);
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);
@@ -136,7 +136,7 @@ void Intro::introMoto(vita2d_font *font)
 	vita2d_swap_buffers();
 }
 
-void Intro::saveWarning(vita2d_font *font)
+void Intro::saveWarning()
 {
     sceCtrlPeekBufferPositive(0, &pad, 1);
     sceCtrlSetSamplingMode(SCE_CTRL_MODE_ANALOG);

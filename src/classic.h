@@ -54,8 +54,7 @@ private:
   bool jeffEvent;
 public:
   void init(double levelWidth, double levelHeight);
-  void doStuff(vita2d_font *font,
-              bool keys[15],
+  void doStuff(bool keys[15],
               double lx,
               double ly,
               double rx,
@@ -79,18 +78,18 @@ public:
   void checkSnakeGuys();
   void checkMap();
 
-  void drawHud(vita2d_font * font, int batteryPercent, bool showBattery, bool showFps);
+  void drawHud(int batteryPercent, bool showBattery, bool showFps);
   void drawCursor(double rx, double ry, bool showCursor, int cursorSetting);
 
   bool playGun();
   bool getPlayExp();
-  void pauseMenu(vita2d_font *font);
+  void pauseMenu();
   int getPoints();
   bool checkPlayer();
   void killPlayer();
   void spawnStuff();
 
-  void gameOver(vita2d_font *font);
+  void gameOver();
 
   void checkBomb();
   bool bombActive();

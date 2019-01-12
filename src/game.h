@@ -20,7 +20,6 @@ private:
   std::string scores_str[10];
   double levelWidth, levelHeight;
   SceCtrlData pad;
-	vita2d_font *font;
   
   bool showFps, showCursor, showBattery;
   int cursorSetting, deadZone;

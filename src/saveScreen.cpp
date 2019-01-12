@@ -47,7 +47,7 @@ void SaveScreen::start(int points)
   finalInput = "";
 }
 
-void SaveScreen::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool showBattery)
+void SaveScreen::doStuff(bool keys[15], int batteryPercent, bool showBattery)
 {
   vita2d_draw_texture_scale(gameBackground, 0, 0, 2, 2);
 

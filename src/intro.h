@@ -23,10 +23,10 @@ private:
   int fade;
 public:
   Intro();
-  void doIntro(vita2d_font *font);
-  void introG33(vita2d_font *font);
-  void introMoto(vita2d_font *font);
-  void saveWarning(vita2d_font *font);
+  void doIntro();
+  void introG33();
+  void introMoto();
+  void saveWarning();
 };
 
 #endif

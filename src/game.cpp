@@ -266,7 +266,7 @@ void Game::saveSettings()
 
 void Game::doGame()
 {
-  intro.doIntro(font);
+  intro.doIntro();
 
   OutThere.setLooping(1);
   gSoloud.play(OutThere);
@@ -414,14 +414,14 @@ void Game::doGame()
 
     switch (status) {
       case 1:
-        menu.doStuff(font, keys, scePowerGetBatteryLifePercent(), showBattery);
+        menu.doStuff(keys, scePowerGetBatteryLifePercent(), showBattery);
         status = menu.getStatus();
         quitGame = menu.getQuit();
         classic.setStatus(status);
         options.setStatus(status);
         saveScreen.setStatus(status);
         highScores.setStatus(status);
-        options.menuPartial(font);
+        options.menuPartial();
         if(status == 2)
         {
           status = 5;
@@ -437,8 +437,7 @@ void Game::doGame()
         }
         break;
       case 2:
-        classic.doStuff(font,
-        keys,
+        classic.doStuff(keys,
         pad.lx,
         pad.ly,
         pad.rx,
@@ -481,13 +480,13 @@ void Game::doGame()
         }
         break;
       case 3:
-        options.doStuff(font, keys, scePowerGetBatteryLifePercent());
+        options.doStuff(keys, scePowerGetBatteryLifePercent());
         status = options.getStatus();
         quitGame = options.getQuit();
         classic.setStatus(status);
         menu.setStatus(status);
         saveScreen.setStatus(status);
-        menu.menuPartial(font);
+        menu.menuPartial();
         showFps = options.getShowFps();
         showCursor = options.getShowCursor();
         showBattery = options.getShowBattery();
@@ -507,7 +506,7 @@ void Game::doGame()
         }
         break;
       case 4:
-        saveScreen.doStuff(font, keys, scePowerGetBatteryLifePercent(), showBattery);
+        saveScreen.doStuff(keys, scePowerGetBatteryLifePercent(), showBattery);
         status = saveScreen.getStatus();
         classic.setStatus(status);
         options.setStatus(status);
@@ -522,14 +521,14 @@ void Game::doGame()
         }
         break;
       case 5:
-        highScores.doStuff(font, keys, scePowerGetBatteryLifePercent(), showBattery, scores_int, scores_str, classic.getPoints());
+        highScores.doStuff(keys, scePowerGetBatteryLifePercent(), showBattery, scores_int, scores_str, classic.getPoints());
         status = highScores.getStatus();
         classic.setStatus(status);
         options.setStatus(status);
         saveScreen.setStatus(status);
         menu.setStatus(status);
-        menu.menuPartial(font);
-        options.menuPartial(font);
+        menu.menuPartial();
+        options.menuPartial();
 
 
         if(status == 1)

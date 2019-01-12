@@ -64,7 +64,7 @@ void Options::start()
   circleNeedsReset = true;
 }
 
-void Options::doStuff(vita2d_font *font, bool keys[15], int batteryPercent)
+void Options::doStuff(bool keys[15], int batteryPercent)
 {
   //make sure things don't go out of bounds. like deadZone
   if(cursorSetting < 1)
@@ -554,7 +554,7 @@ void Options::doStuff(vita2d_font *font, bool keys[15], int batteryPercent)
   }
 }
 
-void Options::menuPartial(vita2d_font *font)
+void Options::menuPartial()
 {
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
   drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));

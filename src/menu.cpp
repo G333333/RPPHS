@@ -42,7 +42,7 @@ void Menu::start()
   crossNeedsReset = true;
 }
 
-void Menu::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool showBattery)
+void Menu::doStuff(bool keys[15], int batteryPercent, bool showBattery)
 {
   vita2d_draw_texture_scale(gameBackground, 0, 0, 2, 2);
 
@@ -184,7 +184,7 @@ void Menu::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool sh
   }
   else if(credits)
   {
-    showCredits(font);
+    showCredits();
     if(keys[5]) credits = false;
   }
   if(menuRect.x < target)
@@ -211,7 +211,7 @@ void Menu::doStuff(vita2d_font *font, bool keys[15], int batteryPercent, bool sh
   }
 }
 
-void Menu::menuPartial(vita2d_font *font)
+void Menu::menuPartial()
 {
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
   drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
@@ -273,7 +273,7 @@ bool Menu::getQuit()
   return quit;
 }
 
-void Menu::showCredits(vita2d_font *font)
+void Menu::showCredits()
 {
   vita2d_draw_rectangle(160, 142, 640, 332, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
   drawEmptyRect(160, 142, 640, 332, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));

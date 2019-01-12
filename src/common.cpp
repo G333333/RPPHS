@@ -315,3 +315,5 @@ vita2d_texture *cursorWatcher;
 vita2d_texture *cursor1;
 vita2d_texture *cursor2;
 vita2d_texture *saveImage;
+
+vita2d_font *font;

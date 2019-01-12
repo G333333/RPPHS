@@ -32,6 +32,7 @@ private:
   //Karen karens[10];
   std::vector<Karen> karens;
   int karenTotal;
+  int karensAlive;
 
   //Jeff jeffs[10];
   std::vector<Jeff> jeffs;
@@ -41,9 +42,11 @@ private:
   //MiniJeff miniJeffs[9];
   std::vector<MiniJeff> miniJeffs;
   int miniJeffTotal;
+  int miniJeffsAlive;
   
   std::vector<SnakeGuy> snakeGuys;
   int snakeTotal;
+  int snakesAlive;
   //SnakeGuy snakeGuys[10];
   
   int bulletCounter;

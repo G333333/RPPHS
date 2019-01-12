@@ -26,18 +26,26 @@ private:
   Bullet bullets[50];
   //Gary garys[40]; //104 total enemies seems to be the limit. garys + karens + jeffs + miniJeffs
   std::vector<Gary> garys;
-
   int garyTotal;
   int garysAlive;
-  Karen karens[10];
+  
+  //Karen karens[10];
+  std::vector<Karen> karens;
   int karenTotal;
-  Jeff jeffs[10];
+
+  //Jeff jeffs[10];
+  std::vector<Jeff> jeffs;
   int jeffTotal;
   int jeffsAlive;
-  MiniJeff miniJeffs[9];
+  
+  //MiniJeff miniJeffs[9];
+  std::vector<MiniJeff> miniJeffs;
   int miniJeffTotal;
+  
+  std::vector<SnakeGuy> snakeGuys;
   int snakeTotal;
-  SnakeGuy snakeGuys[10];
+  //SnakeGuy snakeGuys[10];
+  
   int bulletCounter;
   int bulletTimer;
   bool playGunSound, playExp;

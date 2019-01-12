@@ -47,6 +47,7 @@ void Classic::init(double levelWidth, double levelHeight)
   }
 
   karenTotal = 10;
+  karens.resize(10);
   for(int i = 0; i < karenTotal; i++)
   {
     karens[i].init();
@@ -54,18 +55,21 @@ void Classic::init(double levelWidth, double levelHeight)
 
   jeffTotal = 10;
   jeffsAlive = 0;
+  jeffs.resize(10);
   for(int i = 0; i < jeffTotal; i++)
   {
     jeffs[i].init();
   }
 
   miniJeffTotal = 9;
+  miniJeffs.resize(9);
   for(int i = 0; i < miniJeffTotal; i++)
   {
     miniJeffs[i].init();
   }
 
   snakeTotal = 10;
+  snakeGuys.resize(10);
   for(int i = 0; i < snakeTotal; i++)
   {
     snakeGuys[i].init();
@@ -1123,8 +1127,13 @@ void Classic::spawnStuff()
   {
     if(garysAlive < garyTotal / 2) 
     {
-      garys.resize(garyTotal / 2);
-      garyTotal = garyTotal / 2;
+      std::vector<Gary> tempVector;
+      for(int i = 0; i < garyTotal; i++)
+      {
+        if(garys[i].getActive()) tempVector.push_back(garys[i]);
+      }
+      garys = tempVector;
+      garyTotal = garysAlive;
     }
     
     spawnTime++;

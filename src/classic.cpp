@@ -1126,7 +1126,7 @@ void Classic::spawnStuff()
 
   if(safeTime >= 120)
   {
-    if(garyEvent && garysAlive < 10)
+    if(garyEvent && garysAlive < 10 && garysAlive > 0 && garyTotal == 40)
     {
       std::vector<Gary> tempVector;
       for(int i = 0; i < garyTotal; i++)
@@ -1141,8 +1141,10 @@ void Classic::spawnStuff()
     
     spawnTime++;
     int spawnTimeEnd;
-    if(garyEvent || jeffEvent) spawnTimeEnd = 240;
-    else spawnTimeEnd = 120;
+    if(points < 10000) spawnTimeEnd = 120;
+    if(points > 10000) spawnTimeEnd = 60;
+    if(points > 50000) spawnTimeEnd = 30;
+    if(points > 100000) spawnTimeEnd = 15;
     if(spawnTime >= spawnTimeEnd)
     {
       int karenCounter = 0;
@@ -1207,7 +1209,7 @@ void Classic::spawnStuff()
       for(int i = 0; i < karenTotal; i++)
       {
         if(karenCounter == 0) i = karenTotal;
-        if(!karens[i].getActive() && karenCounter > 0)
+        if(!karens[i].getActive() && !karens[i].getSpawning() && karenCounter > 0)
         {
           spawnKaren(i);
           karensAlive++;
@@ -1220,7 +1222,7 @@ void Classic::spawnStuff()
         for(int i = 0; i < garyTotal; i++)
         {
           if(garyCounter == 0) i = garyTotal;
-          if(!garys[i].getActive() && garyCounter > 0)
+          if(!garys[i].getActive() && !garys[i].getSpawning() && garyCounter > 0)
           {
             spawnGary(i);
             garysAlive += 1;
@@ -1228,7 +1230,7 @@ void Classic::spawnStuff()
           }
         }
       }
-      if(garyEvent && garysAlive == 0 && jeffsAlive < 5 && snakesAlive < 2)
+      if(garyEvent && garysAlive == 0 && jeffsAlive < 5 && snakesAlive < 4)
       {
         garyTotal = 40;
         garys.resize(garyTotal);
@@ -1237,9 +1239,9 @@ void Classic::spawnStuff()
         int spawnY = player.getRect().y - 175;
 
         if(spawnX <= levelRect.x) spawnX = levelRect.x + 10;
-        if(spawnX >= levelRect.x + levelRect.w) spawnX = levelRect.x + levelRect.w - 397;
+        if(spawnX >= levelRect.x + levelRect.w - 385) spawnX = levelRect.x + levelRect.w - 385;
         if(spawnY <= levelRect.y) spawnY = levelRect.y + 10;
-        if(spawnY >= levelRect.y + levelRect.h) spawnY = levelRect.y + levelRect.h - 397;
+        if(spawnY >= levelRect.y + levelRect.h - 385) spawnY = levelRect.y + levelRect.h - 385;
         
         for(int i = 0; i < 10; i++)
         {
@@ -1272,7 +1274,7 @@ void Classic::spawnStuff()
         for(int i = 0; i < jeffTotal; i++)
         {
           if(jeffCounter == 0) i = jeffTotal;
-          if(!jeffs[i].getActive() && jeffCounter > 0)
+          if(!jeffs[i].getActive() && !jeffs[i].getSpawning() && jeffCounter > 0)
           {
             spawnJeff(i);
             jeffsAlive += 1;
@@ -1281,7 +1283,7 @@ void Classic::spawnStuff()
         }
       }
 
-      if(jeffEvent && garysAlive == 0 && snakesAlive == 0)
+      if(jeffEvent && garysAlive < 5 && snakesAlive < 4)
       {
         for(int i = 0; i < jeffTotal; i++)
         {
@@ -1321,7 +1323,7 @@ void Classic::spawnStuff()
       for(int i = 0; i < snakeTotal; i++)
       {
         if(snakeCounter == 0) i = snakeTotal;
-        if(!snakeGuys[i].getActive() && snakeCounter > 0)
+        if(!snakeGuys[i].getActive() && !snakeGuys[i].getSpawning() && snakeCounter > 0)
         {
           snakesAlive++;
           snakeGuys[i].init();

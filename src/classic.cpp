@@ -2,7 +2,7 @@
 
 void Classic::init(double levelWidth, double levelHeight)
 {
-  god = true;
+  god = false;
 
   levelRect.x = -240;
   levelRect.y = -139;
@@ -285,7 +285,7 @@ void Classic::doStuff(bool keys[15],
   if(!pause)
   {
     spawnStuff();
-    if(points > 0)
+    if(points > 10000)
     {
       if(eventTimer <= 900)
       {
@@ -422,17 +422,6 @@ void Classic::checkGarys()
 
 void Classic::spawnGary(int index, int x, int y)
 {
-  if(garyTotal == 0) garyTotal = 1;
-  if(garysAlive >= garyTotal && garyTotal <= 20)
-  {
-    garys.resize(garyTotal * 2);
-    garyTotal = garyTotal * 2;
-  }
-  else if(garysAlive >= garyTotal && garyTotal < 40) //stop it from going over 40 by doubling. 
-  {
-    garyTotal = 40;
-    garys.resize(garyTotal);
-  }
   garys[index].init();
   garys[index].spawn(levelRect, x, y);
   for(int i = 0; i < garyTotal; i++)
@@ -507,6 +496,7 @@ void Classic::checkKarens()
 
 void Classic::spawnKaren(int index)
 {
+  karens[index].init();
   karens[index].spawn(levelRect);
   for(int i = 0; i < karenTotal; i++)
   {
@@ -631,6 +621,7 @@ void Classic::checkJeffs()
 
 void Classic::spawnJeff(int index, int x, int y)
 {
+  jeffs[index].init();
   jeffs[index].spawn(levelRect, x, y);
   for(int i = 0; i < jeffTotal; i++)
   {
@@ -1135,7 +1126,7 @@ void Classic::spawnStuff()
 
   if(safeTime >= 120)
   {
-    if(garysAlive < garyTotal / 2) 
+    if(garyEvent && garysAlive < 10)
     {
       std::vector<Gary> tempVector;
       for(int i = 0; i < garyTotal; i++)
@@ -1143,7 +1134,9 @@ void Classic::spawnStuff()
         if(garys[i].getActive()) tempVector.push_back(garys[i]);
       }
       garys = tempVector;
-      garyTotal = garysAlive;
+      garyTotal = 10;
+      garys.resize(10);
+      garyEvent = false;
     }
     
     spawnTime++;
@@ -1157,88 +1150,63 @@ void Classic::spawnStuff()
       int jeffCounter = 0;
       int snakeCounter = 0;
 
-      if(points <= 100)
+      if(points < 1000)
       {
-        karenCounter = rand() % 11;
+        karenCounter = 2;
         garyCounter = 0;
         jeffCounter = 0;
         snakeCounter = 0;
       }
-      if(points >= 100 && points < 1000)
+      if(points > 500)
       {
-        karenCounter = rand() % 11;
-        garyCounter = rand() % 6;
-        jeffCounter = 0;
-        snakeCounter = 0;
+        karenCounter = 2;
+        garyCounter = 2;
       }
-      if(points >= 1000 && points < 2500)
+      if(points > 2000)
       {
-        karenCounter = rand() % 11;
-        garyCounter = rand() % 9;
-        jeffCounter = 0;
-        snakeCounter = 0;
+        karenCounter = 3;
+        garyCounter = 4;
       }
-      if(points >= 2500 && points < 5000)
+      if(points > 4000)
       {
-        karenCounter = rand() % 11;
-        garyCounter = rand() % 13;
-        jeffCounter = rand() % 3;
-        snakeCounter = 0;
+        karenCounter = 3;
+        garyCounter = 5;
+        jeffCounter = 1;
       }
-      if(points >= 5000 && points < 10000)
+      if(points > 8000)
       {
-        karenCounter = rand() % 11;
-        garyCounter = rand() % 15;
-        jeffCounter = rand() % 5;
-        snakeCounter = rand() % 2;
+        karenCounter = 3;
+        garyCounter = 6;
+        jeffCounter = 2;
       }
-      if(points >= 10000 && points < 20000)
+      if(points > 16000)
       {
-        karenCounter = rand() % 11;
-        garyCounter = rand() % 17;
-        jeffCounter = rand() % 7;
-        snakeCounter = rand() % 3;
+        karenCounter = 3;
+        garyCounter = 7;
+        jeffCounter = 3;
+        snakeCounter = 1;
       }
-      if(points >= 20000 && points < 30000)
+      if(points > 32000)
       {
-        karenCounter = rand() % 11;
-        garyCounter = rand() % 19;
-        jeffCounter = rand() % 9;
-        snakeCounter = rand() % 5;
+        karenCounter = 3;
+        garyCounter = 8;
+        jeffCounter = 4;
+        snakeCounter = 2;
       }
-      if(points >= 30000 && points < 40000)
-      {
-        karenCounter = rand() % 11;
-        garyCounter = rand() % 21;
-        jeffCounter = rand() % 11;
-        snakeCounter = rand() % 7;
-      }
-      if(points >= 40000 && points < 50000)
-      {
-        karenCounter = rand() % 11;
-        garyCounter = rand() % 21;
-        jeffCounter = rand() % 11;
-        snakeCounter = rand() % 9;
-      }
-      if(points >= 50000)
-      {
-        karenCounter = rand() % 11;
-        garyCounter = rand() % 31;
-        jeffCounter = rand() % 11;
-        snakeCounter = rand() % 11;
-      }
+
 
       if(garyEvent || jeffEvent)
       {
-        karenCounter = 1;
-        garyCounter = 1;
-        jeffCounter = 1;
-        snakeCounter = 1;
+        karenCounter = 0;
+        garyCounter = 0;
+        jeffCounter = 0;
+        snakeCounter = 0;
       }
 
 
       for(int i = 0; i < karenTotal; i++)
       {
+        if(karenCounter == 0) i = karenTotal;
         if(!karens[i].getActive() && karenCounter > 0)
         {
           spawnKaren(i);
@@ -1251,6 +1219,7 @@ void Classic::spawnStuff()
       {
         for(int i = 0; i < garyTotal; i++)
         {
+          if(garyCounter == 0) i = garyTotal;
           if(!garys[i].getActive() && garyCounter > 0)
           {
             spawnGary(i);
@@ -1259,12 +1228,11 @@ void Classic::spawnStuff()
           }
         }
       }
-      if(garyEvent && garysAlive == 0)
+      if(garyEvent && garysAlive == 0 && jeffsAlive < 5 && snakesAlive < 2)
       {
         garyTotal = 40;
         garys.resize(garyTotal);
         eventTimer = 0;
-        garyEvent = false;
         int spawnX = player.getRect().x - 175;
         int spawnY = player.getRect().y - 175;
 
@@ -1303,6 +1271,7 @@ void Classic::spawnStuff()
       {
         for(int i = 0; i < jeffTotal; i++)
         {
+          if(jeffCounter == 0) i = jeffTotal;
           if(!jeffs[i].getActive() && jeffCounter > 0)
           {
             spawnJeff(i);
@@ -1312,7 +1281,7 @@ void Classic::spawnStuff()
         }
       }
 
-      if(jeffEvent)
+      if(jeffEvent && garysAlive == 0 && snakesAlive == 0)
       {
         for(int i = 0; i < jeffTotal; i++)
         {
@@ -1351,9 +1320,11 @@ void Classic::spawnStuff()
 
       for(int i = 0; i < snakeTotal; i++)
       {
+        if(snakeCounter == 0) i = snakeTotal;
         if(!snakeGuys[i].getActive() && snakeCounter > 0)
         {
           snakesAlive++;
+          snakeGuys[i].init();
           snakeGuys[i].spawn(levelRect);
           snakeCounter--;
         }

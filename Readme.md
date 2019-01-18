@@ -33,7 +33,8 @@ mainTextColor
 ```
 - the first line is the variable name and the lines inside the quoutes are the values that will be assigned to that variables color values. 
 - Your themes config.txt file needs to follow this format and copying the original version and only modifing the color values is strongly suggested.
-- Copy your theme folder to `ux0:/data/RPPHS/theme/`
+- Zip your theme folder
+- Transfer the zip file containing the theme to the vita and unzip the contents to `ux0:/data/RPPHS/theme/"Theme-name"/`
 - Finally Edit the file located at `ux0:/data/RPPHS/themes.txt` and add the name of your theme to the bottom of the file.
 
 ## Credits

@@ -399,7 +399,6 @@ void Classic::checkGarys()
       {
         bullets[x].die();
         garys[i].die();
-        garysAlive -= 1;
         points += 14 * multiplyer;
         killCount++;
         playExp = true;
@@ -473,7 +472,6 @@ void Classic::checkKarens()
       {
         bullets[x].die();
         karens[i].die();
-        karensAlive--;
         points += 12 * multiplyer;
         killCount++;
         playExp = true;
@@ -547,7 +545,6 @@ void Classic::checkJeffs()
       {
         bullets[x].die();
         jeffs[i].die();
-        jeffsAlive -= 1;
         points += 16 * multiplyer;
         killCount++;
         playExp = true;
@@ -603,7 +600,6 @@ void Classic::checkJeffs()
                   tempAngle = 360 - temp;
                 }
                 miniJeffs[d].spawn(jeffs[i].getRect(), tempAngle);
-                miniJeffsAlive++;
                 miniJeffCount++;
               }
               if(miniJeffCount > 2)
@@ -644,7 +640,6 @@ void Classic::checkMiniJeffs()
       {
         bullets[x].die();
         miniJeffs[i].die();
-        miniJeffsAlive--;
         points += 24 * multiplyer;
         killCount++;
         playExp = true;
@@ -676,7 +671,6 @@ void Classic::checkSnakeGuys()
           if(snakeGuys[i].takeDamage(bullets[x].getRect(),player.getRect())) //takeDamage function checks if bullet hit the head of snake and if so destoys the head.
           {
             bullets[x].die();
-            if(snakeGuys[i].getActive() == false) snakesAlive--;
             points += 32 * multiplyer;
             killCount++;
             playExp = true;
@@ -1061,7 +1055,6 @@ void Classic::killPlayer()
     bullets[i].die();
   }
 
-  garysAlive = 0;
   for(int i = 0; i < garyTotal; i++)
   {
     if(garys[i].getActive() || garys[i].getSpawning())
@@ -1070,7 +1063,6 @@ void Classic::killPlayer()
     }
   }
 
-  karensAlive = 0;
   for(int i = 0; i < karenTotal; i++)
   {
     if(karens[i].getActive() || karens[i].getSpawning())
@@ -1079,7 +1071,6 @@ void Classic::killPlayer()
     }
   }
 
-  jeffsAlive = 0;
   for(int i = 0; i < jeffTotal; i++)
   {
     if(jeffs[i].getActive() || jeffs[i].getSpawning())
@@ -1088,7 +1079,6 @@ void Classic::killPlayer()
     }
   }
 
-  miniJeffsAlive = 0;
   for(int i = 0; i < miniJeffTotal; i++)
   {
     if(miniJeffs[i].getActive())
@@ -1097,7 +1087,6 @@ void Classic::killPlayer()
     }
   }
 
-  snakesAlive = 0;
   for(int i = 0; i < snakeTotal; i++)
   {
     if(snakeGuys[i].getActive())
@@ -1107,16 +1096,53 @@ void Classic::killPlayer()
   }
 }
 
+void Classic::getEnemiesAlive()
+{
+  karensAlive = 0;
+  garysAlive = 0;
+  jeffsAlive = 0;
+  miniJeffsAlive = 0;
+  snakesAlive = 0;
+
+  for(int i = 0; i < karenTotal; i++)
+  {
+    if (karens[i].getActive()) karensAlive++;
+  }
+  
+  for(int i = 0; i < garyTotal; i++)
+  {
+    if (garys[i].getActive()) garysAlive++;
+  }
+
+  for(int i = 0; i < jeffTotal; i++)
+  {
+    if (jeffs[i].getActive()) jeffsAlive++;
+  }
+
+  for(int i = 0; i < miniJeffTotal; i++)
+  {
+    if (miniJeffs[i].getActive()) miniJeffsAlive++;
+  }
+
+  for(int i = 0; i < snakeTotal; i++)
+  {
+    if (snakeGuys[i].getActive()) snakesAlive++;
+  }
+}
+
 void Classic::spawnStuff()
 {
+  getEnemiesAlive();
+
   if(safeTime < 120)
   {
     safeTime++;
   }
 
+  //spawn the player if not active. 
   if(safeTime >= 50 && !player.getActive() && extraLives > 0)
   {
-    killPlayer();
+    killPlayer(); //also kills any remaining enemies. 
     player.spawn();
     extraLives -= 1;
 
@@ -1212,7 +1238,6 @@ void Classic::spawnStuff()
         if(!karens[i].getActive() && !karens[i].getSpawning() && karenCounter > 0)
         {
           spawnKaren(i);
-          karensAlive++;
           karenCounter--;
         }
       }
@@ -1225,7 +1250,6 @@ void Classic::spawnStuff()
           if(!garys[i].getActive() && !garys[i].getSpawning() && garyCounter > 0)
           {
             spawnGary(i);
-            garysAlive += 1;
             garyCounter--;
           }
         }
@@ -1246,25 +1270,21 @@ void Classic::spawnStuff()
         for(int i = 0; i < 10; i++)
         {
           spawnGary(i, spawnX, spawnY);
-          garysAlive += 1;
           spawnX += 35;
         }
         for(int i = 10; i < 20; i++)
         {
           spawnGary(i, spawnX, spawnY);
-          garysAlive += 1;
           spawnY += 35;
         }
         for(int i = 20; i < 30; i++)
         {
           spawnGary(i, spawnX, spawnY);
-          garysAlive += 1;
           spawnX -= 35;
         }
         for(int i = 30; i < 40; i++)
         {
           spawnGary(i, spawnX, spawnY);
-          garysAlive += 1;
           spawnY -= 35;
         }
       }
@@ -1277,7 +1297,6 @@ void Classic::spawnStuff()
           if(!jeffs[i].getActive() && !jeffs[i].getSpawning() && jeffCounter > 0)
           {
             spawnJeff(i);
-            jeffsAlive += 1;
             jeffCounter--;
           }
         }
@@ -1288,7 +1307,6 @@ void Classic::spawnStuff()
         for(int i = 0; i < jeffTotal; i++)
         {
           jeffs[i].die();
-          jeffsAlive -= 1;
         }
         eventTimer = 0; 
         jeffEvent = 0;
@@ -1307,7 +1325,6 @@ void Classic::spawnStuff()
         for(int i = 0; i < 5; i++)
         {
           spawnJeff(i, x, y);
-          jeffsAlive += 1;
           y += 35;
         }
         y = tempy;
@@ -1315,7 +1332,6 @@ void Classic::spawnStuff()
         for(int i = 5; i < 10; i++)
         {
           spawnJeff(i, x, y);
-          jeffsAlive += 1;
           y += 35;
         }
       }
@@ -1325,7 +1341,6 @@ void Classic::spawnStuff()
         if(snakeCounter == 0) i = snakeTotal;
         if(!snakeGuys[i].getActive() && !snakeGuys[i].getSpawning() && snakeCounter > 0)
         {
-          snakesAlive++;
           snakeGuys[i].init();
           snakeGuys[i].spawn(levelRect);
           snakeCounter--;
@@ -1370,7 +1385,6 @@ void Classic::checkBomb()
           if(checkCollision(garys[g].getRect(), bombParticles[i].getRect()))
           {
             garys[g].die();
-            garysAlive -= 1;
           }
         }
       }
@@ -1381,7 +1395,6 @@ void Classic::checkBomb()
           if(checkCollision(karens[k].getRect(), bombParticles[i].getRect()))
           {
             karens[k].die();
-            karensAlive--;
           }
         }
       }
@@ -1392,7 +1405,6 @@ void Classic::checkBomb()
           if(checkCollision(jeffs[j].getRect(), bombParticles[i].getRect()))
           {
             jeffs[j].die();
-            jeffsAlive -= 1;
           }
         }
       }
@@ -1403,7 +1415,6 @@ void Classic::checkBomb()
           if(checkCollision(miniJeffs[m].getRect(), bombParticles[i].getRect()))
           {
             miniJeffs[m].die();
-            miniJeffsAlive--;
           }
         }
       }
@@ -1414,7 +1425,6 @@ void Classic::checkBomb()
           if(snakeGuys[s].hit(bombParticles[i].getRect()) )
           {
             snakeGuys[s].die();
-            snakesAlive--;
           }
         }
       }

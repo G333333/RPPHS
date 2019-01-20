@@ -98,6 +98,7 @@ public:
   int getPoints();
   bool checkPlayer();
   void killPlayer();
+  void getEnemiesAlive();
   void spawnStuff();
 
   void gameOver();

@@ -1183,7 +1183,7 @@ void Classic::spawnStuff()
         karenCounter = 2;
         garyCounter = 0;
         jeffCounter = 0;
-        snakeCounter = 0;
+        snakeCounter = 1;
       }
       if(points > 500)
       {

@@ -42,11 +42,6 @@ void SnakeGuy::init()
   rect8.w = 16;
   rect8.h = 16;
 
-  realTarget.x = 0;
-  realTarget.y = 0;
-  realTarget.w = 1;
-  realTarget.h = 1; 
-
   rect1Active = false;
   rect2Active = false;
   rect3Active = false;
@@ -86,14 +81,6 @@ void SnakeGuy::spawn(vitaRect levelRect)
   tempx = rand() % w + x;
   tempy = rand() % h + y;
 
-  realTarget.x = rand() % w + x;
-  realTarget.y = rand() % h + y;
-  
-  if(realTarget.x < levelRect.x) realTarget.x = levelRect.x;
-  if(realTarget.x > levelRect.x + levelRect.w) realTarget.x = levelRect.x + levelRect.w - 10;
-  if(realTarget.y < levelRect.y) realTarget.y = levelRect.x;
-  if(realTarget.y> levelRect.y + levelRect.h) realTarget.y = levelRect.y - 10;
-
   if(tempx < levelRect.x)
   {
     tempx = levelRect.x;
@@ -122,6 +109,18 @@ void SnakeGuy::spawn(vitaRect levelRect)
 
   rect4.x = tempx;
   rect4.y = tempy;
+
+  rect5.x = tempx;
+  rect5.y = tempy;
+
+  rect6.x = tempx;
+  rect6.y = tempy;
+
+  rect7.x = tempx;
+  rect7.y = tempy;
+
+  rect8.x = tempx;
+  rect8.y = tempy;
 
   moveInterval = 0;
   head = 1;
@@ -297,383 +296,228 @@ bool SnakeGuy::getParticlesActive()
   return false;
 }
 
-int SnakeGuy::chooseDirection(vitaRect target)
+void SnakeGuy::move(vitaRect target)
 {
-  int choice = 0;
-  vitaRect temp;
-  switch (head) {
-    case 1:
-      temp = rect1;
-      break;
-    case 2:
-      temp = rect2;
-      break;
-    case 3:
-      temp = rect3;
-      break;
-    case 4:
-      temp = rect4;
-      break;
-    case 5:
-      temp = rect5;
-      break;
-    case 6:
-      temp = rect6;
-      break;
-    case 7:
-      temp = rect7;
-      break;
-    case 8:
-      temp = rect8;
-      break;
-  }
+  moveRect1(target);
+  moveRect2(rect1);
+  moveRect3(rect2);
+  moveRect4(rect3);
+  moveRect5(rect4);
+  moveRect6(rect5);
+  moveRect7(rect6);
+  moveRect8(rect7);
+}
 
-  int distanceX = temp.x - target.x;
-  int distanceY = temp.y - target.y;
+void SnakeGuy::moveRect1(vitaRect target)
+{
+  double pi, tx, ty, angle, xVel, yVel, distance;
+  float rad;
 
-  if(distanceX < 0)
+  pi = 3.14159;
+  tx = rect1.x - target.x;
+  ty = rect1.y - target.y;
+
+  angle = atan2(-ty, -tx) * 180 / pi;//angle for movement.
+  rad = atan2(-ty, -tx);//radians for image rotation.
+  xVel = 2*(cos(angle*pi/180));   // move x
+  yVel = 2*(sin(angle*pi/180));   // move y
+  distance = sqrt(tx * tx + ty * ty);
+
+  if(!pause && distance > 20.0)
   {
-    distanceX *= -1; //make it positive
+    rect1.x += xVel;
+    rect1.y += yVel;
   }
-  if(distanceY < 0)
+  if(rect1Active)
   {
-    distanceY *= -1; //make it positive
+    if(head == 1) vita2d_draw_texture_rotate(snakeImage2, rect1.x, rect1.y, rad);
+    else vita2d_draw_texture_rotate(snakeImage1, rect1.x, rect1.y, rad);
   }
+}
 
-  if(distanceX > distanceY)
+void SnakeGuy::moveRect2(vitaRect target)
+{
+  double pi, tx, ty, angle, xVel, yVel, distance;
+  float rad;
+
+  pi = 3.14159;
+  tx = rect2.x - target.x;
+  ty = rect2.y - target.y;
+
+  angle = atan2(-ty, -tx) * 180 / pi;//angle for movement.
+  rad = atan2(-ty, -tx);//radians for image rotation.
+  xVel = 2*(cos(angle*pi/180));   // move x
+  yVel = 2*(sin(angle*pi/180));   // move y
+  distance = sqrt(tx * tx + ty * ty);
+
+  if(!pause && distance > 20.0)
   {
-    if(target.x > temp.x)
-    {
-      choice = 1;
-    }
-    else
-      choice = 2;
+    rect2.x += xVel;
+    rect2.y += yVel;
   }
-  else
+  if(rect2Active)
   {
-    if(target.y > temp.y)
-    {
-      choice = 3;
-    }
-    else
-      choice = 4;
+    if(head == 2) vita2d_draw_texture_rotate(snakeImage2, rect2.x, rect2.y, rad);
+    else vita2d_draw_texture_rotate(snakeImage1, rect2.x, rect2.y, rad);
   }
-
-
-  return choice;
 }
-
-void SnakeGuy::move(vitaRect target, int choice)
+void SnakeGuy::moveRect3(vitaRect target)
 {
+  double pi, tx, ty, angle, xVel, yVel, distance;
+  float rad;
 
-  if(choice != 5)
+  pi = 3.14159;
+  tx = rect3.x - target.x;
+  ty = rect3.y - target.y;
+
+  angle = atan2(-ty, -tx) * 180 / pi;//angle for movement.
+  rad = atan2(-ty, -tx);//radians for image rotation.
+  xVel = 2*(cos(angle*pi/180));   // move x
+  yVel = 2*(sin(angle*pi/180));   // move y
+  distance = sqrt(tx * tx + ty * ty);
+
+  if(!pause && distance > 20.0)
   {
-    choice = chooseDirection(target);
+    rect3.x += xVel;
+    rect3.y += yVel;
   }
-
-  switch (head) {
-      case 1:
-        if(rect8Active) moveRect8(rect1, choice);
-        else if(rect7Active) moveRect7(rect1, choice);
-        else if(rect6Active) moveRect6(rect1, choice);
-        else if(rect5Active) moveRect5(rect1, choice);
-        else if(rect4Active) moveRect4(rect1, choice);
-        else if(rect3Active) moveRect3(rect1, choice);
-        else if(rect2Active) moveRect2(rect1, choice);
-        else moveRect1(rect1, choice);
-        break;
-
-      case 2:
-        if(rect1Active) moveRect1(rect2, choice);
-        else if(rect8Active) moveRect8(rect2, choice);
-        else if(rect7Active) moveRect7(rect2, choice);
-        else if(rect6Active) moveRect6(rect2, choice);
-        else if(rect5Active) moveRect5(rect2, choice);
-        else if(rect4Active) moveRect4(rect2, choice);
-        else if(rect3Active) moveRect3(rect2, choice);
-        else moveRect2(rect2, choice);
-        break;
-
-      case 3:
-        if(rect2Active) moveRect2(rect3, choice);
-        else if(rect1Active) moveRect1(rect3, choice);
-        else if(rect8Active) moveRect8(rect3, choice);
-        else if(rect7Active) moveRect7(rect3, choice);
-        else if(rect6Active) moveRect6(rect3, choice);
-        else if(rect5Active) moveRect5(rect3, choice);
-        else if(rect4Active) moveRect4(rect3, choice);
-        else moveRect3(rect3, choice);
-        break;
-
-      case 4:
-        if(rect3Active) moveRect3(rect4, choice);
-        else if(rect2Active) moveRect2(rect4, choice);
-        else if(rect1Active) moveRect1(rect4, choice);
-        else if(rect8Active) moveRect8(rect4, choice);
-        else if(rect7Active) moveRect7(rect4, choice);
-        else if(rect6Active) moveRect6(rect4, choice);
-        else if(rect5Active) moveRect5(rect4, choice);
-        else moveRect4(rect4, choice);
-        break;
-
-      case 5:
-        if(rect4Active) moveRect4(rect5, choice);
-        else if(rect3Active) moveRect3(rect5, choice);
-        else if(rect2Active) moveRect2(rect5, choice);
-        else if(rect1Active) moveRect1(rect5, choice);
-        else if(rect8Active) moveRect8(rect5, choice);
-        else if(rect7Active) moveRect7(rect5, choice);
-        else if(rect6Active) moveRect6(rect5, choice);
-        else moveRect5(rect5, choice);
-        break;
-
-      case 6:
-        if(rect5Active) moveRect5(rect6, choice);
-        else if(rect4Active) moveRect4(rect6, choice);
-        else if(rect3Active) moveRect3(rect6, choice);
-        else if(rect2Active) moveRect2(rect6, choice);
-        else if(rect1Active) moveRect1(rect6, choice);
-        else if(rect8Active) moveRect8(rect6, choice);
-        else if(rect7Active) moveRect7(rect6, choice);
-        else moveRect6(rect6, choice);
-        break;
-
-      case 7:
-        if(rect6Active) moveRect6(rect7, choice);
-        else if(rect5Active) moveRect5(rect7, choice);
-        else if(rect4Active) moveRect4(rect7, choice);
-        else if(rect3Active) moveRect3(rect7, choice);
-        else if(rect2Active) moveRect2(rect7, choice);
-        else if(rect1Active) moveRect1(rect7, choice);
-        else if(rect8Active) moveRect8(rect7, choice);
-        else moveRect7(rect7, choice);
-        break;
-
-      case 8:
-        if(rect7Active) moveRect7(rect8, choice);
-        else if(rect6Active) moveRect6(rect8, choice);
-        else if(rect5Active) moveRect5(rect8, choice);
-        else if(rect4Active) moveRect4(rect8, choice);
-        else if(rect3Active) moveRect3(rect8, choice);
-        else if(rect2Active) moveRect2(rect8, choice);
-        else if(rect1Active) moveRect1(rect8, choice);
-        else moveRect8(rect8, choice);
-        break;
+  
+  if(rect3Active)
+  {
+    if(head == 3) vita2d_draw_texture_rotate(snakeImage2, rect3.x, rect3.y, rad);
+    else vita2d_draw_texture_rotate(snakeImage1, rect3.x, rect3.y, rad);
   }
 }
-
-void SnakeGuy::moveRect1(vitaRect start, int choice)
+void SnakeGuy::moveRect4(vitaRect target)
 {
-  head = 1;
-  switch (choice) {
-    case 1:
-      rect1.x = start.x + 17;
-      rect1.y = start.y;
-      break;
-    case 2:
-      rect1.x = start.x - 17;
-      rect1.y = start.y;
-      break;
-    case 3:
-      rect1.y = start.y + 17;
-      rect1.x = start.x;
-      break;
-    case 4:
-      rect1.y = start.y - 17;
-      rect1.x = start.x;
-      break;
-    case 5:
-      rect1.x = start.x;
-      rect1.y = start.y;
-      break;
+  double pi, tx, ty, angle, xVel, yVel, distance;
+  float rad;
+
+  pi = 3.14159;
+  tx = rect4.x - target.x;
+  ty = rect4.y - target.y;
+
+  angle = atan2(-ty, -tx) * 180 / pi;//angle for movement.
+  rad = atan2(-ty, -tx);//radians for image rotation.
+  xVel = 2*(cos(angle*pi/180));   // move x
+  yVel = 2*(sin(angle*pi/180));   // move y
+  distance = sqrt(tx * tx + ty * ty);
+
+  if(!pause && distance > 20.0)
+  {
+    rect4.x += xVel;
+    rect4.y += yVel;
+  }
+  if(rect4Active)
+  {
+    if(head == 4) vita2d_draw_texture_rotate(snakeImage2, rect4.x, rect4.y, rad);
+    else vita2d_draw_texture_rotate(snakeImage1, rect4.x, rect4.y, rad);
   }
 }
-
-void SnakeGuy::moveRect2(vitaRect start, int choice)
+void SnakeGuy::moveRect5(vitaRect target)
 {
-  head = 2;
-  switch (choice) {
-    case 1:
-      rect2.x = start.x + 17;
-      rect2.y = start.y;
-      break;
-    case 2:
-      rect2.x = start.x - 17;
-      rect2.y = start.y;
-      break;
-    case 3:
-      rect2.y = start.y + 17;
-      rect2.x = start.x;
-      break;
-    case 4:
-      rect2.y = start.y - 17;
-      rect2.x = start.x;
-      break;
-    case 5:
-      rect2.x = start.x;
-      rect2.y = start.y;
-      break;
+  double pi, tx, ty, angle, xVel, yVel, distance;
+  float rad;
+
+  pi = 3.14159;
+  tx = rect5.x - target.x;
+  ty = rect5.y - target.y;
+
+  angle = atan2(-ty, -tx) * 180 / pi;//angle for movement.
+  rad = atan2(-ty, -tx);//radians for image rotation.
+  xVel = 2*(cos(angle*pi/180));   // move x
+  yVel = 2*(sin(angle*pi/180));   // move y
+  distance = sqrt(tx * tx + ty * ty);
+
+  if(!pause && distance > 20.0)
+  {
+    rect5.x += xVel;
+    rect5.y += yVel;
+  }
+  if(rect5Active)
+  {
+    if(head == 5) vita2d_draw_texture_rotate(snakeImage2, rect5.x, rect5.y, rad);
+    else vita2d_draw_texture_rotate(snakeImage1, rect5.x, rect5.y, rad);
   }
 }
-
-void SnakeGuy::moveRect3(vitaRect start, int choice)
+void SnakeGuy::moveRect6(vitaRect target)
 {
-  head = 3;
-  switch (choice) {
-    case 1:
-      rect3.x = start.x + 17;
-      rect3.y = start.y;
-      break;
-    case 2:
-      rect3.x = start.x - 17;
-      rect3.y = start.y;
-      break;
-    case 3:
-      rect3.y = start.y + 17;
-      rect3.x = start.x;
-      break;
-    case 4:
-      rect3.y = start.y - 17;
-      rect3.x = start.x;
-      break;
-    case 5:
-      rect3.x = start.x;
-      rect3.y = start.y;
-      break;
+  double pi, tx, ty, angle, xVel, yVel, distance;
+  float rad;
+
+  pi = 3.14159;
+  tx = rect6.x - target.x;
+  ty = rect6.y - target.y;
+
+  angle = atan2(-ty, -tx) * 180 / pi;//angle for movement.
+  rad = atan2(-ty, -tx);//radians for image rotation.
+  xVel = 2*(cos(angle*pi/180));   // move x
+  yVel = 2*(sin(angle*pi/180));   // move y
+  distance = sqrt(tx * tx + ty * ty);
+
+  if(!pause && distance > 20.0)
+  {
+    rect6.x += xVel;
+    rect6.y += yVel;
+  }
+  if(rect6Active)
+  {
+    if(head == 6) vita2d_draw_texture_rotate(snakeImage2, rect6.x, rect6.y, rad);
+    else vita2d_draw_texture_rotate(snakeImage1, rect6.x, rect6.y, rad);
   }
 }
-
-void SnakeGuy::moveRect4(vitaRect start, int choice)
+void SnakeGuy::moveRect7(vitaRect target)
 {
-  head = 4;
-  switch (choice) {
-    case 1:
-      rect4.x = start.x + 17;
-      rect4.y = start.y;
-      break;
-    case 2:
-      rect4.x = start.x - 17;
-      rect4.y = start.y;
-      break;
-    case 3:
-      rect4.y = start.y + 17;
-      rect4.x = start.x;
-      break;
-    case 4:
-      rect4.y = start.y - 17;
-      rect4.x = start.x;
-      break;
-    case 5:
-      rect4.x = start.x;
-      rect4.y = start.y;
-      break;
+  double pi, tx, ty, angle, xVel, yVel, distance;
+  float rad;
+
+  pi = 3.14159;
+  tx = rect7.x - target.x;
+  ty = rect7.y - target.y;
+
+  angle = atan2(-ty, -tx) * 180 / pi;//angle for movement.
+  rad = atan2(-ty, -tx);//radians for image rotation.
+  xVel = 2*(cos(angle*pi/180));   // move x
+  yVel = 2*(sin(angle*pi/180));   // move y
+  distance = sqrt(tx * tx + ty * ty);
+
+  if(!pause && distance > 20.0)
+  {
+    rect7.x += xVel;
+    rect7.y += yVel;
+  }
+  if(rect7Active)
+  {
+    if(head == 7) vita2d_draw_texture_rotate(snakeImage2, rect7.x, rect7.y, rad);
+    else vita2d_draw_texture_rotate(snakeImage1, rect7.x, rect7.y, rad);
   }
 }
-
-void SnakeGuy::moveRect5(vitaRect start, int choice)
+void SnakeGuy::moveRect8(vitaRect target)
 {
-  head = 5;
-  switch (choice) {
-    case 1:
-      rect5.x = start.x + 17;
-      rect5.y = start.y;
-      break;
-    case 2:
-      rect5.x = start.x - 17;
-      rect5.y = start.y;
-      break;
-    case 3:
-      rect5.y = start.y + 17;
-      rect5.x = start.x;
-      break;
-    case 4:
-      rect5.y = start.y - 17;
-      rect5.x = start.x;
-      break;
+  double pi, tx, ty, angle, xVel, yVel, distance;
+  float rad;
+
+  pi = 3.14159;
+  tx = rect8.x - target.x;
+  ty = rect8.y - target.y;
+
+  angle = atan2(-ty, -tx) * 180 / pi;//angle for movement.
+  rad = atan2(-ty, -tx);//radians for image rotation.
+  xVel = 2*(cos(angle*pi/180));   // move x
+  yVel = 2*(sin(angle*pi/180));   // move y
+  distance = sqrt(tx * tx + ty * ty);
+
+  if(!pause && distance > 20.0)
+  {
+    rect8.x += xVel;
+    rect8.y += yVel;
+  }
+  if(rect8Active)
+  {
+    if(head == 8) vita2d_draw_texture_rotate(snakeImage2, rect8.x, rect8.y, rad);
+    else vita2d_draw_texture_rotate(snakeImage1, rect8.x, rect8.y, rad);
   }
 }
-
-void SnakeGuy::moveRect6(vitaRect start, int choice)
-{
-  head = 6;
-  switch (choice) {
-    case 1:
-      rect6.x = start.x + 17;
-      rect6.y = start.y;
-      break;
-    case 2:
-      rect6.x = start.x - 17;
-      rect6.y = start.y;
-      break;
-    case 3:
-      rect6.y = start.y + 17;
-      rect6.x = start.x;
-      break;
-    case 4:
-      rect6.y = start.y - 17;
-      rect6.x = start.x;
-      break;
-    case 5:
-      rect6.x = start.x;
-      rect6.y = start.y;
-      break;
-  }
-}
-
-void SnakeGuy::moveRect7(vitaRect start, int choice)
-{
-  head = 7;
-  switch (choice) {
-    case 1:
-      rect7.x = start.x + 17;
-      rect7.y = start.y;
-      break;
-    case 2:
-      rect7.x = start.x - 17;
-      rect7.y = start.y;
-      break;
-    case 3:
-      rect7.y = start.y + 17;
-      rect7.x = start.x;
-      break;
-    case 4:
-      rect7.y = start.y - 17;
-      rect7.x = start.x;
-      break;
-    case 5:
-      rect7.x = start.x;
-      rect7.y = start.y;
-      break;
-  }
-}
-
-void SnakeGuy::moveRect8(vitaRect start, int choice)
-{
-  head = 8;
-  switch (choice) {
-    case 1:
-      rect8.x = start.x + 17;
-      rect8.y = start.y;
-      break;
-    case 2:
-      rect8.x = start.x - 17;
-      rect8.y = start.y;
-      break;
-    case 3:
-      rect8.y = start.y + 17;
-      rect8.x = start.x;
-      break;
-    case 4:
-      rect8.y = start.y - 17;
-      rect8.x = start.x;
-      break;
-    case 5:
-      rect8.x = start.x;
-      rect8.y = start.y;
-      break;
-  }
-}
-
 
 void SnakeGuy::moveBackX(double playerxVel)
 {
@@ -711,87 +555,32 @@ int SnakeGuy::newHead()
 {
   switch (head) {
     case 1:
-      if(rect2Active) return 2;
-      else if(rect3Active) return 3;
-      else if(rect4Active) return 4;
-      else if(rect5Active) return 5;
-      else if(rect6Active) return 6;
-      else if(rect7Active) return 7;
-      else if(rect8Active) return 8;
-      else return 1;
+      return 2;
       break;
     case 2:
-      if(rect3Active) return 3;
-      else if(rect4Active) return 4;
-      else if(rect5Active) return 5;
-      else if(rect6Active) return 6;
-      else if(rect7Active) return 7;
-      else if(rect8Active) return 8;
-      else if(rect1Active) return 1;
-      else return 2;
+      return 3;
       break;
     case 3:
-      if(rect4Active) return 4;
-      else if(rect5Active) return 5;
-      else if(rect6Active) return 6;
-      else if(rect7Active) return 7;
-      else if(rect8Active) return 8;
-      else if(rect1Active) return 1;
-      else if(rect2Active) return 2;
-      else return 3;
+      return 4;
       break;
     case 4:
-      if(rect5Active) return 5;
-      else if(rect6Active) return 6;
-      else if(rect7Active) return 7;
-      else if(rect8Active) return 8;
-      else if(rect1Active) return 1;
-      else if(rect2Active) return 2;
-      else if(rect3Active) return 3;
-      else return 4;
+      return 5;
       break;
     case 5:
-      if(rect6Active) return 6;
-      else if(rect7Active) return 7;
-      else if(rect8Active) return 8;
-      else if(rect1Active) return 1;
-      else if(rect2Active) return 2;
-      else if(rect3Active) return 3;
-      else if(rect4Active) return 4;
-      else return 5;
+      return 6;
       break;
     case 6:
-      if(rect7Active) return 7;
-      else if(rect8Active) return 8;
-      else if(rect1Active) return 1;
-      else if(rect2Active) return 2;
-      else if(rect3Active) return 3;
-      else if(rect4Active) return 4;
-      else if(rect5Active) return 5;
-      else return 6;
+      return 7;
       break;
     case 7:
-      if(rect8Active) return 8;
-      else if(rect1Active) return 1;
-      else if(rect2Active) return 2;
-      else if(rect3Active) return 3;
-      else if(rect4Active) return 4;
-      else if(rect5Active) return 5;
-      else if(rect6Active) return 6;
-      else return 7;
+      return 8;
       break;
     case 8:
-      if(rect1Active) return 1;
-      else if(rect2Active) return 2;
-      else if(rect3Active) return 3;
-      else if(rect4Active) return 4;
-      else if(rect5Active) return 5;
-      else if(rect6Active) return 6;
-      else if(rect7Active) return 7;
-      else return 8;
+      return 1;
       break;
+    default:
+    return 1;
   }
-  return 1;
 }
 
 bool SnakeGuy::takeDamage(vitaRect bullet, vitaRect target)
@@ -938,174 +727,11 @@ bool SnakeGuy::hit(vitaRect bullet)
 
 void SnakeGuy::doStuff(vitaRect target, bool pause)
 {
-  targetTimer++;
-  
-  if(targetTimer > 300)
-  {
-    targetTimer = 0;
-    realTarget.x = rand() % 400 + (target.x - 200);
-    realTarget.y = rand() % 400 + (target.y - 200);
-
-    if(realTarget.x < levelRect.x) realTarget.x = levelRect.x;
-    if(realTarget.x > levelRect.x + levelRect.w) realTarget.x = levelRect.x + levelRect.w - 10;
-    if(realTarget.y < levelRect.y) realTarget.y = levelRect.x;
-    if(realTarget.y> levelRect.y + levelRect.h) realTarget.y = levelRect.y - 10;
-  }
   this->pause = pause;
-  //keep the rects together for when spawning particles is needed.
-  vitaRect tempRect;
-  switch (head) {
-    case 1:
-      tempRect = rect1;
-      break;
-    case 2:
-      tempRect = rect2;
-      break;
-    case 3:
-      tempRect = rect3;
-      break;
-    case 4:
-      tempRect = rect4;
-      break;
-    case 5:
-      tempRect = rect5;
-      break;
-    case 6:
-      tempRect = rect6;
-      break;
-    case 7:
-      tempRect = rect7;
-      break;
-    case 8:
-      tempRect = rect8;
-      break;
-  }
-  if(!rect1Active)
-  {
-    rect1.x = tempRect.x;
-    rect1.y = tempRect.y;
-  }
-  if(!rect2Active)
-  {
-    rect2.x = tempRect.x;
-    rect2.y = tempRect.y;
-  }
-  if(!rect3Active)
-  {
-    rect3.x = tempRect.x;
-    rect3.y = tempRect.y;
-  }
-  if(!rect4Active)
-  {
-    rect4.x = tempRect.x;
-    rect4.y = tempRect.y;
-  }
-  if(!rect5Active)
-  {
-    rect5.x = tempRect.x;
-    rect5.y = tempRect.y;
-  }
-  if(!rect6Active)
-  {
-    rect6.x = tempRect.x;
-    rect6.y = tempRect.y;
-  }
-  if(!rect7Active)
-  {
-    rect7.x = tempRect.x;
-    rect7.y = tempRect.y;
-  }
-  if(!rect8Active)
-  {
-    rect8.x = tempRect.x;
-    rect8.y = tempRect.y;
-  }
-  //end of keeping rects together.
+  
   if(getActive())
   {
-    if(!pause)
-    {
-      moveInterval++;
-    }
-
-    if(moveInterval > 15)
-    {
-      move(realTarget);
-      moveInterval = 0;
-    }
-
-    if(rect1Active)
-    {
-      if(head == 1)
-      {
-        vita2d_draw_texture(snakeImage2, rect1.x, rect1.y);
-      }
-      else
-      vita2d_draw_texture(snakeImage1, rect1.x, rect1.y);
-    }
-    if(rect2Active)
-    {
-      if(head == 2)
-      {
-        vita2d_draw_texture(snakeImage2, rect2.x, rect2.y);
-      }
-      else
-      vita2d_draw_texture(snakeImage1, rect2.x, rect2.y);
-    }
-    if(rect3Active)
-    {
-      if(head == 3)
-      {
-        vita2d_draw_texture(snakeImage2, rect3.x, rect3.y);
-      }
-      else
-      vita2d_draw_texture(snakeImage1, rect3.x, rect3.y);
-    }
-    if(rect4Active)
-    {
-      if(head == 4)
-      {
-        vita2d_draw_texture(snakeImage2, rect4.x, rect4.y);
-      }
-      else
-      vita2d_draw_texture(snakeImage1, rect4.x, rect4.y);
-    }
-    if(rect5Active)
-    {
-      if(head == 5)
-      {
-        vita2d_draw_texture(snakeImage2, rect5.x, rect5.y);
-      }
-      else
-      vita2d_draw_texture(snakeImage1, rect5.x, rect5.y);
-    }
-    if(rect6Active)
-    {
-      if(head == 6)
-      {
-        vita2d_draw_texture(snakeImage2, rect6.x, rect6.y);
-      }
-      else
-      vita2d_draw_texture(snakeImage1, rect6.x, rect6.y);
-    }
-    if(rect7Active)
-    {
-      if(head == 7)
-      {
-        vita2d_draw_texture(snakeImage2, rect7.x, rect7.y);
-      }
-      else
-      vita2d_draw_texture(snakeImage1, rect7.x, rect7.y);
-    }
-    if(rect8Active)
-    {
-      if(head == 8)
-      {
-        vita2d_draw_texture(snakeImage2, rect8.x, rect8.y);
-      }
-      else
-      vita2d_draw_texture(snakeImage1, rect8.x, rect8.y);
-    }
+    move(target);
   }
   if(!getActive())
   {

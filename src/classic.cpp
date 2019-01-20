@@ -1152,7 +1152,7 @@ void Classic::spawnStuff()
 
   if(safeTime >= 120)
   {
-    if(garyEvent && garysAlive < 10 && garysAlive > 0 && garyTotal == 40)
+    if(garysAlive < 10 && garysAlive > 0 && garyTotal == 40)
     {
       std::vector<Gary> tempVector;
       for(int i = 0; i < garyTotal; i++)
@@ -1178,7 +1178,7 @@ void Classic::spawnStuff()
       int jeffCounter = 0;
       int snakeCounter = 0;
 
-      if(points < 1000)
+      if(points < 500)
       {
         karenCounter = 2;
         garyCounter = 0;
@@ -1261,6 +1261,8 @@ void Classic::spawnStuff()
         eventTimer = 0;
         int spawnX = player.getRect().x - 175;
         int spawnY = player.getRect().y - 175;
+
+        garyEvent = false;
 
         if(spawnX <= levelRect.x) spawnX = levelRect.x + 10;
         if(spawnX >= levelRect.x + levelRect.w - 385) spawnX = levelRect.x + levelRect.w - 385;

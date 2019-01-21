@@ -267,7 +267,7 @@ void Classic::doStuff(bool keys[15],
   checkSnakeGuys();
   for(int i = 0; i < snakeTotal; i++)
   {
-    snakeGuys[i].doStuff(player.getRect(), pause);
+    snakeGuys[i].doStuff(player.getRect(), pause, levelRect);
   }
 
   if(!pause)
@@ -1020,7 +1020,7 @@ bool Classic::checkPlayer()
 
   for(int i = 0; i < snakeTotal; i++)
   {
-    if(checkCollision(player.getRect(), snakeGuys[i].getRect1()) && snakeGuys[i].getActive())
+    if(snakeGuys[i].takeDamage(player.getRect(), player.getRect()))
     {
       return true;
     }

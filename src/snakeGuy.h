@@ -9,7 +9,7 @@
 class SnakeGuy{
 private:
   vitaRect rect1, rect2, rect3, rect4, rect5, rect6, rect7, rect8;
-  vitaRect realTarget, levelRect;
+  vitaRect realTarget;
   bool rect1Active, rect2Active, rect3Active, rect4Active, rect5Active, rect6Active, rect7Active, rect8Active;
   bool spawning, pause;
   int spawnCount, spawnRadius;
@@ -49,7 +49,7 @@ public:
   int newHead();
   bool takeDamage(vitaRect bullet, vitaRect target);
   bool hit(vitaRect bullet);
-  void doStuff(vitaRect target, bool pause);
+  void doStuff(vitaRect target, bool pause, vitaRect levelRect);
 };
 
 #endif

@@ -51,6 +51,11 @@ void SnakeGuy::init()
   rect7Active = false;
   rect8Active = false;
 
+  realTarget.x = 0;
+  realTarget.y = 0;
+  realTarget.w = 1;
+  realTarget.h = 1;
+
   spawning = false;
   spawnCount = 0;
   spawnRadius = 0;
@@ -71,7 +76,6 @@ void SnakeGuy::init()
 void SnakeGuy::spawn(vitaRect levelRect)
 {
   spawning = true;
-  this->levelRect = levelRect;
 
   int tempx, tempy;
   int x = levelRect.x;
@@ -121,6 +125,10 @@ void SnakeGuy::spawn(vitaRect levelRect)
 
   rect8.x = tempx;
   rect8.y = tempy;
+  tempx = rand() % w + x;
+  tempy = rand() % h + y;
+  realTarget.x = tempx;
+  realTarget.y = tempy;
 
   moveInterval = 0;
   head = 1;
@@ -310,7 +318,7 @@ void SnakeGuy::move(vitaRect target)
 
 void SnakeGuy::moveRect1(vitaRect target)
 {
-  double pi, tx, ty, angle, xVel, yVel, distance;
+  double pi, tx, ty, angle, xVel, yVel;
   float rad;
 
   pi = 3.14159;
@@ -321,9 +329,8 @@ void SnakeGuy::moveRect1(vitaRect target)
   rad = atan2(-ty, -tx);//radians for image rotation.
   xVel = 2*(cos(angle*pi/180));   // move x
   yVel = 2*(sin(angle*pi/180));   // move y
-  distance = sqrt(tx * tx + ty * ty);
 
-  if(!pause && distance > 20.0)
+  if(!pause)
   {
     rect1.x += xVel;
     rect1.y += yVel;
@@ -529,6 +536,7 @@ void SnakeGuy::moveBackX(double playerxVel)
   rect6.x -= playerxVel;
   rect7.x -= playerxVel;
   rect8.x -= playerxVel;
+  realTarget.x -= playerxVel;
   for(int i = 0; i < 15; i++)
   {
     particles[i].moveBackX(playerxVel);
@@ -545,6 +553,7 @@ void SnakeGuy::moveBackY(double playeryVel)
   rect6.y -= playeryVel;
   rect7.y -= playeryVel;
   rect8.y -= playeryVel;
+  realTarget.y -= playeryVel;
   for(int i = 0; i < 15; i++)
   {
     particles[i].moveBackY(playeryVel);
@@ -725,13 +734,24 @@ bool SnakeGuy::hit(vitaRect bullet)
   return false;
 }
 
-void SnakeGuy::doStuff(vitaRect target, bool pause)
+void SnakeGuy::doStuff(vitaRect target, bool pause, vitaRect levelRect)
 {
   this->pause = pause;
   
   if(getActive())
   {
-    move(target);
+    if(checkCollision(rect1, realTarget))
+    {
+      int x = levelRect.x;
+      int y = levelRect.y;
+      int w = levelRect.w;
+      int h = levelRect.h;
+      int tempx = rand() % w + x;
+      int tempy = rand() % h + y;
+      realTarget.x = tempx;
+      realTarget.y = tempy;
+    }
+    move(realTarget);
   }
   if(!getActive())
   {

@@ -276,18 +276,19 @@ void Classic::doStuff(bool keys[15],
     spawnStuff();
     if(points > 10000)
     {
-      if(eventTimer <= 900)
+      if(eventTimer <= 600)
       {
         eventTimer++;
       }
       if(eventTimer >= 600)
       {
-        if(!garyEvent && !jeffEvent)
+        if(!garyEvent && !jeffEvent && !snakeEvent)
         {
           int event = rand() % 30;
           if(event < 10) garyEvent = true;
           if(event >= 10 && event < 20) jeffEvent = true;
           if(event >= 20) snakeEvent = true;
+          eventTimer = 0;
         }
       }
     }
@@ -1376,16 +1377,16 @@ void Classic::spawnStuff()
         for(int i = 0; i < 4; i ++)
         {
           snakeGuys[i].spawn(levelRect, tempx, tempy);
-          snakeGuys[i + 4].spawn(levelRect, tempx + 216, tempy);
-          tempx += 66;
+          snakeGuys[i + 4].spawn(levelRect, tempx, tempy + 216);
+          tempx += 72;
         }
 
         tempx = oldTempx;
         tempy += 66;
-        for(int i = 8; i < 12; i++)
+        for(int i = 8; i < 10; i++)
         {
           snakeGuys[i].spawn(levelRect, tempx, tempy);
-          snakeGuys[i + 2].spawn(levelRect, tempx, tempy + 50);
+          snakeGuys[i + 2].spawn(levelRect, tempx, tempy + 66);
           tempx += 216;
         }
         

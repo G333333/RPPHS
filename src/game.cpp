@@ -422,6 +422,8 @@ void Game::doGame()
         saveScreen.setStatus(status);
         highScores.setStatus(status);
         options.menuPartial();
+        gWave.setVolume(options.getSoundsLevel());
+        exp1.setVolume(options.getSoundsLevel());
         if(status == 2)
         {
           status = 5;

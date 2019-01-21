@@ -11,7 +11,7 @@ private:
   vitaRect rect1, rect2, rect3, rect4, rect5, rect6, rect7, rect8;
   vitaRect realTarget;
   bool rect1Active, rect2Active, rect3Active, rect4Active, rect5Active, rect6Active, rect7Active, rect8Active;
-  bool spawning, pause;
+  bool spawning, pause, dying;
   int spawnCount, spawnRadius;
   int moveInterval, head;
   int targetTimer;
@@ -19,6 +19,7 @@ private:
 public:
   void init();
   void spawn(vitaRect levelRect);
+  void spawn(vitaRect levelRect, int x, int y);
   void preSpawn();
   bool getSpawning();
   void die();

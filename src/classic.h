@@ -63,6 +63,7 @@ private:
   int eventTimer;
   bool garyEvent;
   bool jeffEvent;
+  bool snakeEvent;
 public:
   void init(double levelWidth, double levelHeight);
   void doStuff(bool keys[15],

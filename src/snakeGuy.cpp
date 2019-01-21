@@ -60,6 +60,8 @@ void SnakeGuy::init()
   spawnCount = 0;
   spawnRadius = 0;
 
+  dying = false;
+
   targetTimer = 0;
 
   pause = false;
@@ -76,6 +78,7 @@ void SnakeGuy::init()
 void SnakeGuy::spawn(vitaRect levelRect)
 {
   spawning = true;
+  dying = false;
 
   int tempx, tempy;
   int x = levelRect.x;
@@ -134,6 +137,69 @@ void SnakeGuy::spawn(vitaRect levelRect)
   head = 1;
 }
 
+void SnakeGuy::spawn(vitaRect levelRect, int posx, int posy)
+{
+  spawning = true;
+  dying = false;
+
+  int tempx = posx;
+  int tempy = posy;
+
+  int x = levelRect.x;
+  int y = levelRect.y;
+  int w = levelRect.w;
+  int h = levelRect.h;
+
+  if(tempx < levelRect.x)
+  {
+    tempx = levelRect.x;
+  }
+  if(tempx + rect1.w > levelRect.x + levelRect.w)
+  {
+    tempx = levelRect.x + levelRect.w - rect1.w;
+  }
+  if(tempy < levelRect.y)
+  {
+    tempy = levelRect.y;
+  }
+  if(tempy + rect1.h > levelRect.y + levelRect.h)
+  {
+    tempy = levelRect.y + levelRect.h - rect1.h;
+  }
+
+  rect1.x = tempx;
+  rect1.y = tempy;
+
+  rect2.x = tempx;
+  rect2.y = tempy;
+
+  rect3.x = tempx;
+  rect3.y = tempy;
+
+  rect4.x = tempx;
+  rect4.y = tempy;
+
+  rect5.x = tempx;
+  rect5.y = tempy;
+
+  rect6.x = tempx;
+  rect6.y = tempy;
+
+  rect7.x = tempx;
+  rect7.y = tempy;
+
+  rect8.x = tempx;
+  rect8.y = tempy;
+  
+  tempx = rand() % w + x;
+  tempy = rand() % h + y;
+  realTarget.x = tempx;
+  realTarget.y = tempy;
+
+  moveInterval = 0;
+  head = 1;
+}
+
 void SnakeGuy::preSpawn()
 {
   if(!pause)
@@ -170,46 +236,49 @@ bool SnakeGuy::getSpawning()
 void SnakeGuy::die()
 {
   vitaRect temp;
+  dying = true;
+  spawning = false;
   switch (head) {
     case 1:
       temp = rect1;
+      rect1Active = false;
       break;
     case 2:
       temp = rect2;
+      rect2Active = false;
       break;
     case 3:
       temp = rect3;
+      rect3Active = false;
       break;
     case 4:
       temp = rect4;
+      rect4Active = false;
       break;
     case 5:
       temp = rect5;
+      rect5Active = false;
       break;
     case 6:
       temp = rect6;
+      rect6Active = false;
       break;
     case 7:
       temp = rect7;
+      rect7Active = false;
       break;
     case 8:
       temp = rect8;
+      rect8Active = false;
       break;
   }
-  rect1Active = false;
-  rect2Active = false;
-  rect3Active = false;
-  rect4Active = false;
-  rect5Active = false;
-  rect6Active = false;
-  rect7Active = false;
-  rect8Active = false;
+  head = newHead();
   int tempSpeed = 0;
   int tempLife = 0;
   for(int i = 0; i < 15; i++)
   {
     tempSpeed = rand() % 2 + 1;
-    tempLife = rand() % 20 + 1;
+    tempLife = 5;
     particles[i].spawn(temp, tempSpeed, tempLife);
     rand(); rand();
   }
@@ -321,6 +390,8 @@ void SnakeGuy::moveRect1(vitaRect target)
   double pi, tx, ty, angle, xVel, yVel;
   float rad;
 
+  if(!rect1Active && head == 1) head = newHead();
+
   pi = 3.14159;
   tx = rect1.x - target.x;
   ty = rect1.y - target.y;
@@ -347,6 +418,8 @@ void SnakeGuy::moveRect2(vitaRect target)
   double pi, tx, ty, angle, xVel, yVel, distance;
   float rad;
 
+  if(!rect2Active && head == 2) head = newHead();
+
   pi = 3.14159;
   tx = rect2.x - target.x;
   ty = rect2.y - target.y;
@@ -372,6 +445,8 @@ void SnakeGuy::moveRect3(vitaRect target)
 {
   double pi, tx, ty, angle, xVel, yVel, distance;
   float rad;
+
+  if(!rect3Active && head == 3) head = newHead();
 
   pi = 3.14159;
   tx = rect3.x - target.x;
@@ -400,6 +475,8 @@ void SnakeGuy::moveRect4(vitaRect target)
   double pi, tx, ty, angle, xVel, yVel, distance;
   float rad;
 
+  if(!rect4Active && head == 4) head = newHead();
+
   pi = 3.14159;
   tx = rect4.x - target.x;
   ty = rect4.y - target.y;
@@ -425,6 +502,8 @@ void SnakeGuy::moveRect5(vitaRect target)
 {
   double pi, tx, ty, angle, xVel, yVel, distance;
   float rad;
+
+  if(!rect5Active && head == 5) head = newHead();
 
   pi = 3.14159;
   tx = rect5.x - target.x;
@@ -452,6 +531,8 @@ void SnakeGuy::moveRect6(vitaRect target)
   double pi, tx, ty, angle, xVel, yVel, distance;
   float rad;
 
+  if(!rect6Active && head == 6) head = newHead();
+
   pi = 3.14159;
   tx = rect6.x - target.x;
   ty = rect6.y - target.y;
@@ -478,6 +559,8 @@ void SnakeGuy::moveRect7(vitaRect target)
   double pi, tx, ty, angle, xVel, yVel, distance;
   float rad;
 
+  if(!rect7Active && head == 7) head = newHead();
+
   pi = 3.14159;
   tx = rect7.x - target.x;
   ty = rect7.y - target.y;
@@ -503,6 +586,8 @@ void SnakeGuy::moveRect8(vitaRect target)
 {
   double pi, tx, ty, angle, xVel, yVel, distance;
   float rad;
+
+  if(!rect8Active && head == 8) head = newHead();
 
   pi = 3.14159;
   tx = rect8.x - target.x;
@@ -585,10 +670,10 @@ int SnakeGuy::newHead()
       return 8;
       break;
     case 8:
-      return 1;
+      return 8;
       break;
     default:
-    return 1;
+    return 8;
   }
 }
 
@@ -598,96 +683,56 @@ bool SnakeGuy::takeDamage(vitaRect bullet, vitaRect target)
     case 1:
       if(checkCollision(bullet, rect1))
       {
-        rect1Active = false;
-        head = newHead();
-        if(!getActive())
-        {
-          die();
-        }
+        die();
         return true;
       }
       break;
     case 2:
       if(checkCollision(bullet, rect2))
       {
-        rect2Active = false;
-        head = newHead();
-        if(!getActive())
-        {
-          die();
-        }
+        die();
         return true;
       }
       break;
     case 3:
       if(checkCollision(bullet, rect3))
       {
-        rect3Active = false;
-        head = newHead();
-        if(!getActive())
-        {
-          die();
-        }
+        die();
         return true;
       }
       break;
     case 4:
       if(checkCollision(bullet, rect4))
       {
-        rect4Active = false;
-        head = newHead();
-        if(!getActive())
-        {
-          die();
-        }
+        die();
         return true;
       }
       break;
     case 5:
       if(checkCollision(bullet, rect5))
       {
-        rect5Active = false;
-        head = newHead();
-        if(!getActive())
-        {
-          die();
-        }
+        die();
         return true;
       }
       break;
     case 6:
       if(checkCollision(bullet, rect6))
       {
-        rect6Active = false;
-        head = newHead();
-        if(!getActive())
-        {
-          die();
-        }
+        die();
         return true;
       }
       break;
     case 7:
       if(checkCollision(bullet, rect7))
       {
-        rect7Active = false;
-        head = newHead();
-        if(!getActive())
-        {
-          die();
-        }
+        die();
         return true;
       }
       break;
     case 8:
       if(checkCollision(bullet, rect8))
       {
-        rect8Active = false;
-        head = newHead();
-        if(!getActive())
-        {
-          die();
-        }
+        die();
         return true;
       }
       break;
@@ -753,12 +798,16 @@ void SnakeGuy::doStuff(vitaRect target, bool pause, vitaRect levelRect)
     }
     move(realTarget);
   }
-  if(!getActive())
+  if(dying && getActive())
   {
     for(int i = 0; i < 15; i++)
     {
       particles[i].doStuff(rect1, RGBA8(snakeColorR,snakeColorG,snakeColorB,255), pause);
     }
+  }
+  if(!getParticlesActive() && dying)
+  {
+    die();
   }
   if(spawning)
   {

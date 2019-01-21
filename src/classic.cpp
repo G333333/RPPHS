@@ -2,7 +2,7 @@
 
 void Classic::init(double levelWidth, double levelHeight)
 {
-  god = false;
+  god = true;
 
   levelRect.x = -240;
   levelRect.y = -139;
@@ -69,9 +69,9 @@ void Classic::init(double levelWidth, double levelHeight)
     miniJeffs[i].init();
   }
 
-  snakeTotal = 10;
+  snakeTotal = 12;
   snakesAlive = 0;
-  snakeGuys.resize(10);
+  snakeGuys.resize(12);
   for(int i = 0; i < snakeTotal; i++)
   {
     snakeGuys[i].init();
@@ -90,6 +90,7 @@ void Classic::init(double levelWidth, double levelHeight)
   eventTimer = 0;
   garyEvent = false;
   jeffEvent = false;
+  snakeEvent = false;
 }
 
 void Classic::doStuff(bool keys[15],
@@ -279,13 +280,14 @@ void Classic::doStuff(bool keys[15],
       {
         eventTimer++;
       }
-      if(eventTimer >= 900)
+      if(eventTimer >= 600)
       {
         if(!garyEvent && !jeffEvent)
         {
-          int event = rand() % 10;
-          if(event < 5) garyEvent = true;
-          if(event >= 5) jeffEvent = true;
+          int event = rand() % 30;
+          if(event < 10) garyEvent = true;
+          if(event >= 10 && event < 20) jeffEvent = true;
+          if(event >= 20) snakeEvent = true;
         }
       }
     }
@@ -1020,7 +1022,7 @@ bool Classic::checkPlayer()
 
   for(int i = 0; i < snakeTotal; i++)
   {
-    if(snakeGuys[i].takeDamage(player.getRect(), player.getRect()))
+    if(snakeGuys[i].takeDamage(player.getRect(), player.getRect()) && snakeGuys[i].getActive())
     {
       return true;
     }
@@ -1211,7 +1213,7 @@ void Classic::spawnStuff()
       }
 
 
-      if(garyEvent || jeffEvent)
+      if(garyEvent || jeffEvent || snakeEvent)
       {
         karenCounter = 0;
         garyCounter = 0;
@@ -1242,8 +1244,13 @@ void Classic::spawnStuff()
           }
         }
       }
-      if(garyEvent && garysAlive == 0 && jeffsAlive < 5 && snakesAlive < 4)
+      if(garyEvent && garysAlive == 0 && jeffsAlive < 5)
       {
+        //kill all the snakes
+        for(int i = 0; i < snakeTotal; i++)
+        {
+          if(snakeGuys[i].getActive() || snakeGuys[i].getSpawning()) snakeGuys[i].die();
+        }
         garyTotal = 40;
         garys.resize(garyTotal);
         eventTimer = 0;
@@ -1292,8 +1299,13 @@ void Classic::spawnStuff()
         }
       }
 
-      if(jeffEvent && garysAlive < 5 && snakesAlive < 4)
+      if(jeffEvent && garysAlive < 5)
       {
+        //kill all the snakes
+        for(int i = 0; i < snakeTotal; i++)
+        {
+          if(snakeGuys[i].getActive() || snakeGuys[i].getSpawning()) snakeGuys[i].die();
+        }
         for(int i = 0; i < jeffTotal; i++)
         {
           jeffs[i].die();
@@ -1335,6 +1347,45 @@ void Classic::spawnStuff()
           snakeGuys[i].spawn(levelRect);
           snakeCounter--;
         }
+      }
+      
+      if(snakeEvent && snakesAlive > 0)
+      {
+        //kill all the snakes
+        for(int i = 0; i < snakeTotal; i++)
+        {
+          if(snakeGuys[i].getActive() || snakeGuys[i].getSpawning()) snakeGuys[i].die();
+        }
+      }
+      if(snakeEvent && snakesAlive == 0)
+      {
+        snakeEvent = false;
+        int tempx = player.getRect().x - 100;
+        int tempy = player.getRect().y - 100;
+
+        if(tempx < levelRect.x) tempx = levelRect.x + 20;
+        if(tempx > levelRect.x + levelRect.w - 200) tempx = levelRect.x + levelRect.w - 220;
+        if(tempy < levelRect.y) tempy = levelRect.y + 20;
+        if(tempy > levelRect.y + levelRect.h - 200) tempy = levelRect.y + levelRect.h - 220;
+
+        int oldTempx = tempx;
+
+        for(int i = 0; i < 4; i ++)
+        {
+          snakeGuys[i].spawn(levelRect, tempx, tempy);
+          snakeGuys[i + 4].spawn(levelRect, tempx + 216, tempy);
+          tempx += 66;
+        }
+
+        tempx = oldTempx;
+        tempy += 66;
+        for(int i = 8; i < 12; i++)
+        {
+          snakeGuys[i].spawn(levelRect, tempx, tempy);
+          snakeGuys[i + 2].spawn(levelRect, tempx, tempy + 50);
+          tempx += 216;
+        }
+        
       }
 
       spawnTime = 0;

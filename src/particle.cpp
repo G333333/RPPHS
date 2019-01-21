@@ -1,14 +1,14 @@
 #include"particle.h"
 
-void Particle::init()
+void Particle::init(int w, int h)
 {
   active = false;
   xVel = yVel = 0;
 
   rect.x = 0;
   rect.y = 0;
-  rect.w = 1;
-  rect.h = 1;
+  rect.w = w;
+  rect.h = w;
   angle = 0;
 
   tx = ty = 0;
@@ -60,8 +60,12 @@ void Particle::doStuff(vitaRect start, unsigned int color, bool pause)
       lifeSpan--;
     }
 
-    vita2d_draw_line(rect.x - 2, rect.y, rect.x + 2, rect.y, color);
-    vita2d_draw_line(rect.x, rect.y - 2, rect.x, rect.y + 2, color);
+    vita2d_draw_line(rect.x, rect.y + rect.h / 2, rect.x + rect.w, rect.y + rect.h / 2, color);
+    vita2d_draw_line(rect.x + rect.w / 2, rect.y, rect.x + rect.w / 2, rect.y + rect.h, color);
+
+    vita2d_draw_line(rect.x, rect.y, rect.x + rect.w, rect.y + rect.h, color);
+    vita2d_draw_line(rect.x + rect.w, rect.y, rect.x, rect.y + rect.h, color);
+    
 
     if(rect.x < 0 || rect.x + rect.w > 944 || rect.y < 0 || rect.y + rect.h > 544)//fix me!!
     {

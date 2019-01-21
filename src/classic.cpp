@@ -77,13 +77,13 @@ void Classic::init(double levelWidth, double levelHeight)
     snakeGuys[i].init();
   }
 
-  particleCount = 10;
+  particleCount = 100;
   bombReset = false;
   bombCount = 3;
   bombUpgrade = 80000;
   for(int i = 0; i < particleCount; i++)
   {
-    bombParticles[i].init();
+    bombParticles[i].init(10, 10);
   }
 
   //spawn events 

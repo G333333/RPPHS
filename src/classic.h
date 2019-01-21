@@ -53,7 +53,7 @@ private:
   int bulletTimer;
   bool playGunSound, playExp;
   int safeTime, spawnTime;
-  Particle bombParticles[10];
+  Particle bombParticles[100];
   int particleCount;
   bool bombReset;
   int bombCount;

@@ -22,7 +22,7 @@ private:
   int tx, ty;
   int lifeSpan;
 public:
-  void init();
+  void init(int w = 4, int h = 4);
   void spawn(vitaRect start, int tempSpeed, int tempLife);
   bool getActive();
   vitaRect getRect();

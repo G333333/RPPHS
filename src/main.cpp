@@ -7,7 +7,7 @@ extern unsigned char _binary_image_png_start;
 
 int main()
 {
-  vita2d_init();
+  vita2d_init_advanced((2 * 1024 * 1024));
   Game Game;
   Game.init();
   Game.loadFiles();

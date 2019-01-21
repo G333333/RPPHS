@@ -100,6 +100,10 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
   FILE images/theme/default/bullet.png images/theme/default/bullet.png
   FILE images/theme/default/cross.png images/theme/default/cross.png
   FILE images/theme/default/circle.png images/theme/default/circle.png
+  FILE images/theme/default/l1.png images/theme/default/l1.png
+  FILE images/theme/default/r1.png images/theme/default/r1.png
+  FILE images/theme/default/lStick.png images/theme/default/lStick.png
+  FILE images/theme/default/rStick.png images/theme/default/rStick.png
   FILE images/theme/default/triangle.png images/theme/default/triangle.png
   FILE images/theme/default/cursor-crosshair.png images/theme/default/cursor-crosshair.png
   FILE images/theme/default/cursor-duck.png images/theme/default/cursor-duck.png
@@ -119,6 +123,10 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
   FILE images/theme/grey/bullet.png images/theme/grey/bullet.png
   FILE images/theme/grey/cross.png images/theme/grey/cross.png
   FILE images/theme/grey/circle.png images/theme/grey/circle.png
+  FILE images/theme/grey/l1.png images/theme/grey/l1.png
+  FILE images/theme/grey/r1.png images/theme/grey/r1.png
+  FILE images/theme/grey/lStick.png images/theme/grey/lStick.png
+  FILE images/theme/grey/rStick.png images/theme/grey/rStick.png
   FILE images/theme/grey/triangle.png images/theme/grey/triangle.png
   FILE images/theme/grey/cursor-crosshair.png images/theme/grey/cursor-crosshair.png
   FILE images/theme/grey/cursor-duck.png images/theme/grey/cursor-duck.png

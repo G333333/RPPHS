@@ -22,6 +22,7 @@ private:
   bool moveUp, moveDown;
   bool quit;
   bool credits;
+  bool controls;
 public:
   void init();
   void start();
@@ -31,6 +32,7 @@ public:
   void setStatus(int status);
   bool getQuit();
   void showCredits();
+  void showControls();
 };
 
 

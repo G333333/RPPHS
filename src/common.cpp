@@ -52,6 +52,8 @@ void loadImages(std::string folder)
   vita2d_free_texture(bulletImage);
   vita2d_free_texture(crossImage);
   vita2d_free_texture(circleImage);
+  vita2d_free_texture(lTriggerImage);
+  vita2d_free_texture(rTriggerImage);
   vita2d_free_texture(triangleImage);
   vita2d_free_texture(cursorCrosshair);
   vita2d_free_texture(cursorDuck);
@@ -109,6 +111,26 @@ void loadImages(std::string folder)
   src += folder;
   src += "/circle.png";
   circleImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/l1.png";
+  lTriggerImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/r1.png";
+  rTriggerImage = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/lStick.png";
+  lStick = vita2d_load_PNG_file(src.c_str());
+
+  src = srcBase;
+  src += folder;
+  src += "/rStick.png";
+  rStick = vita2d_load_PNG_file(src.c_str());
 
   src = srcBase;
   src += folder;
@@ -308,6 +330,10 @@ vita2d_texture *playerImage;
 vita2d_texture *bulletImage;
 vita2d_texture *crossImage;
 vita2d_texture *circleImage;
+vita2d_texture *lTriggerImage;
+vita2d_texture *rTriggerImage;
+vita2d_texture *lStick;
+vita2d_texture *rStick;
 vita2d_texture *triangleImage;
 vita2d_texture *cursorCrosshair;
 vita2d_texture *cursorDuck;

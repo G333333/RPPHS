@@ -17,7 +17,7 @@ class Classic {
 private:
   bool god;
   int status;
-  int points, multiplyer, killCount, mpUpgrade, bulletUpgrade, bulletInterval, bulletSetting, lifeUpgrade;
+  int points, multiplyer, killCount, mpUpgrade, bulletLevel, bulletInterval, lifeUpgrade;
   vitaRect levelRect;
   bool quit;
   bool pause, startNeedsReset;

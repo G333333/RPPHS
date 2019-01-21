@@ -20,9 +20,8 @@ void Classic::init(double levelWidth, double levelHeight)
 
   lifeUpgrade = 60000;
 
-  bulletUpgrade = 10000;
+  bulletLevel = 1;
   bulletInterval = 3;
-  bulletSetting = 1;
 
   player.init();
   extraLives = 4;
@@ -169,8 +168,12 @@ void Classic::doStuff(bool keys[15],
       }
     }
     if(bulletTimer > bulletInterval)
-    {//pass rx, and ry(joystick coordinates) to the bullet as well as the player rect
+    {
+      //pass rx, and ry(joystick coordinates) to the bullet as well as the player rect
+      int trX = 20;
+      int trY = 20;
       playGunSound = true;
+
       bullets[bulletCounter].spawn(rx,ry,player.getRect());
       bulletCounter++; // Play the wave
       if(bulletCounter >= 49)
@@ -178,51 +181,36 @@ void Classic::doStuff(bool keys[15],
         bulletCounter = 0;
       }
 
-      if(bulletSetting == 2)
-      {
-        int tempx = rx;
-        int tempy = ry;
-        if(rx > 62.5 && rx < 186.5)
-        {
-          tempx = rx - 20;
-        }
-        else if(rx <= 62.5 || rx >= 187.5)
-        {
-          tempy = ry - 20;
-        }
-        bullets[bulletCounter].spawn(tempx, tempy, player.getRect());
-        bulletCounter++;
-        if(bulletCounter >= 49)
-        {
-          bulletCounter = 0;
-        }
+      if (bulletLevel != 1) {
+        for (int i = 1; i < bulletLevel; i++) {
+          int tempx = rx;
+          int tempy = ry;
+
+          if (rx > 62.5 && rx < 186.5) {
+            tempx = rx - trX;
+          } else if (rx <= 62.5 || rx >= 187.5) {
+            tempy = ry - trY;
+          }
+
+          bullets[bulletCounter].spawn(tempx, tempy, player.getRect());
+          bulletCounter++;
+
+          if(bulletCounter >= 49)
+          {
+            bulletCounter = 0;
+          }
+
+          trX += 20;
+          trY += 20;
+        } 
       }
       bulletTimer = 0;
     }
   }
 
-
-  //set the bullet interval, and weather it shoots two or one bullets.
-  if(points >= bulletUpgrade && points < 100000)
-  {
-    bulletSetting++;
-    bulletUpgrade += 10000;
-    if(bulletSetting > 2)
-    {
-      bulletSetting = 1;
-    }
-    if(bulletSetting == 1)
-    {
-      bulletInterval = 5;
-    }
-    else if(bulletSetting == 2)
-    {
-      bulletInterval = 6;
-    }
-  }
-  else if(points >= 100000)
-  {
-    bulletSetting = 2;
+  if (points >= bulletLevel * 100000) {
+    if (bulletLevel != 3) //3 is max
+      bulletLevel++;
   }
 
   if(points >= lifeUpgrade)

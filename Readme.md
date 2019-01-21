@@ -1,26 +1,25 @@
-<center>
-    <img src="readme_img/icon.png">
-    <h2><b>RPPHS</b></h2>
-    <h4>PS Vita Twin-Stick Shooter</h4>
-    <hr>
-    <p>
-        <a href="#screenshots">Screenshots</a> &bull; 
-        <a href="#description">Description</a> &bull; 
-        <a href="#installation">Installation</a> &bull;
-        <a href="#building">Building</a> &bull;
-        <a href="#theme-tutorial">Theme Tutorial</a> &bull;
-        <a href="#credits">Credits</a>
-    </p>
-</center>
+<p align="center"><img src="readme_img/icon.png" width="150"></p> 
+<h2 align="center"><b>RPPHS</b></h2>
+<h4 align="center">PS Vita Twin-Stick Shooter</h4>
+<hr>
+<p align="center">
+    <a href="#screenshots">Screenshots</a> &bull; 
+    <a href="#description">Description</a> &bull; 
+    <a href="#installation">Installation</a> &bull;
+    <a href="#building">Building</a> &bull;
+    <a href="#theme-tutorial">Theme Tutorial</a> &bull;
+    <a href="#credits">Credits</a>
+</p>
 
 
 ## Screenshots
-<center>
-    <img src="readme_img/screen2.jpg?raw=true" width=200>
-    <img src="readme_img/screen.jpg?raw=true" width=200>
-    <img src="readme_img/screen1.jpg?raw=true" width=200>
-    <img src="readme_img/screen3.jpg?raw=true" width=200>
-</center>
+Main Menu                    |  Credits
+:---------------------------:|:---------------------------:
+![](readme_img/screen2.jpg)  | ![](readme_img/screen3.jpg)
+
+In-Game                      |  High Score Menu
+:---------------------------:|:---------------------------:
+![](readme_img/screen.jpg)   | ![](readme_img/screen1.jpg)
 
 ## Description
 Blast your way through those shapes in this Geometry Wars-inspired twin stick shooter for the PlayStation Vita! Enter your initials for the offline leaderboards, customize your crosshair, and mess with our super-cool settings menu.. or don't, that's entirely up to you.

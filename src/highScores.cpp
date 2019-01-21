@@ -94,10 +94,10 @@ void HighScores::doStuff(bool keys[15], int batteryPercent, bool showBattery, in
   if(barFade >= 255)
     barFade = 0;
 
-  vita2d_font_draw_text(font, menuRect.x + menuRect.w - vita2d_font_text_width(font, 20.0f, "Return") - 40, menuRect.y + menuRect.h - 20, RGBA8(helpTextR,helpTextG, helpTextB, 255), 20.0f,"Return");
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w - vita2d_font_text_width(font, 20.0f, "Return") - 45, menuRect.y + menuRect.h - 16, RGBA8(helpTextR,helpTextG, helpTextB, 255), 20.0f,"Return");
   vita2d_draw_texture_scale(circleImage, menuRect.x + menuRect.w - 40,  menuRect.y + menuRect.h - 40, 1,1);
-  vita2d_draw_texture_scale(crossImage,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
-  vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 20, RGBA8(helpTextR,helpTextG,helpTextB, 255), 20.0f, "Play Game");
+  vita2d_draw_texture_scale(crossImage,menuRect.x + 8, menuRect.y + menuRect.h - 40, 1,1);
+  vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 16, RGBA8(helpTextR,helpTextG,helpTextB, 255), 20.0f, "Play Game");
   if(menuRect.y < target)
   {
     menuRect.y += 10;

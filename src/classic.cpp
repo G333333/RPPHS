@@ -957,25 +957,28 @@ bool Classic::getPlayExp()
 
 void Classic::pauseMenu()
 {
-  vita2d_draw_rectangle(240, 136, 480, 272, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));
-  drawEmptyRect(240, 136, 480, 272, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
+  std::string scoreStr;
+  scoreStr = "Current Score: ";
+  scoreStr += std::to_string(points);
+  vita2d_draw_rectangle(240, 136, 480, 172, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 240));
+  drawEmptyRect(240, 136, 480, 172, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
 
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "PAUSED") / 2, 544 / 2, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "PAUSED");
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "PAUSED") / 2, 544 / 2 - 10 - 100, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "PAUSED");
 
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "Current Score:") / 2, 544 / 2 + 20, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "Current Score:");
+  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, scoreStr.c_str()) / 2, 544 / 2 + 50 - 100, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, scoreStr.c_str());
 
-  vita2d_font_draw_textf(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, std::to_string(points).c_str()) / 2, 544 / 2 + 40, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "%d", points);
+  //vita2d_font_draw_textf(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, std::to_string(points).c_str()) / 2, 544 / 2 + 40, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "%d", points);
 
   int tempWidth = vita2d_texture_get_width(circleImage); //get the width and height to draw in correct place.
   int tempHeight = vita2d_texture_get_height(circleImage); //both images are the same size. //used for text too
 
   //uh.. x = half the screen - 1/4 of the screen = edge of pause menu. draw image here. draw text to right of image.
   //y = half the screen plus 1/4 of screen = bottom edge of pause menu. draw image here. draw text here - image width - text tempWidth
-  vita2d_font_draw_text(font, 960 / 2 - 960 / 4 + tempWidth + 10, 544 / 2 + 544 / 4 - 10, RGBA8(helpTextR,helpTextG,helpTextB,255), 20.0f, "Continue");
-  vita2d_font_draw_text(font, 960 / 2 + 960 / 4 - vita2d_font_text_width(font, 20.0f, "Main Menu") - tempWidth - 10, 544 / 2 + 544 / 4 - 10, RGBA8(helpTextR,helpTextG,helpTextB,255), 20.0f, "Main Menu");
+  vita2d_font_draw_text(font, 960 / 2 - 960 / 4 + tempWidth + 10, 544 / 2 + 544 / 4 - 12 - 100, RGBA8(helpTextR,helpTextG,helpTextB,255), 20.0f, "Continue");
+  vita2d_font_draw_text(font, 960 / 2 + 960 / 4 - vita2d_font_text_width(font, 20.0f, "Main Menu") - tempWidth - 15, 544 / 2 + 544 / 4 - 12 - 100, RGBA8(helpTextR,helpTextG,helpTextB,255), 20.0f, "Main Menu");
 
-  vita2d_draw_texture_scale(circleImage, 960 / 2 - 960 / 4 + 10, 544 / 2 + 544 / 4 - tempHeight, 1, 1);
-  vita2d_draw_texture_scale(triangleImage, 960 / 2 + 960 / 4 - tempWidth - 10, 544 / 2 + 544 / 4 - tempHeight, 1, 1);
+  vita2d_draw_texture_scale(circleImage, 960 / 2 - 960 / 4 + 5, 544 / 2 + 544 / 4 - tempHeight - 5 - 100, 1, 1);
+  vita2d_draw_texture_scale(triangleImage, 960 / 2 + 960 / 4 - tempWidth - 7, 544 / 2 + 544 / 4 - tempHeight - 5 - 100, 1, 1);
 
 }
 

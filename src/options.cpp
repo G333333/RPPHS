@@ -331,9 +331,12 @@ void Options::doStuff(bool keys[15], int batteryPercent)
   }
 
   vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 380, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Theme");
-  
-  tempWidth = vita2d_font_text_width(font, 20.0f, themes[theme].c_str());
-  vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, themes[theme].c_str());
+ 
+  std::string tempString = "< ";
+  tempString += themes[theme];
+  tempString += " >";
+  tempWidth = vita2d_font_text_width(font, 20.0f, tempString.c_str());
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, tempString.c_str());
   
   vita2d_draw_texture_scale(circleImage ,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
   vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 17, RGBA8(helpTextR,helpTextG, helpTextB, 255), 20.0f, "Return");
@@ -744,8 +747,13 @@ void Options::menuPartial()
     }
   }
 
-  tempWidth = vita2d_font_text_width(font, 20.0f, themes[theme].c_str());
-  vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, themes[theme].c_str());
+  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 380, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Theme");
+
+  std::string tempString = "< ";
+  tempString += themes[theme];
+  tempString += " >";
+  tempWidth = vita2d_font_text_width(font, 20.0f, tempString.c_str());
+  vita2d_font_draw_text(font, menuRect.x + menuRect.w - tempWidth - 5, menuRect.y + 380, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, tempString.c_str());
   
   vita2d_draw_texture_scale(circleImage ,menuRect.x + 10, menuRect.y + menuRect.h - 40, 1,1);
   vita2d_font_draw_text(font, menuRect.x + 45, menuRect.y + menuRect.h - 17, RGBA8(helpTextR,helpTextG, helpTextB, 255), 20.0f, "Return");

@@ -170,40 +170,57 @@ void Classic::doStuff(bool keys[15],
     }
     if(bulletTimer > bulletInterval)
     {
-      //pass rx, and ry(joystick coordinates) to the bullet as well as the player rect
-      int trX = 20;
-      int trY = 20;
       playGunSound = true;
 
-      bullets[bulletCounter].spawn(rx,ry,player.getRect());
+      
+      double rad1, rad2, rad3;
+      double pi = 3.14159;
+      double tx, ty;
+      tx = 125 - rx;
+      ty = 130 - ry;
+
+      rad1 = atan2(-ty, -tx);//radians for image rotation.
+      if(bulletLevel == 2)
+      {
+        rad2 = rad1 + 0.0349066;
+        rad1 = rad1 - 0.0349066;
+        if(rad1 < 0) rad1 += (2 * pi);
+      }
+      if(bulletLevel == 3) 
+      {
+        rad2 = rad1 + 0.0349066;
+        rad3 = rad1 - 0.0349066;
+        if(rad3 < 0) rad3 += (2 * pi);
+      }
+
+      bullets[bulletCounter].spawn(rad1,player.getRect());
       bulletCounter++; // Play the wave
+      
       if(bulletCounter >= 49)
       {
         bulletCounter = 0;
       }
 
-      if (bulletLevel != 1) {
-        for (int i = 1; i < bulletLevel; i++) {
-          int tempx = rx;
-          int tempy = ry;
+      if(bulletLevel >= 2) 
+      {
+        bullets[bulletCounter].spawn(rad2,player.getRect());
+        bulletCounter++;
+      }
+      
+      if(bulletCounter >= 49)
+      {
+        bulletCounter = 0;
+      }
 
-          if (rx > 62.5 && rx < 186.5) {
-            tempx = rx - trX;
-          } else if (rx <= 62.5 || rx >= 187.5) {
-            tempy = ry - trY;
-          }
+      if(bulletLevel >= 3) 
+      {
+        bullets[bulletCounter].spawn(rad3,player.getRect());
+        bulletCounter++;
+      }
 
-          bullets[bulletCounter].spawn(tempx, tempy, player.getRect());
-          bulletCounter++;
-
-          if(bulletCounter >= 49)
-          {
-            bulletCounter = 0;
-          }
-
-          trX += 20;
-          trY += 20;
-        } 
+      if(bulletCounter >= 49)
+      {
+        bulletCounter = 0;
       }
       bulletTimer = 0;
     }
@@ -391,6 +408,7 @@ void Classic::checkGarys()
         bullets[x].die();
         garys[i].die();
         points += 14 * multiplyer;
+        if(god) points += 100 * multiplyer;
         killCount++;
         playExp = true;
         if(killCount >= mpUpgrade)
@@ -464,6 +482,7 @@ void Classic::checkKarens()
         bullets[x].die();
         karens[i].die();
         points += 12 * multiplyer;
+        if(god) points += 100 * multiplyer;
         killCount++;
         playExp = true;
         if(killCount >= mpUpgrade)
@@ -537,6 +556,7 @@ void Classic::checkJeffs()
         bullets[x].die();
         jeffs[i].die();
         points += 16 * multiplyer;
+        if(god) points += 100 * multiplyer;
         killCount++;
         playExp = true;
         if(killCount >= mpUpgrade)
@@ -632,6 +652,7 @@ void Classic::checkMiniJeffs()
         bullets[x].die();
         miniJeffs[i].die();
         points += 24 * multiplyer;
+        if(god) points += 100 * multiplyer;
         killCount++;
         playExp = true;
         if(killCount >= mpUpgrade)
@@ -663,6 +684,7 @@ void Classic::checkSnakeGuys()
           {
             bullets[x].die();
             points += 32 * multiplyer;
+            if(god) points += 100 * multiplyer;
             killCount++;
             playExp = true;
             if(killCount >= mpUpgrade)

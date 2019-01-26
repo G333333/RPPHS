@@ -16,7 +16,7 @@ private:
   Particle particles[1];
 public:
   void init();
-  void spawn(double rx, double ry, vitaRect start);
+  void spawn(double angle, vitaRect start);
   bool getActive();
   void die();
   vitaRect getRect();

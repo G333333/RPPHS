@@ -74,6 +74,7 @@ target_link_libraries(${SHORT_NAME}.elf
   SceDisplay_stub
   SceLibKernel_stub
   SceSysmodule_stub
+  SceSysmem_stub
   ScePower_stub
   SceCommonDialog_stub
   SceRegistryMgr_stub

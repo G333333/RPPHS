@@ -18,20 +18,14 @@ void Bullet::init()
   }
 }
 
-void Bullet::spawn(double rx, double ry, vitaRect start)
+void Bullet::spawn(double angle, vitaRect start)
 {
-  double pi = 3.14159;
-  double tx, ty;
-  tx = 125 - rx;
-  ty = 130 - ry;
-
   rect.x = start.x + start.w / 2;
   rect.y = start.y + start.h / 4;
+  this->rad = angle;
 
-  angle = atan2(-ty, -tx) * 180 / pi;//angle for movement.
-  rad = atan2(-ty, -tx);//radians for image rotation.
-  xVel = 10*(cos(angle*pi/180));   // move x
-  yVel = 10*(sin(angle*pi/180));   // move y
+  xVel = 10*(cos(rad));   // move x wtf mate......
+  yVel = 10*(sin(rad));   // move y
 
   active = true;
 }

@@ -47,46 +47,9 @@ void SaveScreen::start(int points)
   finalInput = "";
 }
 
-void SaveScreen::doStuff(bool keys[15], int batteryPercent, bool showBattery)
+void SaveScreen::doStuff(bool keys[15], bool showBattery)
 {
   vita2d_draw_texture_scale(gameBackground, 0, 0, 2, 2);
-
- //battery stuff
-  if(batteryPercent > 50)
-  {
-    r = 0;
-    g = 255;
-    b = 0;
-  }
-  else if(batteryPercent > 25 && batteryPercent <= 50)
-  {
-    r = 244;
-    g = 244;
-    b = 0;
-  }
-
-  else if(batteryPercent <= 25)
-  {
-    r = 255;
-    g = 0;
-    b = 0;
-  }
-  vitaRect batteryTip;
-  batteryTip.x = battery.x + battery.w;
-  batteryTip.y = battery.y + battery.h / 4;
-  batteryTip.w = 3;
-  batteryTip.h = battery.h / 2;
-
-  if(showBattery)
-  {
-    for(int i = 0; i < batteryPercent / 2; i++)
-    {
-      vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
-    }
-    //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 20.0f, "%d%%", batteryPercent);
-    drawEmptyRect(battery, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
-    vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
-  }
 
   drawEmptyRect(960 / 2 - 960 / 4, 544 / 2 - 544 / 4 , 960 / 2, 544 / 2, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
   vita2d_draw_rectangle(960 / 2 - 960 / 4 + 1, 544 / 2 - 522 / 4 + 1, 960 / 2 - 1, 544 / 2 - 1, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 100));

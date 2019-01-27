@@ -9,12 +9,6 @@ void Options::init()
   menuRect.w = 255;
   menuRect.h = 500;
 
-  battery.x = 856;
-  battery.y = 40;
-  battery.w = 52;
-  battery.h = 15;
-  r = b = g = 0;
-
   target = -255;
   barFade = 0 - menuRect.w;
   fade = 0;
@@ -64,7 +58,7 @@ void Options::start()
   circleNeedsReset = true;
 }
 
-void Options::doStuff(bool keys[15], int batteryPercent)
+void Options::doStuff(bool keys[15])
 {
   //make sure things don't go out of bounds. like deadZone
   if(cursorSetting < 1)
@@ -104,44 +98,6 @@ void Options::doStuff(bool keys[15], int batteryPercent)
   }
 
   vita2d_draw_texture_scale(gameBackground, 0, 0, 2, 2);
-
- //battery stuff
-  if(batteryPercent > 50)
-  {
-    r = 0;
-    g = 255;
-    b = 0;
-  }
-  else if(batteryPercent > 25 && batteryPercent <= 50)
-  {
-    r = 244;
-    g = 244;
-    b = 0;
-  }
-
-  else if(batteryPercent <= 25)
-  {
-    r = 255;
-    g = 0;
-    b = 0;
-  }
-
-  vitaRect batteryTip;
-  batteryTip.x = battery.x + battery.w;
-  batteryTip.y = battery.y + battery.h / 4;
-  batteryTip.w = 3;
-  batteryTip.h = battery.h / 2;
-
-  if(showBattery)
-  {
-    for(int i = 0; i < batteryPercent / 2; i++)
-    {
-      vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
-    }
-    //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 20.0f, "%d%%", batteryPercent);
-    drawEmptyRect(battery, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
-    vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
-  }
 
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
   drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));

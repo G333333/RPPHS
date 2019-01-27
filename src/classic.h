@@ -71,7 +71,6 @@ public:
               double ly,
               double rx,
               double ry,
-              int batteryPercent,
               bool showFps,
               bool showCursor,
               bool showBattery,
@@ -90,7 +89,7 @@ public:
   void checkSnakeGuys();
   void checkMap();
 
-  void drawHud(int batteryPercent, bool showBattery, bool showFps);
+  void drawHud(bool showBattery, bool showFps);
   void drawCursor(double rx, double ry, bool showCursor, int cursorSetting);
 
   bool playGun();

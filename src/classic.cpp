@@ -98,7 +98,6 @@ void Classic::doStuff(bool keys[15],
                       double ly,
                       double rx,
                       double ry,
-                      int batteryPercent,
                       bool showFps,
                       bool showCursor,
                       bool showBattery,
@@ -332,7 +331,7 @@ void Classic::doStuff(bool keys[15],
   drawEmptyRect(levelRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,255));
   checkMap();
 
-  drawHud(batteryPercent, showBattery, showFps);
+  drawHud(showBattery, showFps);
 
   if(pause)
   {
@@ -848,7 +847,7 @@ void Classic::checkMap()
   }
 }
 
-void Classic::drawHud(int batteryPercent, bool showBattery, bool showFps)
+void Classic::drawHud(bool showBattery, bool showFps)
 {
   //draw left hud background
   int fade = 150;
@@ -873,53 +872,6 @@ void Classic::drawHud(int batteryPercent, bool showBattery, bool showFps)
       }
     }
   }
-
-  //battery stuff
-  int r,g,b;
-
-  vitaRect battery;
-  battery.x = 856;
-  battery.y = 50;
-  battery.w = 52;
-  battery.h = 15;
-
-  vitaRect batteryTip;
-  batteryTip.x = battery.x + battery.w;
-  batteryTip.y = battery.y + battery.h / 4;
-  batteryTip.w = 3;
-  batteryTip.h = battery.h / 2;
-
-  //battery stuff
-   if(batteryPercent > 50)
-   {
-     r = 0;
-     g = 255;
-     b = 0;
-   }
-   else if(batteryPercent > 25 && batteryPercent <= 50)
-   {
-     r = 244;
-     g = 244;
-     b = 0;
-   }
-
-   else if(batteryPercent <= 25)
-   {
-     r = 255;
-     g = 0;
-     b = 0;
-   }
-   if(showBattery)
-   {
-     for(int i = 0; i < batteryPercent / 2; i++)
-     {
-       vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
-     }
-     //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 20.0f, "%d%%", batteryPercent);
-     drawEmptyRect(battery, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
-     vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
-   }
-   //end battery stuff
 
    //draw points and multiplyer
    vita2d_font_draw_textf(font, 15, 30, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "P:%d", points);

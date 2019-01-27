@@ -59,6 +59,9 @@ void Game::loadFiles()
   loadSettings();
 
   loadThemes();
+
+  charge = vita2d_load_PNG_file("app0:/images/charge.png");
+
   loadImages("default");
 
   gWave.load("app0:/sounds/blaster.wav"); // Load a wave
@@ -426,7 +429,7 @@ void Game::doGame()
 
     switch (status) {
       case 1:
-        menu.doStuff(keys, scePowerGetBatteryLifePercent(), showBattery);
+        menu.doStuff(keys, showBattery);
         status = menu.getStatus();
         quitGame = menu.getQuit();
         classic.setStatus(status);
@@ -456,7 +459,6 @@ void Game::doGame()
         pad.ly,
         pad.rx,
         pad.ry,
-        scePowerGetBatteryLifePercent(),
         showFps,
         showCursor,
         showBattery,
@@ -494,7 +496,7 @@ void Game::doGame()
         }
         break;
       case 3:
-        options.doStuff(keys, scePowerGetBatteryLifePercent());
+        options.doStuff(keys);
         status = options.getStatus();
         quitGame = options.getQuit();
         classic.setStatus(status);
@@ -520,7 +522,7 @@ void Game::doGame()
         }
         break;
       case 4:
-        saveScreen.doStuff(keys, scePowerGetBatteryLifePercent(), showBattery);
+        saveScreen.doStuff(keys, showBattery);
         status = saveScreen.getStatus();
         classic.setStatus(status);
         options.setStatus(status);
@@ -535,7 +537,7 @@ void Game::doGame()
         }
         break;
       case 5:
-        highScores.doStuff(keys, scePowerGetBatteryLifePercent(), showBattery, scores_int, scores_str, classic.getPoints());
+        highScores.doStuff(keys, showBattery, scores_int, scores_str, classic.getPoints());
         status = highScores.getStatus();
         classic.setStatus(status);
         options.setStatus(status);
@@ -583,6 +585,58 @@ void Game::doGame()
       vita2d_font_draw_textf(font, 856, 30, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "FPS:%d", fpsCounter.getFps());
     }
 
+    //battery stuff
+    int r,g,b;
+
+    vitaRect battery;
+    battery.x = 856;
+    battery.y = 50;
+    battery.w = 52;
+    battery.h = 15;
+
+    vitaRect batteryTip;
+    batteryTip.x = battery.x + battery.w;
+    batteryTip.y = battery.y + battery.h / 4;
+    batteryTip.w = 3;
+    batteryTip.h = battery.h / 2;
+
+    int batteryPercent = scePowerGetBatteryLifePercent();
+
+    //battery stuff
+    if(batteryPercent > 50)
+    {
+      r = 0;
+      g = 255;
+      b = 0;
+    }
+    else if(batteryPercent > 25 && batteryPercent <= 50)
+    {
+      r = 244;
+      g = 244;
+      b = 0;
+    }
+
+    else if(batteryPercent <= 25)
+    {
+      r = 255;
+      g = 0;
+      b = 0;
+    }
+    if(showBattery)
+    {
+      for(int i = 0; i < batteryPercent / 2; i++)
+      {
+        vita2d_draw_line(battery.x + i + 1, battery.y, battery.x + i + 1, battery.y + battery.h, RGBA8(r,g,b,255));
+      }
+      //vita2d_font_draw_textf(font, battery.x + battery.w / 2 - 20, battery.y + battery.h / 2 + 10, RGBA8(0,0,255,255), 20.0f, "%d%%", batteryPercent);
+      drawEmptyRect(battery, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
+      vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
+      if(scePowerIsBatteryCharging())
+      {
+        vita2d_draw_texture(charge,battery.x + battery.w / 2 - 3, battery.y);
+      }
+    }
+
     if(changeTheme)
     {
       //if(theme == 0) loadFiles(); //default theme
@@ -626,6 +680,7 @@ void Game::quit()
   vita2d_free_texture(cursor2);
   vita2d_free_font(font);
   vita2d_free_texture(saveImage);
+  vita2d_free_texture(charge);
 
   saveIcon.cleanUp();
 

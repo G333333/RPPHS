@@ -26,7 +26,7 @@ private:
 public:
   void init();
   void start();
-  void doStuff(bool keys[15], int batteryPercent, bool showBattery);
+  void doStuff(bool keys[15], bool showBattery);
   void menuPartial();
   int getStatus();
   void setStatus(int status);

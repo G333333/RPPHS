@@ -23,7 +23,7 @@ private:
 public:
   void init(int points);
   void start(int points);
-  void doStuff(bool keys[15], int batteryPercent, bool showBattery);
+  void doStuff(bool keys[15], bool showBattery);
   int getStatus();
   void setStatus(int status);
   bool getQuit();

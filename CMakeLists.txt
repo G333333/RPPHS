@@ -138,6 +138,29 @@ vita_create_vpk(${SHORT_NAME}.vpk ${VITA_TITLEID} ${SHORT_NAME}.self
   FILE images/theme/grey/snakeImage1.png images/theme/grey/snakeImage1.png
   FILE images/theme/grey/snakeImage2.png images/theme/grey/snakeImage2.png
   FILE images/theme/grey/config.txt images/theme/grey/config.txt
+
+  FILE images/theme/madBlock/gary.png images/theme/madBlock/gary.png
+  FILE images/theme/madBlock/karen.png images/theme/madBlock/karen.png
+  FILE images/theme/madBlock/jeff.png images/theme/madBlock/jeff.png
+  FILE images/theme/madBlock/player.png images/theme/madBlock/player.png
+  FILE images/theme/madBlock/Grid3.png images/theme/madBlock/Grid3.png
+  FILE images/theme/madBlock/bullet.png images/theme/madBlock/bullet.png
+  FILE images/theme/madBlock/cross.png images/theme/madBlock/cross.png
+  FILE images/theme/madBlock/circle.png images/theme/madBlock/circle.png
+  FILE images/theme/madBlock/l1.png images/theme/madBlock/l1.png
+  FILE images/theme/madBlock/r1.png images/theme/madBlock/r1.png
+  FILE images/theme/madBlock/lStick.png images/theme/madBlock/lStick.png
+  FILE images/theme/madBlock/rStick.png images/theme/madBlock/rStick.png
+  FILE images/theme/madBlock/triangle.png images/theme/madBlock/triangle.png
+  FILE images/theme/madBlock/cursor-crosshair.png images/theme/madBlock/cursor-crosshair.png
+  FILE images/theme/madBlock/cursor-duck.png images/theme/madBlock/cursor-duck.png
+  FILE images/theme/madBlock/cursor-watcher.png images/theme/madBlock/cursor-watcher.png
+  FILE images/theme/madBlock/cursor1.png images/theme/madBlock/cursor1.png
+  FILE images/theme/madBlock/cursor2.png images/theme/madBlock/cursor2.png
+  FILE images/theme/madBlock/saveImage.png images/theme/madBlock/saveImage.png
+  FILE images/theme/madBlock/snakeImage1.png images/theme/madBlock/snakeImage1.png
+  FILE images/theme/madBlock/snakeImage2.png images/theme/madBlock/snakeImage2.png
+  FILE images/theme/madBlock/config.txt images/theme/madBlock/config.txt
   
   FILE images/motoSplash.png images/motoSplash.png
   FILE images/g33Splash.png images/g33splash.png

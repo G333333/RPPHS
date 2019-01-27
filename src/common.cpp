@@ -21,6 +21,7 @@ void loadThemes()
         tempFile.open("ux0:/data/RPPHS/themes.txt");
         tempFile << "default\n";
         tempFile << "grey\n";
+        tempFile << "madBlock\n";
         tempFile.close();
     }
     themeFile.open("ux0:/data/RPPHS/themes.txt");
@@ -63,7 +64,7 @@ void loadImages(std::string folder)
 
   std::string srcBase;
 
-  if(folder == "default" || folder == "grey")
+  if(folder == "default" || folder == "grey" || folder == "madBlock")
   {
     srcBase = "app0:/images/theme/";
   }
@@ -219,7 +220,7 @@ void loadThemeConfig(std::string folder)
     
     std::string src;
 
-    if(folder == "default" || folder == "grey")
+    if(folder == "default" || folder == "grey" || folder == "madBlock")
     {
       src = "app0:/images/theme/";
     }

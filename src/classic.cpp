@@ -956,13 +956,13 @@ void Classic::drawCursor(double rx, double ry, bool showCursor, int cursorSettin
           vita2d_draw_texture_rotate(cursorDuck, xpos, ypos, 0);
           break;
         case 3:
-          vita2d_draw_texture_rotate(cursorWatcher, xpos, ypos, rad + 1.5708);
+          vita2d_draw_texture_rotate(cursorWatcher, xpos, ypos, rad);
           break;
         case 4:
           vita2d_draw_texture_rotate(cursor1, xpos, ypos, 0);
           break;
         case 5:
-          vita2d_draw_texture_rotate(cursor2, xpos, ypos, rad + 1.5708);
+          vita2d_draw_texture_rotate(cursor2, xpos, ypos, rad);
           break;
       }
     }

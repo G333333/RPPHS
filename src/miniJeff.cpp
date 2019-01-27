@@ -28,7 +28,7 @@ void MiniJeff::spawn(vitaRect start, double angle)
 
   //angle = atan2(-ty, -tx) * 180 / pi;// kept for reference
   this->angle = angle;
-  rad = angle * (pi / 180)  + 1.5708;
+  rad = angle * (pi / 180);
   //rad = atan2(-ty, -tx);//radians for image rotation. kept for reference
   xVel = 6*(cos(angle*pi/180));   // move x
   yVel = 6*(sin(angle*pi/180));   // move y
@@ -91,7 +91,7 @@ void MiniJeff::doStuff(bool pause, vitaRect levelRect)
       }
       xVel = 6*(cos(angle*pi/180));   // move x
       yVel = 6*(sin(angle*pi/180));   // move y
-      rad = angle * (pi / 180)  + 1.5708;
+      rad = angle * (pi / 180);
     }
 
     if(rect.x + rect.w > levelRect.x + levelRect.w) //right wall hit
@@ -122,7 +122,7 @@ void MiniJeff::doStuff(bool pause, vitaRect levelRect)
       }
       xVel = 6*(cos(angle*pi/180));   // move x
       yVel = 6*(sin(angle*pi/180));   // move y
-      rad = angle * (pi / 180)  + 1.5708;
+      rad = angle * (pi / 180);
     }
 
     if(rect.y < levelRect.y) //top wall hit
@@ -153,7 +153,7 @@ void MiniJeff::doStuff(bool pause, vitaRect levelRect)
       }
       xVel = 6*(cos(angle*pi/180));   // move x
       yVel = 6*(sin(angle*pi/180));   // move y
-      rad = angle * (pi / 180)  + 1.5708;
+      rad = angle * (pi / 180);
     }
 
     if(rect.y + rect.h > levelRect.y + levelRect.h) //bottom wall hit
@@ -185,7 +185,7 @@ void MiniJeff::doStuff(bool pause, vitaRect levelRect)
       }
       xVel = 6*(cos(angle*pi/180));   // move x
       yVel = 6*(sin(angle*pi/180));   // move y
-      rad = angle * (pi / 180)  + 1.5708;
+      rad = angle * (pi / 180);
     }
 
     vita2d_draw_texture_scale_rotate(jeffImage, rect.x + 4, rect.y + 4, 0.7, 0.7, rad);

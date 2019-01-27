@@ -260,7 +260,7 @@ void Jeff::doStuff(vitaRect levelRect, vitaRect playerRect, bool pause)
       counter = 60;
     }
 
-    vita2d_draw_texture_rotate(jeffImage, rect.x + 16, rect.y + 16, rad + 1.5708);
+    vita2d_draw_texture_rotate(jeffImage, rect.x + 16, rect.y + 16, rad);
     vita2d_draw_fill_circle(rect.x + rect.w / 2, rect.y + rect.h / 2, 32, RGBA8(jeffColorR,jeffColorG,jeffColorB, 25));
     //drawEmptyRect(bigRect, RGBA8(0,255,0,255));
   }

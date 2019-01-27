@@ -70,7 +70,7 @@ void Player::doStuff(double lx, double ly, int deadZone, vitaRect levelRect, boo
       rect.y = levelRect.y + levelRect.h - rect.h;
     }
 
-    vita2d_draw_texture_rotate(playerImage, rect.x + 12, rect.y + 12, rad + 1.5708);
+    vita2d_draw_texture_rotate(playerImage, rect.x + 12, rect.y + 12, rad);
     //drawEmptyRect(rect, RGBA8(0,255,0,255));
   }
 }

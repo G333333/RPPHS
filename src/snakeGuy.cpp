@@ -430,7 +430,7 @@ void SnakeGuy::moveRect2(vitaRect target)
   yVel = 2*(sin(angle*pi/180));   // move y
   distance = sqrt(tx * tx + ty * ty);
 
-  if(!pause && distance > 20.0)
+  if(!pause && distance > 15.0)
   {
     rect2.x += xVel;
     rect2.y += yVel;
@@ -458,7 +458,7 @@ void SnakeGuy::moveRect3(vitaRect target)
   yVel = 2*(sin(angle*pi/180));   // move y
   distance = sqrt(tx * tx + ty * ty);
 
-  if(!pause && distance > 20.0)
+  if(!pause && distance > 15.0)
   {
     rect3.x += xVel;
     rect3.y += yVel;
@@ -487,7 +487,7 @@ void SnakeGuy::moveRect4(vitaRect target)
   yVel = 2*(sin(angle*pi/180));   // move y
   distance = sqrt(tx * tx + ty * ty);
 
-  if(!pause && distance > 20.0)
+  if(!pause && distance > 15.0)
   {
     rect4.x += xVel;
     rect4.y += yVel;
@@ -515,7 +515,7 @@ void SnakeGuy::moveRect5(vitaRect target)
   yVel = 2*(sin(angle*pi/180));   // move y
   distance = sqrt(tx * tx + ty * ty);
 
-  if(!pause && distance > 20.0)
+  if(!pause && distance > 15.0)
   {
     rect5.x += xVel;
     rect5.y += yVel;
@@ -543,7 +543,7 @@ void SnakeGuy::moveRect6(vitaRect target)
   yVel = 2*(sin(angle*pi/180));   // move y
   distance = sqrt(tx * tx + ty * ty);
 
-  if(!pause && distance > 20.0)
+  if(!pause && distance > 15.0)
   {
     rect6.x += xVel;
     rect6.y += yVel;
@@ -571,7 +571,7 @@ void SnakeGuy::moveRect7(vitaRect target)
   yVel = 2*(sin(angle*pi/180));   // move y
   distance = sqrt(tx * tx + ty * ty);
 
-  if(!pause && distance > 20.0)
+  if(!pause && distance > 15.0)
   {
     rect7.x += xVel;
     rect7.y += yVel;
@@ -599,7 +599,7 @@ void SnakeGuy::moveRect8(vitaRect target)
   yVel = 2*(sin(angle*pi/180));   // move y
   distance = sqrt(tx * tx + ty * ty);
 
-  if(!pause && distance > 20.0)
+  if(!pause && distance > 15.0)
   {
     rect8.x += xVel;
     rect8.y += yVel;

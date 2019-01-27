@@ -2,7 +2,7 @@
 
 void Classic::init(double levelWidth, double levelHeight)
 {
-  god = true;
+  god = false;
 
   levelRect.x = -240;
   levelRect.y = -139;
@@ -69,9 +69,9 @@ void Classic::init(double levelWidth, double levelHeight)
     miniJeffs[i].init();
   }
 
-  snakeTotal = 12;
+  snakeTotal = 18;
   snakesAlive = 0;
-  snakeGuys.resize(12);
+  snakeGuys.resize(18);
   for(int i = 0; i < snakeTotal; i++)
   {
     snakeGuys[i].init();
@@ -1258,7 +1258,7 @@ void Classic::spawnStuff()
         }
       }
 
-      if(!garyEvent)
+      if(!garyEvent && garysAlive < 10)
       {
         for(int i = 0; i < garyTotal; i++)
         {
@@ -1364,14 +1364,17 @@ void Classic::spawnStuff()
         }
       }
 
-      for(int i = 0; i < snakeTotal; i++)
+      if(snakesAlive < 6)
       {
-        if(snakeCounter == 0) i = snakeTotal;
-        if(!snakeGuys[i].getActive() && !snakeGuys[i].getSpawning() && snakeCounter > 0)
+        for(int i = 0; i < snakeTotal; i++)
         {
-          snakeGuys[i].init();
-          snakeGuys[i].spawn(levelRect);
-          snakeCounter--;
+          if(snakeCounter == 0) i = snakeTotal;
+          if(!snakeGuys[i].getActive() && !snakeGuys[i].getSpawning() && snakeCounter > 0)
+          {
+            snakeGuys[i].init();
+            snakeGuys[i].spawn(levelRect);
+            snakeCounter--;
+          }
         }
       }
       
@@ -1383,33 +1386,33 @@ void Classic::spawnStuff()
           if(snakeGuys[i].getActive() || snakeGuys[i].getSpawning()) snakeGuys[i].die();
         }
       }
-      if(snakeEvent && snakesAlive == 0)
+      if(snakeEvent && snakesAlive == 0 && garysAlive < 5)
       {
         snakeEvent = false;
-        int tempx = player.getRect().x - 100;
-        int tempy = player.getRect().y - 100;
+        int tempx = player.getRect().x - 165;
+        int tempy = player.getRect().y - 165;
 
         if(tempx < levelRect.x) tempx = levelRect.x + 20;
-        if(tempx > levelRect.x + levelRect.w - 200) tempx = levelRect.x + levelRect.w - 220;
+        if(tempx > levelRect.x + levelRect.w - 346) tempx = levelRect.x + levelRect.w - 346;
         if(tempy < levelRect.y) tempy = levelRect.y + 20;
-        if(tempy > levelRect.y + levelRect.h - 200) tempy = levelRect.y + levelRect.h - 220;
+        if(tempy > levelRect.y + levelRect.h - 346) tempy = levelRect.y + levelRect.h - 346;
 
         int oldTempx = tempx;
 
-        for(int i = 0; i < 4; i ++)
+        for(int i = 0; i < 5; i ++)
         {
           snakeGuys[i].spawn(levelRect, tempx, tempy);
-          snakeGuys[i + 4].spawn(levelRect, tempx, tempy + 216);
-          tempx += 72;
+          snakeGuys[i + 5].spawn(levelRect, tempx, tempy + 330);
+          tempx += 66;
         }
 
         tempx = oldTempx;
         tempy += 66;
-        for(int i = 8; i < 10; i++)
+        for(int i = 10; i < 15; i++)
         {
           snakeGuys[i].spawn(levelRect, tempx, tempy);
-          snakeGuys[i + 2].spawn(levelRect, tempx, tempy + 66);
-          tempx += 216;
+          snakeGuys[i + 3].spawn(levelRect, tempx + 330, tempy);
+          tempy += 66;
         }
         
       }

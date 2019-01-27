@@ -1142,7 +1142,7 @@ void Classic::getEnemiesAlive()
 
   for(int i = 0; i < snakeTotal; i++)
   {
-    if (snakeGuys[i].getActive()) snakesAlive++;
+    if (snakeGuys[i].getActive() || snakeGuys[i].getSpawning()) snakesAlive++;
   }
 }
 
@@ -1199,7 +1199,7 @@ void Classic::spawnStuff()
         karenCounter = 2;
         garyCounter = 0;
         jeffCounter = 0;
-        snakeCounter = 1;
+        snakeCounter = 0;
       }
       if(points > 500)
       {
@@ -1393,9 +1393,9 @@ void Classic::spawnStuff()
         int tempy = player.getRect().y - 165;
 
         if(tempx < levelRect.x) tempx = levelRect.x + 20;
-        if(tempx > levelRect.x + levelRect.w - 346) tempx = levelRect.x + levelRect.w - 346;
+        if(tempx > levelRect.x + levelRect.w - 346) tempx = levelRect.x + levelRect.w - 248;
         if(tempy < levelRect.y) tempy = levelRect.y + 20;
-        if(tempy > levelRect.y + levelRect.h - 346) tempy = levelRect.y + levelRect.h - 346;
+        if(tempy > levelRect.y + levelRect.h - 346) tempy = levelRect.y + levelRect.h - 248;
 
         int oldTempx = tempx;
 
@@ -1408,10 +1408,10 @@ void Classic::spawnStuff()
 
         tempx = oldTempx;
         tempy += 66;
-        for(int i = 10; i < 15; i++)
+        for(int i = 10; i < 14; i++)
         {
           snakeGuys[i].spawn(levelRect, tempx, tempy);
-          snakeGuys[i + 3].spawn(levelRect, tempx + 330, tempy);
+          snakeGuys[i + 4].spawn(levelRect, tempx + 264, tempy);
           tempy += 66;
         }
         

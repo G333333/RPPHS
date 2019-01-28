@@ -633,7 +633,7 @@ void Game::doGame()
       vita2d_draw_rectangle(batteryTip.x, batteryTip.y, batteryTip.w, batteryTip.h, RGBA8(menuBorderR,menuBorderG,menuBorderB, 255));
       if(scePowerIsBatteryCharging())
       {
-        vita2d_draw_texture(charge,battery.x + battery.w / 2 - 3, battery.y);
+        vita2d_draw_texture(charge,battery.x + battery.w / 2 - 5, battery.y);
       }
     }
 

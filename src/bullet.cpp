@@ -20,7 +20,7 @@ void Bullet::init()
 
 void Bullet::spawn(double angle, vitaRect start)
 {
-  rect.x = start.x + start.w / 2;
+  rect.x = start.x + start.w / 4;
   rect.y = start.y + start.h / 4;
   this->rad = angle;
 

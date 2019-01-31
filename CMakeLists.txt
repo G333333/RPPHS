@@ -31,6 +31,9 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g -std=gnu14 -Wall ")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -std=c++14 -Wall -Wno-psabi ")
 
 
+find_package(CURL REQUIRED)
+find_package(OpenSSL REQUIRED)
+
 include_directories(
   ../common
 )
@@ -56,6 +59,7 @@ src/snakeGuy.cpp
 src/saveScreen.cpp
 src/saveIcon.cpp
 src/highScores.cpp
+src/utils.cpp
 )
 
 target_link_libraries(${SHORT_NAME}.elf
@@ -82,9 +86,20 @@ target_link_libraries(${SHORT_NAME}.elf
   freetype
   png
   jpeg
-  z
-  m
   SceAudio_stub
+  SceDisplay_stub
+  SceIofilemgr_stub
+  SceSysmodule_stub
+  SceNet_stub
+  SceNetCtl_stub
+  SceHttp_stub
+  SceSsl_stub
+  jansson
+  ${CURL_LIBRARIES}
+  ${OPENSSL_LIBRARIES}
+  c
+  m
+  z
 )
 
 

@@ -23,6 +23,7 @@
 #include "soloud.h"
 #include "soloud_wav.h"
 #include "soloud_wavstream.h"
+#include "utils.h"
 
 extern std::string buildDate;
 

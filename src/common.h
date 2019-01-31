@@ -26,6 +26,7 @@
 #include "utils.h"
 
 extern std::string buildDate;
+extern std::string downLoadCount;
 
 extern int theme;
 extern bool changeTheme;

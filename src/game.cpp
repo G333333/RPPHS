@@ -16,6 +16,7 @@ void Game::init()
 	vita2d_set_clear_color(RGBA8(0,0,0,255));
 
 	font = vita2d_load_font_file( "app0:/font/font.ttf" );
+  downLoadCount = getVDBDownloadCount("http://rinnegatamante.it/vitadb/list_hbs_json.php", "RPPHS");
 
   memset(&pad, 0, sizeof(pad));
 

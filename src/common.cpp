@@ -1,6 +1,7 @@
 #include"common.h"
 
 std::string buildDate;
+std::string downLoadCount;
 
 int theme;
 bool changeTheme;

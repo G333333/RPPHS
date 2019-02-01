@@ -60,6 +60,7 @@ src/saveScreen.cpp
 src/saveIcon.cpp
 src/highScores.cpp
 src/utils.cpp
+src/messageBox.cpp
 )
 
 target_link_libraries(${SHORT_NAME}.elf

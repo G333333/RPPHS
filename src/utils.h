@@ -23,6 +23,8 @@
 #include <curl/curl.h>
 #include <jansson.h>
 
+#include "messageBox.h"
+
 #ifndef _UTILS_
 #define _UTILS_
 

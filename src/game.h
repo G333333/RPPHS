@@ -14,7 +14,6 @@
 
 class Game {
 private:
-  bool quitGame;
   int status;
   int scores_int[10];
   std::string scores_str[10];

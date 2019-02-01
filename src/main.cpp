@@ -9,6 +9,7 @@ int main()
   Game Game;
   Game.init();
   Game.loadFiles();
+  checkForUpdate();
   Game.doGame();
 
   Game.quit();

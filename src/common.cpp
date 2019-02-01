@@ -3,6 +3,8 @@
 std::string buildDate;
 std::string downLoadCount;
 
+bool quitGame;
+
 int theme;
 bool changeTheme;
 int themeCount;

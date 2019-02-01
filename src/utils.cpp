@@ -372,11 +372,19 @@ void checkForUpdate(){
 		std::string tagString = json_string_value(tag);
 		if(tagString.compare("v1.2") == 0)
 		{
-			url = json_string_value(dlUrl);
-			curlDownloadFile(url, "ux0:data/RPPHS/RPPHS.vpk");	
-			json_decref(root);
+			if(makeYesNoBox("A new version is available. Would you like to download it?",""))
+			{
+				url = json_string_value(dlUrl);
+				curlDownloadFile(url, "ux0:data/RPPHS/RPPHS.vpk");	
+				json_decref(root);
+				
+				if(makeYesNoBox("Download is located at ux0:data/RPPHS/", "Would you like to close RPPHS?"))
+				{
+					quitGame = true;
+				}
 
-			return;
+				return;
+			}
 		}
 	}
 	json_decref(root);

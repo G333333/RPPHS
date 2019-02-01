@@ -15,12 +15,13 @@ int progress_func(void* ptr, double TotalToDownload, double NowDownloaded,
 		// how wide you want the progress meter to be
     int total=105;
     double fractiondownloaded = NowDownloaded / TotalToDownload;
-    // part of the progressmeter that's already "full"
+    // part of the progress meter that's already "full"
     int progress = round(fractiondownloaded * total);
 
 		vita2d_start_drawing();
+		vita2d_clear_screen();
 
-		vita2d_draw_rectangle(960 / 2 - 55, 544 / 2 - 25, 110, 35, RGBA8(0,0,0,255));
+		vita2d_draw_rectangle(960 / 2 - 55, 544 / 2 - 25, 110, 35, RGBA8(255,255,255,255));
 		vita2d_draw_rectangle(960 / 2 - 50, 544 / 2 - 20, progress, 25, RGBA8(0,255,0,255));
 		
 
@@ -370,15 +371,15 @@ void checkForUpdate(){
 		}
 	
 		std::string tagString = json_string_value(tag);
+		url = json_string_value(dlUrl);
 		if(tagString.compare("v1.2") == 0)
 		{
-			if(makeYesNoBox("A new version is available. Would you like to download it?",""))
+			if(makeYesNoBox("A new version is available. Would you like to download it from:",url,"And store it at ux0:data/RPPHS ?"))
 			{
-				url = json_string_value(dlUrl);
 				curlDownloadFile(url, "ux0:data/RPPHS/RPPHS.vpk");	
 				json_decref(root);
 				
-				if(makeYesNoBox("Download is located at ux0:data/RPPHS/", "Would you like to close RPPHS?"))
+				if(makeYesNoBox("Download can be installed with vitaShell", "Would you like to close RPPHS?",""))
 				{
 					quitGame = true;
 				}

@@ -99,12 +99,6 @@ void Options::doStuff(bool keys[15])
 
   vita2d_draw_texture_scale(gameBackground, 0, 0, 2, 2);
 
-  std::string dlString = "Download Count: ";
-  dlString += downLoadCount;
-
-  vita2d_font_draw_textf(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, dlString.c_str()), 544 - vita2d_font_text_height(font, 20.0f, dlString.c_str()), RGBA8(mainTextR, mainTextG, mainTextR, 255), 20.0f, dlString.c_str());
-
-
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
   drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
 

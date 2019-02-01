@@ -41,11 +41,6 @@ void Menu::doStuff(bool keys[15], bool showBattery)
 {
   vita2d_draw_texture_scale(gameBackground, 0, 0, 2, 2);
 
-  std::string dlString = "Download Count: ";
-  dlString += downLoadCount;
-
-  vita2d_font_draw_textf(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, dlString.c_str()), 544 - vita2d_font_text_height(font, 20.0f, dlString.c_str()), RGBA8(mainTextR, mainTextG, mainTextR, 255), 20.0f, dlString.c_str());
-
   if(!credits && !controls)
   {
     vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
@@ -260,6 +255,10 @@ bool Menu::getQuit()
 
 void Menu::showCredits()
 {
+  std::string dlString = "- All of you: "; //add the dl count to this string. 
+  dlString += downLoadCount;
+  dlString += " Downloads!";
+
   vita2d_draw_rectangle(160, 142, 640, 332, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 240));
   drawEmptyRect(160, 142, 640, 332, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
 
@@ -274,6 +273,10 @@ void Menu::showCredits()
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 180, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Ivan voirol @ OpenGameArt: Background Grid");
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 200, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- yd @ OpenGameArt: Menu Music (outhere.ogg)");
   vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 220, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Trevor Lentz @ OpenGameArt: Game Music (heroimmortal.ogg)");
+
+  if(downLoadCount.compare("Error") != 0){
+    vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 240, RGBA8(mainTextR,mainTextG,mainTextR,255), 20.0f, dlString.c_str());
+  }
   
   std::string tempString = "Build Date: ";
   tempString += buildDate;

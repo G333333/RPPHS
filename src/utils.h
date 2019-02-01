@@ -58,4 +58,6 @@ extern std::string getJoke();
 
 extern std::string getVDBDownloadCount(std::string url, std::string request);
 
+extern void checkForUpdate();
+
 #endif

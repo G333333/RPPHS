@@ -17,6 +17,9 @@ void Game::init()
 
 	font = vita2d_load_font_file( "app0:/font/font.ttf" );
   downLoadCount = getVDBDownloadCount("http://rinnegatamante.it/vitadb/list_hbs_json.php", "RPPHS");
+  checkForUpdate();
+  //curlDownloadFile("https://github.com/G333333/RPPHS/releases/download/v1.2/RPPHS.vpk", "ux0:data/RPPHS/RPPHS.vpk");	
+
 
   memset(&pad, 0, sizeof(pad));
 

@@ -20,10 +20,9 @@ int progress_func(void* ptr, double TotalToDownload, double NowDownloaded,
 
 		vita2d_start_drawing();
 
-		for(int i = 0; i < 1000; i++){
-			vita2d_draw_rectangle(960 / 2 - 55, 544 / 2 - 25, 110, 35, RGBA8(0,0,0,255));
-			vita2d_draw_rectangle(960 / 2 - 50, 544 / 2 - 20, progress, 25, RGBA8(0,255,0,255));
-		}
+		vita2d_draw_rectangle(960 / 2 - 55, 544 / 2 - 25, 110, 35, RGBA8(0,0,0,255));
+		vita2d_draw_rectangle(960 / 2 - 50, 544 / 2 - 20, progress, 25, RGBA8(0,255,0,255));
+		
 
 		vita2d_end_drawing();
 		vita2d_swap_buffers();
@@ -99,11 +98,6 @@ std::string getCurlString(std::string url){
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeFunction);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response_string);
 		// Internal CURL progressmeter must be disabled if we provide our own callback
-		curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0);
-		// Install the callback function
-		curl_easy_setopt(curl, CURLOPT_PROGRESSFUNCTION, progress_func); 
-		// The data filedescriptor which will be written to
-		//curl_easy_setopt(curl, CURLOPT_WRITEDATA, &imageFD);
 		// write function of response headers
 		curl_easy_setopt(curl, CURLOPT_HEADERFUNCTION, writefunc);
 		// the response header data where to write to
@@ -187,15 +181,8 @@ void curlDownloadFile(std::string url , std::string file){
 		curl_easy_getinfo (curl, CURLINFO_RESPONSE_CODE, &httpresponsecode);
 		
 		if(res != CURLE_OK){
-			//fprintf(stderr, "curl_easy_perform() failed: %s\n", curl_easy_strerror(res));
-			
-		}else{
-			
+			//do error checking	
 		}
-		
-		
-	}else{
-		
 	}
 
 	// close filedescriptor
@@ -281,10 +268,10 @@ std::string getVDBDownloadCount(std::string url, std::string request){
 
 	if(!json_is_array(root)){
 		json_decref(root);
-		return "Error with root";
+		return "Error";
 	}
 
-	for(int i = 0; i < json_array_size(root); i++){
+	for(size_t i = 0; i < json_array_size(root); i++){
 		json_t *data, *name, *dlCount;
 	  std::string message_text;
 
@@ -292,14 +279,14 @@ std::string getVDBDownloadCount(std::string url, std::string request){
     if(!json_is_object(data))
     {
         json_decref(root);
-        return "Error with object";
+        return "Error";
     }
 
 	name = json_object_get(data, "name");
 	if(!json_is_string(name))
   {
       json_decref(root);
-			return "Error with name";
+			return "Error";
   }
 
 	std::string temp = json_string_value(name);
@@ -309,7 +296,7 @@ std::string getVDBDownloadCount(std::string url, std::string request){
 		if(!json_is_string(dlCount))
 		{
 			json_decref(root);
-			return "Error with dl count";
+			return "Error";
 		}
 		message_text = json_string_value(dlCount);
 		return message_text;
@@ -319,5 +306,80 @@ std::string getVDBDownloadCount(std::string url, std::string request){
 
 	json_decref(root);
 
-	return "Error at end";
+	return "Error";
+}
+
+void checkForUpdate(){
+
+	struct SceIoStat * dirStat = (SceIoStat*)malloc(sizeof(SceIoStat));
+	if(sceIoGetstat("ux0:data/RPPHS" , dirStat) < 0){
+		sceIoMkdir("ux0:data/RPPHS" , 0777);
+	}
+
+	json_t *root;
+  json_error_t error;
+
+	root = json_loads(getCurlString("https://api.github.com/repos/g333333/RPPHS/releases").c_str(), 0, &error);
+	if(!root){
+		return;
+	}
+
+	if(!json_is_array(root)){
+		json_decref(root);
+		return;
+	}
+
+	json_t *data, *tag, *assets, *assetRoot, *dlUrl;
+	std::string url;
+
+	for(size_t i = 0; i < json_array_size(root); i++){
+
+		data = json_array_get(root, i);
+    if(!json_is_object(data))
+    {
+      	json_decref(root);
+    	  return;
+    }
+
+		tag = json_object_get(data, "tag_name");
+		if(!json_is_string(tag))
+  	{
+      json_decref(root);
+			return;
+  	}
+
+		assets = json_object_get(data, "assets");
+		if(!json_is_array(assets))
+		{
+			json_decref(root);
+			return;
+		}
+
+		assetRoot = json_array_get(assets, 0);
+		if(!json_is_object(assetRoot))
+		{
+			json_decref(root);
+			return;
+		}
+
+		dlUrl = json_object_get(assetRoot, "browser_download_url");
+		if(!json_is_string(dlUrl))
+		{
+			json_decref(root);
+			return;
+		}
+	
+		std::string tagString = json_string_value(tag);
+		if(tagString.compare("v1.2") == 0)
+		{
+			url = json_string_value(dlUrl);
+			curlDownloadFile(url, "ux0:data/RPPHS/RPPHS.vpk");	
+			json_decref(root);
+
+			return;
+		}
+	}
+	json_decref(root);
+
+	return;
 }

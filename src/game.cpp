@@ -74,17 +74,17 @@ void Game::loadFiles()
 void Game::loadScores()
 {
   std::string::size_type sz;   // alias of size_t
-  std::ifstream loadFile;
+  std::fstream loadFile;
   loadFile.open("ux0:/data/RPPHS/scores.txt");
+  std::streampos begin = loadFile.tellp();//save pos of start of file;
   std::string temp;
 
   std::getline(loadFile, temp);
-  std::string version = "v1.2";
 
   //here we check if the first score is empty eg: file was empty.
   //or if the first line is not "v1.2"
   //if so, set default scores
-  if(temp.empty() || temp.compare(version) != 0)
+  if(temp.empty() || (temp.compare("v1.2") != 0 && temp.compare("v1.3") != 0))
   {
     loadFile.close();
     setDefaultScores();
@@ -92,6 +92,14 @@ void Game::loadScores()
     {
       quitGame = true;
     }
+    loadFile.open("ux0:/data/RPPHS/scores.txt");
+    std::getline(loadFile, temp);
+  }
+  if(temp.compare("v1.2") == 0)
+  {
+    loadFile.seekp(begin);
+    loadFile << "v1.3";
+    loadFile.close();
     loadFile.open("ux0:/data/RPPHS/scores.txt");
     std::getline(loadFile, temp);
   }
@@ -116,7 +124,7 @@ void Game::setDefaultScores()
   std::ofstream loadFile;
   sceIoMkdir("ux0:/data/RPPHS", 0777);
   loadFile.open("ux0:/data/RPPHS/scores.txt"); //fix me
-  loadFile << "v1.2\n";
+  loadFile << "v1.3\n";
   loadFile << "AAA 100000 \n";
   loadFile << "AAA 90000 \n";
   loadFile << "AAA 80000 \n";
@@ -160,7 +168,7 @@ void Game::saveScores(int newScore, std::string newStr)
   std::ofstream saveFile;
   sceIoMkdir("ux0:/data/RPPHS", 0777);
   saveFile.open("ux0:/data/RPPHS/scores.txt"); //fix me
-  saveFile << "v1.2\n";
+  saveFile << "v1.3\n";
   for(int i = 0; i < 10; i++)
   {
     saveFile << scores_str[i] << " " << scores_int[i] << "\n";

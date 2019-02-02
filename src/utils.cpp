@@ -21,6 +21,7 @@ int progress_func(void* ptr, double TotalToDownload, double NowDownloaded,
 		vita2d_start_drawing();
 		vita2d_clear_screen();
 
+		vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f,"Downloading File") / 2, 544 / 2 - 50, RGBA8(255,255,255,255), 20.0f, "Downloading File");
 		vita2d_draw_rectangle(960 / 2 - 55, 544 / 2 - 25, 110, 35, RGBA8(255,255,255,255));
 		vita2d_draw_rectangle(960 / 2 - 50, 544 / 2 - 20, progress, 25, RGBA8(0,255,0,255));
 		
@@ -371,8 +372,10 @@ void checkForUpdate(){
 		}
 	
 		std::string tagString = json_string_value(tag);
+		double versionNumber = std::stod(tagString.substr(1,3));
+
 		url = json_string_value(dlUrl);
-		if(tagString.compare("v1.2") == 0)
+		if(versionNumber == 1.2)
 		{
 			if(makeYesNoBox("A new version is available. Would you like to download it from:",url,"And store it at ux0:data/RPPHS ?"))
 			{
@@ -386,6 +389,7 @@ void checkForUpdate(){
 
 				return;
 			}
+			return;
 		}
 	}
 	json_decref(root);

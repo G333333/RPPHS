@@ -375,7 +375,7 @@ void checkForUpdate(){
 		double versionNumber = std::stod(tagString.substr(1,3));
 
 		url = json_string_value(dlUrl);
-		if(versionNumber == 1.2)
+		if(versionNumber == RPPHS_VERSION)
 		{
 			if(makeYesNoBox("A new version is available. Would you like to download it from:",url,"And store it at ux0:data/RPPHS ?"))
 			{

@@ -277,10 +277,15 @@ void Menu::showCredits()
   if(downLoadCount.compare("Error") != 0){
     vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 240, RGBA8(mainTextR,mainTextG,mainTextR,255), 20.0f, dlString.c_str());
   }
+
+  std::string verString = "Current Version: ";
+  verString += std::to_string(RPPHS_VERSION);
   
-  std::string tempString = "Build Date: ";
-  tempString += buildDate;
-  vita2d_font_draw_text(font, 160 + 5, 544 - 20, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, tempString.c_str());
+  std::string buildString = "Build Date: ";
+  buildString += buildDate;
+
+  vita2d_font_draw_text(font, 160 + 5, 544 - 35, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, verString.c_str());
+  vita2d_font_draw_text(font, 160 + 5, 544 - 15, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, buildString.c_str());
 
 
   int tempWidth = vita2d_texture_get_width(circleImage); //get the width and height to draw in correct place.

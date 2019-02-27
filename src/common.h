@@ -25,6 +25,8 @@
 #include "soloud_wavstream.h"
 #include "utils.h"
 
+#define RPPHS_VERSION               1.3
+
 extern std::string buildDate;
 extern std::string downLoadCount;
 

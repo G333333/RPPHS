@@ -101,7 +101,7 @@ void Intro::Splash_G33()
         Intro::Reset();
         Intro_ResetConfirm = true;
     } else if (!(pad.buttons & SCE_CTRL_CROSS)) {
-        Intro_ResetConfirm = true;
+        Intro_ResetConfirm = false;
     }
 
     Intro_Timer++;
@@ -131,7 +131,7 @@ void Intro::Splash_MotoLegacy()
         Save_Icon.start();
         Intro_ResetConfirm = true;
     } else if (!(pad.buttons & SCE_CTRL_CROSS)) {
-        Intro_ResetConfirm = true;
+        Intro_ResetConfirm = false;
     }
 
     Intro_Timer++;
@@ -160,7 +160,7 @@ void Intro::Save_Warning()
         Intro::Reset();
         Intro_ResetConfirm = true;
     } else if (!(pad.buttons & SCE_CTRL_CROSS)) {
-        Intro_ResetConfirm = true;
+        Intro_ResetConfirm = false;
     }
 
     Intro_Timer++;

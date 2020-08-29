@@ -13,20 +13,21 @@
 
 class Intro{
 private:
-  SaveIcon saveIcon;
-  SceCtrlData pad;
-  bool crossNeedsReset;
-  int introState;
-  int introTimer;
-  int letterCounter[3];
-  vita2d_texture *g33Splash, *motoSplash;
-  int fade;
+    SaveIcon Save_Icon;
+    SceCtrlData pad;
+    bool Intro_ResetConfirm;
+    int Intro_State;
+    int Intro_Timer;
+    int Intro_Alpha;
+    vita2d_texture *SplashIMG_G33, *SplashIMG_Moto;
 public:
-  Intro();
-  void doIntro();
-  void introG33();
-  void introMoto();
-  void saveWarning();
+    Intro();
+    void Reset();
+    void Fade();
+    void Main();
+    void Splash_G33();
+    void Splash_MotoLegacy();
+    void Save_Warning();
 };
 
 #endif

@@ -292,7 +292,7 @@ void Game::doGame()
 {
   if(!quitGame)
   {
-    intro.doIntro();
+    intro.Main();
   }
 
   OutThere.setLooping(1);

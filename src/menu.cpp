@@ -17,6 +17,8 @@ void Menu::Init()
     // Set Panel Sizes
     Menu::SetUpPanelSizes();
 
+    Menu_DummyIMG = vita2d_load_PNG_file("app0:/images/theme/default/touch.png");
+
     // We aren't moving..
     Menu_XMoveDone = Menu_YMoveDone = Menu_HMoveDone = true;
 }
@@ -59,28 +61,38 @@ void Menu::Main(bool Buttons[15])
     // Black Background
     vita2d_draw_rectangle(0, 0, 960, 544, RGBA8(0, 0, 0, 255));
 
-    // Menu-Specific Drawing
-    switch (Menu_State) {
-        case MENU_MAIN:
-            Menu::MenuMain();
-            break;
-        default:
-            break;
+    // Rank Menu
+    if (Menu_State < 2) {
+        Menu::MenuRank();
+    }
+
+    // Main Menu
+    if (Menu_State < 3) {
+        Menu::MenuMain();
+    }
+
+    // Options Menu
+    if (Menu_State < 4 && Menu_State > 0) {
+        Menu::MenuOptions();
     }
 
     // Draw Panels
     Menu::DrawPanels();
 
     // Left/Right Triggers: Change Panels
-    if ((Buttons[13] && !Menu_PanelMoving) || Menu_PanelMode == 2) {
+    if ((Buttons[13] && !Menu_PanelMoving && Menu_State > 0) || Menu_PanelMode == 2) {
         Menu::PanelRight();
-    } else if ((Buttons[14] && !Menu_PanelMoving) || Menu_PanelMode == 1) {
+    } else if ((Buttons[14] && !Menu_PanelMoving && Menu_State < MENU_COUNT) || Menu_PanelMode == 1) {
         Menu::PanelLeft();
     }
 
     // 'debug' Text
     vita2d_font_draw_text(font, 20, 25, RGBA8(255, 0, 0, 255), 20.0f, "super epic rpphs 2.0 menu concept (w.i.p.)");
     vita2d_font_draw_text(font, 20, 40, RGBA8(255, 0, 0, 255), 20.0f, "haha lol");
+    std::string Menu_DebugString;
+    Menu_DebugString = "Menu State: ";
+    Menu_DebugString += std::to_string(Menu_State);
+    vita2d_font_draw_text(font, 20, 55, RGBA8(255, 0, 0, 255), 20.0f, Menu_DebugString.c_str());
 }
 
 //
@@ -100,24 +112,28 @@ void Menu::DrawPanels()
     vita2d_draw_rectangle(Menu_CurrentRect.w + Menu_CurrentRect.x, Menu_CurrentRect.y, 4, Menu_CurrentRect.h + 4, RGBA8(0, 255, 0, 255));
 
     // Right Panel
-    // top
-    vita2d_draw_rectangle(Menu_RightRect.x, Menu_RightRect.y, Menu_RightRect.w, 4, RGBA8(0, 255, 0, 255));
-    // bottom
-    vita2d_draw_rectangle(Menu_RightRect.x, Menu_RightRect.h + Menu_RightRect.y, Menu_RightRect.w, 4, RGBA8(0, 255, 0, 255));
-    // left
-    vita2d_draw_rectangle(Menu_RightRect.x, Menu_RightRect.y, 4, Menu_RightRect.h, RGBA8(0, 255, 0, 255));
-    // right
-    vita2d_draw_rectangle(Menu_RightRect.w + Menu_RightRect.x, Menu_RightRect.y, 4, Menu_RightRect.h + 4, RGBA8(0, 255, 0, 255));
+    if (Menu_State < MENU_COUNT) {
+        // top
+        vita2d_draw_rectangle(Menu_RightRect.x, Menu_RightRect.y, Menu_RightRect.w, 4, RGBA8(0, 255, 0, 255));
+        // bottom
+        vita2d_draw_rectangle(Menu_RightRect.x, Menu_RightRect.h + Menu_RightRect.y, Menu_RightRect.w, 4, RGBA8(0, 255, 0, 255));
+        // left
+        vita2d_draw_rectangle(Menu_RightRect.x, Menu_RightRect.y, 4, Menu_RightRect.h, RGBA8(0, 255, 0, 255));
+        // right
+        vita2d_draw_rectangle(Menu_RightRect.w + Menu_RightRect.x, Menu_RightRect.y, 4, Menu_RightRect.h + 4, RGBA8(0, 255, 0, 255));
+    }
 
     // Left Panel
-    // top
-    vita2d_draw_rectangle(Menu_LeftRect.x, Menu_LeftRect.y, Menu_LeftRect.w, 4, RGBA8(0, 255, 0, 255));
-    // bottom
-    vita2d_draw_rectangle(Menu_LeftRect.x, Menu_LeftRect.h + Menu_LeftRect.y, Menu_LeftRect.w, 4, RGBA8(0, 255, 0, 255));
-    // left
-    vita2d_draw_rectangle(Menu_LeftRect.x, Menu_LeftRect.y, 4, Menu_LeftRect.h, RGBA8(0, 255, 0, 255));
-    // right
-    vita2d_draw_rectangle(Menu_LeftRect.w + Menu_LeftRect.x, Menu_LeftRect.y, 4, Menu_LeftRect.h + 4, RGBA8(0, 255, 0, 255));
+    if (Menu_State > 0) {
+        // top
+        vita2d_draw_rectangle(Menu_LeftRect.x, Menu_LeftRect.y, Menu_LeftRect.w, 4, RGBA8(0, 255, 0, 255));
+        // bottom
+        vita2d_draw_rectangle(Menu_LeftRect.x, Menu_LeftRect.h + Menu_LeftRect.y, Menu_LeftRect.w, 4, RGBA8(0, 255, 0, 255));
+        // left
+        vita2d_draw_rectangle(Menu_LeftRect.x, Menu_LeftRect.y, 4, Menu_LeftRect.h, RGBA8(0, 255, 0, 255));
+        // right
+        vita2d_draw_rectangle(Menu_LeftRect.w + Menu_LeftRect.x, Menu_LeftRect.y, 4, Menu_LeftRect.h + 4, RGBA8(0, 255, 0, 255));
+    }
 
     // Dummy Panel
     if (Menu_PanelMode != 0) {
@@ -133,12 +149,76 @@ void Menu::DrawPanels()
 }
 
 //
+// Menu::MenuRank()
+// The Ranks Menu
+//
+void Menu::MenuRank()
+{
+    // Calculate Scaling and Offsets
+    vitaRect Menu_RelevantPanel;
+    if (Menu_State == MENU_RANK) {
+        Menu_RelevantPanel = Menu_CurrentRect;
+    } else if (Menu_State == 1) {
+        Menu_RelevantPanel = Menu_LeftRect;
+    }
+
+    float Menu_XOffset = Menu_RelevantPanel.x + 4;
+    float Menu_YOffset = Menu_RelevantPanel.y + 4;
+
+    Menu_ScaleFactor = (Menu_RelevantPanel.h / Menu_DefaultRect.h);
+
+    vita2d_font_draw_text(font, Menu_XOffset + 5, Menu_YOffset + 150, RGBA8(255, 255, 0, 255), 35.0f * Menu_ScaleFactor, "POOOOG RANKS MENUUU!");
+}
+
+//
 // Menu::MenuMain()
 // The Main Menu
 //
 void Menu::MenuMain()
 {
-    vita2d_font_draw_text(font, 300, 200, RGBA8(0, 0, 255, 255), 20.0f, "lol this is the main menu (or is it owo)");
+    // Calculate Scaling and Offsets
+    vitaRect Menu_RelevantPanel;
+    if (Menu_State == MENU_MAIN) {
+        Menu_RelevantPanel = Menu_CurrentRect;
+    } else if (Menu_State == 0) {
+        Menu_RelevantPanel = Menu_RightRect;
+    } else if (Menu_State == 2) {
+        Menu_RelevantPanel = Menu_LeftRect;
+    }
+
+    float Menu_XOffset = Menu_RelevantPanel.x + 4;
+    float Menu_YOffset = Menu_RelevantPanel.y + 4;
+
+    Menu_ScaleFactor = (Menu_RelevantPanel.h / Menu_DefaultRect.h);
+
+    vita2d_draw_texture_scale(Menu_DummyIMG, Menu_XOffset + 100, Menu_YOffset + 80, 3 * Menu_ScaleFactor, 3 * Menu_ScaleFactor);
+
+    vita2d_font_draw_text(font, Menu_XOffset + 25, Menu_YOffset + 25, RGBA8(0, 0, 255, 255), 20.0f * Menu_ScaleFactor, "lol this is the main menu (or is it owo)");
+    vita2d_font_draw_text(font, Menu_XOffset + 5, Menu_YOffset + 60, RGBA8(255, 0, 255, 255), 25.0f * Menu_ScaleFactor, "RPPHS IS THE NEW CALL OF DUTY!! UWU XDD");
+    vita2d_font_draw_text(font, Menu_XOffset + 5, Menu_YOffset + 150, RGBA8(255, 255, 255, 255), 35.0f * Menu_ScaleFactor, "MAIN MENU HAHAHAHA");
+}
+
+//
+// Menu::MenuOptions()
+// The Options Menu
+//
+void Menu::MenuOptions()
+{
+    // Calculate Scaling and Offsets
+    vitaRect Menu_RelevantPanel;
+    if (Menu_State == MENU_OPTIONS) {
+        Menu_RelevantPanel = Menu_CurrentRect;
+    } else if (Menu_State == 1) {
+        Menu_RelevantPanel = Menu_RightRect;
+    }
+
+    float Menu_XOffset = Menu_RelevantPanel.x + 4;
+    float Menu_YOffset = Menu_RelevantPanel.y + 4;
+
+    Menu_ScaleFactor = (Menu_RelevantPanel.h / Menu_DefaultRect.h);
+
+    vita2d_font_draw_text(font, Menu_XOffset + 5, Menu_YOffset + 150, RGBA8(0, 255, 255, 255), 35.0f * Menu_ScaleFactor, "i got lazy here lol");
+    vita2d_font_draw_text(font, Menu_XOffset + 5, Menu_YOffset + 180, RGBA8(255, 255, 0, 255), 35.0f * Menu_ScaleFactor, "this is options doe!");
 }
 
 //
@@ -170,7 +250,9 @@ void Menu::PanelLeft()
     Menu_RightRect.h += 4;
 
     Menu_LeftRect.x -= 40;
-    Menu_DummyRect.x -= 40;
+
+    if (Menu_State != MENU_COUNT - 1)
+        Menu_DummyRect.x -= 40;
 
     // Force Size
     if (Menu_CurrentRect.x < -552) {
@@ -196,6 +278,7 @@ void Menu::PanelLeft()
     if (Menu_XMoveDone == true && Menu_YMoveDone == true && Menu_HMoveDone == true) {
         Menu_PanelMoving = false;
         Menu_PanelMode = 0;
+        Menu_State++;
 
         // Re-define Panels
         Menu::SetUpPanelSizes();
@@ -231,7 +314,9 @@ void Menu::PanelRight()
     Menu_LeftRect.h += 4;
 
     Menu_RightRect.x += 40;
-    Menu_DummyRect.x += 40;
+
+    if (Menu_State != 1)
+        Menu_DummyRect.x += 40;
 
     // Force Size
     if (Menu_CurrentRect.x > 919) {
@@ -257,6 +342,7 @@ void Menu::PanelRight()
     if (Menu_XMoveDone == true && Menu_YMoveDone == true && Menu_HMoveDone == true) {
         Menu_PanelMoving = false;
         Menu_PanelMode = 0;
+        Menu_State--;
 
         // Re-define Panels
         Menu::SetUpPanelSizes();

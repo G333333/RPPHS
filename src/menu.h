@@ -17,8 +17,10 @@
 #define         CURSOR_RIGHT    3
 
 // Menu States
-#define         MENU_COUNT      1
-#define         MENU_MAIN       0
+#define         MENU_COUNT      2
+#define         MENU_RANK       0
+#define         MENU_MAIN       1
+#define         MENU_OPTIONS    2
 
 class Menu {
 private:
@@ -28,34 +30,25 @@ private:
     int Menu_PanelMode;
     bool Menu_PanelMoving;
     bool Menu_Quit;
+    float Menu_ScaleFactor;
     vitaRect Menu_DefaultRect;
     vitaRect Menu_CurrentRect;
     vitaRect Menu_LeftRect;
     vitaRect Menu_RightRect;
     vitaRect Menu_DummyRect;
+    vita2d_texture *Menu_DummyIMG;
     // FIXME: Possibly remove the need for these, or limit to less.
     // I'd just rather be more memory hungry than spam CPU calculations..
     // - Moto
     bool Menu_XMoveDone;
     bool Menu_YMoveDone;
     bool Menu_HMoveDone;
-
-    /*  vitaRect menuRect;
-    vitaRect battery;
-    int r,g,b;
-    int status;
-    int target, fade, barFade;
-    bool leaveMenu;
-    bool crossNeedsReset;
-    int menuPos;
-    bool moveUp, moveDown;
-    bool quit;
-    bool credits;
-    bool controls;*/
 public:
     void Init();
     void Main(bool Buttons[15]);
+    void MenuRank();
     void MenuMain();
+    void MenuOptions();
     void SetUpPanelSizes();
     void DrawPanels();
     void PanelLeft();

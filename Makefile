@@ -38,7 +38,7 @@ all: $(NAME).vpk
 $(NAME).vpk: $(NAME).velf
 #-------------------------------------------------
 	@echo $(OUTPUT_GREEN)$(OUTPUT_BOLD)Building VPK...$(OUTPUT_NORMAL)
-	vita-mksfoex -s TITLE_ID=VGEE00001 "RPPHS" param.sfo
+	vita-mksfoex -s TITLE_ID=VGEEDEB01 "RPPHS DEBUG" param.sfo
 	cp -f param.sfo sce_sys/param.sfo
 	# Comment this if you don't have 7zip
 	7z a -tzip $(NAME).vpk -r sce_sys/* images/* sounds/* font/* build/* eboot.bin

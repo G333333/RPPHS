@@ -60,6 +60,8 @@ void Options::start()
 
 void Options::doStuff(bool keys[15])
 {
+  // MOTO FIXME:
+  return;
   //make sure things don't go out of bounds. like deadZone
   if(cursorSetting < 1)
   {
@@ -515,6 +517,7 @@ void Options::doStuff(bool keys[15])
 
 void Options::menuPartial()
 {
+  return;
   vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
   drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
 

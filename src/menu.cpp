@@ -1,319 +1,264 @@
-#include"menu.h"
+#include "menu.h"
 
-void Menu::init()
+//
+// Menu::Init()
+// Initialization of Menu-based variables
+//
+void Menu::Init()
 {
-  status = 1;
+    // Menu Options
+    Menu_State = MENU_MAIN;
+    Menu_Cursor = CURSOR_NONE;
+    Menu_Position = 0;
+    Menu_PanelMode = 0;
+    Menu_PanelMoving = false;
+    Menu_Quit = false;
 
-  menuRect.x = 966;
-  menuRect.y = 122;
-  menuRect.w = 255;
-  menuRect.h = 300;
+    // Set Panel Sizes
+    Menu::SetUpPanelSizes();
 
-  target = 711;
-  barFade = 0;
-  fade = 0;
-
-  moveUp = false;
-  moveDown = false;
-  menuPos = 1;
-  quit = false;
-  credits = false;
-  controls = false;
-
-  crossNeedsReset = true;
+    // We aren't moving..
+    Menu_XMoveDone = Menu_YMoveDone = Menu_HMoveDone = true;
 }
 
-void Menu::start()
+//
+// Menu::SetUpPanelSizes()
+// (Re-)Establishes Panel Size
+//
+void Menu::SetUpPanelSizes()
 {
-  target = 711;
-  //barFade = 0;
-  //fade = 0;
+    // Default Rectangle
+    // 186, 102 -> 777, 495 (4px)
+    Menu_DefaultRect.x = 186;
+    Menu_DefaultRect.y = 102;
+    Menu_DefaultRect.w = 591;
+    Menu_DefaultRect.h = 393;
 
-  moveUp = false;
-  moveDown = false;
+    // Set Current Rect to the Default
+    Menu_CurrentRect = Menu_DefaultRect;
 
-  menuPos = 1;
+    // Right Rect
+    Menu_RightRect.x = 919;
+    Menu_RightRect.y = 130;
+    Menu_RightRect.w = 591;
+    Menu_RightRect.h = 340;
 
-  crossNeedsReset = true;
+    // Left Rect
+    Menu_LeftRect.x = -552;
+    Menu_LeftRect.y = 130;
+    Menu_LeftRect.w = 591;
+    Menu_LeftRect.h = 340;
 }
 
-void Menu::doStuff(bool keys[15], bool showBattery)
+//
+// Menu::Main()
+// Contains the main Menu switch and Panel drawing
+//
+void Menu::Main(bool Buttons[15]) 
 {
-  vita2d_draw_texture_scale(gameBackground, 0, 0, 2, 2);
+    // Black Background
+    vita2d_draw_rectangle(0, 0, 960, 544, RGBA8(0, 0, 0, 255));
 
-  if(!credits && !controls)
-  {
-    vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
-    drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
-
-
-    switch (menuPos) {
-      case 1:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
-        break;
-      case 2:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
-        break;
-      case 3:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
-        break;
-      case 4:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
-        break;
-      case 5:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 200, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
-        break;
-    }
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Play");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Options");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Credits");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Controls");
-    vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 230, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Quit");
-
-    vita2d_draw_texture_scale(crossImage,menuRect.x + 7, menuRect.y + menuRect.h - 40, 1,1);
-    vita2d_font_draw_text(font, menuRect.x + 40, menuRect.y + menuRect.h - 16, RGBA8(helpTextR,helpTextG,helpTextB, fade), 20.0f, "Select");
-
-    if(keys[0] && !moveUp)
-    {
-      menuPos--;
-      moveUp = true;
-    }
-
-    if(keys[1] && !moveDown)
-    {
-      menuPos++;
-      moveDown = true;
-    }
-
-    if(keys[4])
-    {
-      if(!crossNeedsReset)
-      {
-        switch (menuPos) {
-          case 1:
-            target = 966;
+    // Menu-Specific Drawing
+    switch (Menu_State) {
+        case MENU_MAIN:
+            Menu::MenuMain();
             break;
-          case 2:
-            target = 966;
-            status = 3;
+        default:
             break;
-          case 3:
-            credits = true;
-            break;
-          case 4:
-            controls = true;
-            break;
-          case 5:
-            quit = true;
-            break;
-        }
-      }
-    }
-    if(!keys[4])
-    {
-      crossNeedsReset = false;
     }
 
-    if(keys[9] && !moveUp)
-    {
-      menuPos--;
-      moveUp = true;
-    }
-    else if(!keys[9] && !keys[0])
-    {
-      moveUp = false;
+    // Draw Panels
+    Menu::DrawPanels();
+
+    // Left/Right Triggers: Change Panels
+    if ((Buttons[13] && !Menu_PanelMoving) || Menu_PanelMode == 2) {
+        Menu::PanelRight();
+    } else if ((Buttons[14] && !Menu_PanelMoving) || Menu_PanelMode == 1) {
+        Menu::PanelLeft();
     }
 
-    if(keys[8] & !moveDown)
-    {
-      menuPos++;
-      moveDown = true;
-    }
-    else if(!keys[8] && !keys[1])
-    {
-      moveDown = false;
-    }
-
-    if(menuPos > 5)
-    {
-      menuPos = 1;
-    }
-    if(menuPos < 1)
-    {
-      menuPos = 5;
-    }
-    /*if(keys[14])
-    {
-      credits = true;
-    }*/
-  } else {
-    if (credits) {
-      showCredits();
-      if (keys[5]) credits = false;
-    } else {
-      showControls();
-      if (keys[5]) controls = false;
-    }
-  }
-  /*else if(credits)
-  {
-    showCredits();
-    if(keys[5]) credits = false;
-  } else if (controls) {
-    showControls();
-    if(keys[5]) controls = false;
-  }*/
-  if(menuRect.x < target)
-  {
-    menuRect.x += 10;
-    if(fade > 10)
-    {
-      fade -= 10;
-      barFade -= 4;
-    }
-  }
-  if(menuRect.x > target)
-  {
-    menuRect.x -= 10;
-    if(fade < 240)
-    {
-      fade += 10;
-      barFade += 4;
-    }
-  }
-  if(menuRect.x >= target && target == 966 && menuPos == 1)
-  {
-    status = 2;
-  }
+    // 'debug' Text
+    vita2d_font_draw_text(font, 20, 25, RGBA8(255, 0, 0, 255), 20.0f, "super epic rpphs 2.0 menu concept (w.i.p.)");
+    vita2d_font_draw_text(font, 20, 40, RGBA8(255, 0, 0, 255), 20.0f, "haha lol");
 }
 
-void Menu::menuPartial()
+//
+// Menu::DrawPanels()
+// Draws the Left, Current, and Right Panels
+//
+void Menu::DrawPanels()
 {
-  vita2d_draw_rectangle(menuRect.x, menuRect.y, menuRect.w, menuRect.h, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, fade));
-  drawEmptyRect(menuRect, RGBA8(menuBorderR,menuBorderG,menuBorderB,fade));
+    // Current Panel
+    // top
+    vita2d_draw_rectangle(Menu_CurrentRect.x, Menu_CurrentRect.y, Menu_CurrentRect.w, 4, RGBA8(0, 255, 0, 255));
+    // bottom
+    vita2d_draw_rectangle(Menu_CurrentRect.x, Menu_CurrentRect.h + Menu_CurrentRect.y, Menu_CurrentRect.w, 4, RGBA8(0, 255, 0, 255));
+    // left
+    vita2d_draw_rectangle(Menu_CurrentRect.x, Menu_CurrentRect.y, 4, Menu_CurrentRect.h, RGBA8(0, 255, 0, 255));
+    // right
+    vita2d_draw_rectangle(Menu_CurrentRect.w + Menu_CurrentRect.x, Menu_CurrentRect.y, 4, Menu_CurrentRect.h + 4, RGBA8(0, 255, 0, 255));
 
+    // Right Panel
+    // top
+    vita2d_draw_rectangle(Menu_RightRect.x, Menu_RightRect.y, Menu_RightRect.w, 4, RGBA8(0, 255, 0, 255));
+    // bottom
+    vita2d_draw_rectangle(Menu_RightRect.x, Menu_RightRect.h + Menu_RightRect.y, Menu_RightRect.w, 4, RGBA8(0, 255, 0, 255));
+    // left
+    vita2d_draw_rectangle(Menu_RightRect.x, Menu_RightRect.y, 4, Menu_RightRect.h, RGBA8(0, 255, 0, 255));
+    // right
+    vita2d_draw_rectangle(Menu_RightRect.w + Menu_RightRect.x, Menu_RightRect.y, 4, Menu_RightRect.h + 4, RGBA8(0, 255, 0, 255));
 
-  switch (menuPos) {
-      case 1:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
-        break;
-      case 2:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 50, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
-        break;
-      case 3:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 100, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
-        break;
-      case 4:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 150, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
-        break;
-      case 5:
-        vita2d_draw_rectangle(menuRect.x + 1, menuRect.y + 200, menuRect.w - 1, 50, RGBA8(menuBarColorR,menuBarColorG,menuBarColorB, barFade));
-        break;
+    // Left Panel
+    // top
+    vita2d_draw_rectangle(Menu_LeftRect.x, Menu_LeftRect.y, Menu_LeftRect.w, 4, RGBA8(0, 255, 0, 255));
+    // bottom
+    vita2d_draw_rectangle(Menu_LeftRect.x, Menu_LeftRect.h + Menu_LeftRect.y, Menu_LeftRect.w, 4, RGBA8(0, 255, 0, 255));
+    // left
+    vita2d_draw_rectangle(Menu_LeftRect.x, Menu_LeftRect.y, 4, Menu_LeftRect.h, RGBA8(0, 255, 0, 255));
+    // right
+    vita2d_draw_rectangle(Menu_LeftRect.w + Menu_LeftRect.x, Menu_LeftRect.y, 4, Menu_LeftRect.h + 4, RGBA8(0, 255, 0, 255));
+
+    // Dummy Panel
+    if (Menu_PanelMode != 0) {
+        // top
+        vita2d_draw_rectangle(Menu_DummyRect.x, Menu_DummyRect.y, Menu_DummyRect.w, 4, RGBA8(0, 255, 0, 255));
+        // bottom
+        vita2d_draw_rectangle(Menu_DummyRect.x, Menu_DummyRect.h + Menu_DummyRect.y, Menu_DummyRect.w, 4, RGBA8(0, 255, 0, 255));
+        // left
+        vita2d_draw_rectangle(Menu_DummyRect.x, Menu_DummyRect.y, 4, Menu_DummyRect.h, RGBA8(0, 255, 0, 255));
+        // right
+        vita2d_draw_rectangle(Menu_DummyRect.w + Menu_DummyRect.x, Menu_DummyRect.y, 4, Menu_DummyRect.h + 4, RGBA8(0, 255, 0, 255));
     }
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 30, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Play");
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 80, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Options");
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 130, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Credits");
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 180, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Controls");
-  vita2d_font_draw_text(font, menuRect.x + 10, menuRect.y + 230, RGBA8(mainTextR,mainTextG,mainTextB,fade), 20.0f, "Quit");
+}
 
-  vita2d_draw_texture_scale(crossImage,menuRect.x + 7, menuRect.y + menuRect.h - 40, 1,1);
-  vita2d_font_draw_text(font, menuRect.x + 40, menuRect.y + menuRect.h - 16, RGBA8(helpTextR,helpTextG,helpTextB, fade), 20.0f, "Select");
-  if(menuRect.x < target)
-  {
-    menuRect.x += 10;
-    if(fade > 10)
-    {
-      fade -= 10;
-      barFade -= 4;
+//
+// Menu::MenuMain()
+// The Main Menu
+//
+void Menu::MenuMain()
+{
+    vita2d_font_draw_text(font, 300, 200, RGBA8(0, 0, 255, 255), 20.0f, "lol this is the main menu (or is it owo)");
+}
+
+//
+// Menu::PanelLeft
+// Move the current Panel to the Left
+//
+void Menu::PanelLeft()
+{
+    // Initialize Panel Move
+    if (Menu_PanelMode != 1) {
+        // Move Mode
+        Menu_PanelMoving = true;
+        Menu_PanelMode = 1;
+        Menu_XMoveDone = Menu_YMoveDone = Menu_HMoveDone = false;
+
+        // Set up DummyRect
+        Menu_DummyRect = Menu_LeftRect;
+        Menu_DummyRect.x = 1657;
     }
-  }
-  if(menuRect.x > target)
-  {
-    menuRect.x -= 10;
-    if(fade < 240)
-    {
-      fade += 10;
-      barFade += 4;
+
+    // Shrink Current Rect
+    Menu_CurrentRect.x -= 40;
+    Menu_CurrentRect.y += 2;
+    Menu_CurrentRect.h -= 4;
+
+    // Expand Right Rect
+    Menu_RightRect.x -= 40;
+    Menu_RightRect.y -= 2;
+    Menu_RightRect.h += 4;
+
+    Menu_LeftRect.x -= 40;
+    Menu_DummyRect.x -= 40;
+
+    // Force Size
+    if (Menu_CurrentRect.x < -552) {
+        Menu_CurrentRect.x = -552;
+        Menu_RightRect.x = 186;
+        Menu_DummyRect.x = 919;
+        Menu_XMoveDone = true;
     }
-  }
+
+    if (Menu_CurrentRect.y > 130) {
+        Menu_CurrentRect.y = 130;
+        Menu_RightRect.y = 102;
+        Menu_YMoveDone = true;
+    }
+
+    if (Menu_CurrentRect.h < 340) {
+        Menu_CurrentRect.h = 340;
+        Menu_RightRect.h = 393;
+        Menu_HMoveDone = true;
+    }
+
+    // If we're done, get outta here
+    if (Menu_XMoveDone == true && Menu_YMoveDone == true && Menu_HMoveDone == true) {
+        Menu_PanelMoving = false;
+        Menu_PanelMode = 0;
+
+        // Re-define Panels
+        Menu::SetUpPanelSizes();
+    }
 }
 
-int Menu::getStatus()
+//
+// Menu::PanelRight
+// Move the current Panel to the Right
+//
+void Menu::PanelRight()
 {
-  return status;
-}
+    // Initialize Panel Move
+    if (Menu_PanelMode != 2) {
+        // Move Mode
+        Menu_PanelMoving = true;
+        Menu_PanelMode = 2;
+        Menu_XMoveDone = Menu_YMoveDone = Menu_HMoveDone = false;
 
-void Menu::setStatus(int status)
-{
-  this->status = status;
-}
+        // Set up DummyRect
+        Menu_DummyRect = Menu_LeftRect;
+        Menu_DummyRect.x = -1290;
+    }
 
-bool Menu::getQuit()
-{
-  return quit;
-}
+    // Shrink Current Rect
+    Menu_CurrentRect.x += 40;
+    Menu_CurrentRect.y += 2;
+    Menu_CurrentRect.h -= 4;
 
-void Menu::showCredits()
-{
-  std::string dlString = "- All of you: "; //add the dl count to this string. 
-  dlString += downLoadCount;
-  dlString += " Downloads!";
+    // Expand Left Rect
+    Menu_LeftRect.x += 40;
+    Menu_LeftRect.y -= 2;
+    Menu_LeftRect.h += 4;
 
-  vita2d_draw_rectangle(160, 142, 640, 332, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 240));
-  drawEmptyRect(160, 142, 640, 332, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
+    Menu_RightRect.x += 40;
+    Menu_DummyRect.x += 40;
 
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "CREDITS") / 2, 544 / 3 - 15, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "CREDITS");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 10, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "G33: Programming, Design");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 30, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "MotoLegacy: Livearea, Player/Enemies, Programming, Design");
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "SPECIAL THANKS") / 2, 544 / 3 + 80, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "SPECIAL THANKS");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 100, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Xerpi: libVita2D");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 120, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Xyz: SoLoud Vita Port");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 140, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Rinnegatamante: FPS Counter Code");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 160, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- VitaSDK Contributors");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 180, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Ivan voirol @ OpenGameArt: Background Grid");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 200, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- yd @ OpenGameArt: Menu Music (outhere.ogg)");
-  vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 220, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "- Trevor Lentz @ OpenGameArt: Game Music (heroimmortal.ogg)");
+    // Force Size
+    if (Menu_CurrentRect.x > 919) {
+        Menu_CurrentRect.x = 919;
+        Menu_LeftRect.x = Menu_DefaultRect.x;
+        Menu_DummyRect.x = -475;
+        Menu_XMoveDone = true;
+    }
 
-  if(downLoadCount.compare("Error") != 0){
-    vita2d_font_draw_text(font, 160 + 5, 544 / 3 + 240, RGBA8(mainTextR,mainTextG,mainTextR,255), 20.0f, dlString.c_str());
-  }
+    if (Menu_CurrentRect.y > 130) {
+        Menu_CurrentRect.y = 130;
+        Menu_LeftRect.y = Menu_DefaultRect.y;
+        Menu_YMoveDone = true;
+    }
 
-  std::string verString = "Current Version: ";
-  verString += std::to_string(RPPHS_VERSION);
-  
-  std::string buildString = "Build Date: ";
-  buildString += buildDate;
+    if (Menu_CurrentRect.h < 340) {
+        Menu_CurrentRect.h = 340;
+        Menu_LeftRect.h = Menu_DefaultRect.h;
+        Menu_HMoveDone = true;
+    }
 
-  vita2d_font_draw_text(font, 160 + 5, 544 - 35, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, verString.c_str());
-  vita2d_font_draw_text(font, 160 + 5, 544 - 15, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, buildString.c_str());
+    // If we're done, get outta here
+    if (Menu_XMoveDone == true && Menu_YMoveDone == true && Menu_HMoveDone == true) {
+        Menu_PanelMoving = false;
+        Menu_PanelMode = 0;
 
-
-  int tempWidth = vita2d_texture_get_width(circleImage); //get the width and height to draw in correct place.
-  int tempHeight = vita2d_texture_get_height(circleImage); //both images are the same size. //used for text too
-
-  vita2d_font_draw_text(font, 160 + tempWidth + 10, 544 / 2 + 544 / 4 + 47, RGBA8(helpTextR,helpTextG,helpTextB,255), 20.0f, "Main Menu");
-
-  vita2d_draw_texture_scale(circleImage, 160 + 5, 544 / 2 + 544 / 4 + 55 - tempHeight, 1, 1);
-}
-
-void Menu::showControls()
-{
-  vita2d_draw_rectangle(160, 142, 640, 232, RGBA8(menuBGColorR,menuBGColorG,menuBGColorB, 240));
-  drawEmptyRect(160, 142, 640, 232, RGBA8(menuBorderR,menuBorderG,menuBorderB, 100));
-
-  vita2d_font_draw_text(font, 960 / 2 - vita2d_font_text_width(font, 20.0f, "CONTROLS") / 2, 544 / 3 - 15, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "CONTROLS");
-  
-  vita2d_font_draw_text(font, 160 + 40, 544 / 3 + 14, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "Move Player");
-  vita2d_draw_texture_scale(lStick, 160 + 5, 544 / 3 + 20 - vita2d_texture_get_height(lStick), 1, 1);
-
-  vita2d_font_draw_text(font, 160 + 40, 544 / 3 + 54, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "Shoot");
-  vita2d_draw_texture_scale(rStick, 160 + 5, 544 / 3 + 60 - vita2d_texture_get_height(rStick), 1, 1);
-
-  vita2d_font_draw_text(font, 160 + 42, 544 / 3 + 88, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "/");
-  vita2d_font_draw_text(font, 160 + 95, 544 / 3 + 90, RGBA8(mainTextR,mainTextG,mainTextB,255), 20.0f, "Fire Bomb");
-  vita2d_draw_texture_scale(lTriggerImage, 160 + 5, 544 / 3 + 90 - vita2d_texture_get_height(lTriggerImage), 1, 1);
-  vita2d_draw_texture_scale(rTriggerImage, 160 + 52, 544 / 3 + 90 - vita2d_texture_get_height(rTriggerImage), 1, 1);
-
-  vita2d_font_draw_text(font, 160 + vita2d_texture_get_width(circleImage) + 10, 544 / 2 + 544 / 4 + 47 - 100, RGBA8(helpTextR,helpTextG,helpTextB,255), 20.0f, "Main Menu");
-  vita2d_draw_texture_scale(circleImage, 160 + 5, 544 / 2 + 544 / 4 + 55 - 100 - vita2d_texture_get_height(circleImage), 1, 1);
+        // Re-define Panels
+        Menu::SetUpPanelSizes();
+    }
 }

@@ -20,7 +20,7 @@ void Game::init()
 
   memset(&pad, 0, sizeof(pad));
 
-  menu.init();
+  menu.Init();
   options.init();
   classic.init(levelWidth, levelHeight);
   highScores.init();
@@ -440,31 +440,35 @@ void Game::doGame()
 		vita2d_clear_screen();
 
     switch (status) {
-      case 1:
-        menu.doStuff(keys, showBattery);
-        status = menu.getStatus();
-        quitGame = menu.getQuit();
-        classic.setStatus(status);
-        options.setStatus(status);
-        saveScreen.setStatus(status);
-        highScores.setStatus(status);
-        options.menuPartial();
-        gWave.setVolume(options.getSoundsLevel());
-        exp1.setVolume(options.getSoundsLevel());
-        if(status == 2)
-        {
-          status = 5;
-          highScores.start();
-        }
-        classic.setStatus(status);
-        options.setStatus(status);
-        saveScreen.setStatus(status);
-        highScores.setStatus(status);
-        if(status == 3)
-        {
-          options.start();
-        }
-        break;
+        case 1:
+            // MOTO FIXME - menu redesign changes this
+            menu.Main(keys);
+            //menu.doStuff(keys, showBattery);
+            //status = menu.getStatus();
+            //quitGame = menu.getQuit();
+            status = 1;
+            quitGame = false;
+            classic.setStatus(status);
+            options.setStatus(status);
+            saveScreen.setStatus(status);
+            highScores.setStatus(status);
+            options.menuPartial();
+            gWave.setVolume(options.getSoundsLevel());
+            exp1.setVolume(options.getSoundsLevel());
+            if(status == 2)
+            {
+            status = 5;
+            highScores.start();
+            }
+            classic.setStatus(status);
+            options.setStatus(status);
+            saveScreen.setStatus(status);
+            highScores.setStatus(status);
+            if(status == 3)
+            {
+            options.start();
+            }
+            break;
       case 2:
         classic.doStuff(keys,
         pad.lx,
@@ -478,7 +482,7 @@ void Game::doGame()
         deadZone);
         status = classic.getStatus();
         quitGame = classic.getQuit();
-        menu.setStatus(status);
+        //menu.setStatus(status);
         options.setStatus(status);
         saveScreen.setStatus(status);
         if(classic.getPoints() > 10000 && !playingGameSound)
@@ -496,14 +500,14 @@ void Game::doGame()
           if(checkScores(classic.getPoints()))
           {
             status = 4;
-            menu.setStatus(status);
+            //menu.setStatus(status);
             options.setStatus(status);
             saveScreen.setStatus(status);
             saveScreen.start(classic.getPoints());
           }
           else
           {
-            menu.start();
+            //menu.start();
           }
         }
         break;
@@ -512,9 +516,9 @@ void Game::doGame()
         status = options.getStatus();
         quitGame = options.getQuit();
         classic.setStatus(status);
-        menu.setStatus(status);
+        //menu.setStatus(status);
         saveScreen.setStatus(status);
-        menu.menuPartial();
+        //menu.menuPartial();
         showFps = options.getShowFps();
         showCursor = options.getShowCursor();
         showBattery = options.getShowBattery();
@@ -529,7 +533,7 @@ void Game::doGame()
         saveIcon.start();
         if(status == 1)
         {
-          menu.start();
+          //menu.start();
           saveSettings();
         }
         break;
@@ -538,7 +542,7 @@ void Game::doGame()
         status = saveScreen.getStatus();
         classic.setStatus(status);
         options.setStatus(status);
-        menu.setStatus(status);
+        //menu.setStatus(status);
         highScores.setStatus(status);
         saveIcon.start();
         if(status == 5)
@@ -554,14 +558,14 @@ void Game::doGame()
         classic.setStatus(status);
         options.setStatus(status);
         saveScreen.setStatus(status);
-        menu.setStatus(status);
-        menu.menuPartial();
+        //menu.setStatus(status);
+        //menu.menuPartial();
         options.menuPartial();
 
 
         if(status == 1)
         {
-          menu.start();
+          //menu.start();
           classic.init(levelWidth, levelHeight);// only needed here to set score to zero, after getting a new score and leaving this screen
         }
 
